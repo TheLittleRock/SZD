@@ -1,0 +1,15 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  id: 881ea5c5-aca1-4f87-9e1e-d9333dbba273
+  # title:
+  # description:
+  # keywords: []
+  # authors: []
+  github: https://github.com/TheLittleRock/SZD
+  # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
+site:
+  template: book-theme
+  # options:
+  #   favicon: favicon.ico
+  #   logo: site_logo.png
