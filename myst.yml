@@ -5,11 +5,15 @@ project:
   # title:
   # description:
   # keywords: []
-  # authors: []
+  #authors: [Štěpán Skalka]
   github: https://github.com/TheLittleRock/SZD
   # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
 site:
   template: book-theme
-  # options:
-  #   favicon: favicon.ico
-  #   logo: site_logo.png
+  options:
+    favicon: assets/icon.ico
+    logo: assets/mouse.svg
+    logo_dark: assets/mouse.png
+    hide_outline: True
+    style: assets/style.css
+    #logo_text: SZD 1+2
