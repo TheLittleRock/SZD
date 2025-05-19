@@ -37,6 +37,7 @@ jobs:
         run: npm install -g mystmd
       - name: Build HTML Assets
         run: myst build --html
+        run: sed -i 's/"content_type": "image\/svg\+xml"/"content_type": "image"/g' ./_build/html/homework-2.json
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
