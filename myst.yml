@@ -8,6 +8,12 @@ project:
   #authors: [Štěpán Skalka]
   github: https://github.com/TheLittleRock/SZD
   # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
+  #jupyter:
+  #  lite: true
+  #jupyter:
+  #  server:
+  #    url: https://jupyter.fjfi.cvut.cz/
+  #    token: e4372e8c9122454d83127138b2a1734e
 site:
   template: book-theme
   options:
@@ -16,4 +22,18 @@ site:
     logo_dark: assets/mouse.png
     hide_outline: True
     style: assets/style.css
+    logo_text: SZD Homeworks
     #logo_text: SZD 1+2
+  nav:
+    - title: SZD1
+      children:
+      - title: HOMEWORK I
+        url: /homework-1
+      - title: HOMEWORK II
+        url: /homework-2
+      - title: HOMEWORK III
+        url: /homework-3
+    - title: SZD2
+      children:
+      - title: ROOT test
+        url: /root-test

@@ -1,13 +1,60 @@
 .dark\:bg-stone-900:is(.dark *) {
-    background-color: #151a20;
+    background-color: #1e2129;
 }
 
 .dark\:bg-stone-900\/80:is(.dark *) {
-    background-color: #1f2630;
+    /*background-color: #1f2630;*/
+    background-color: #009385;
 }
 
 .dark .hljs {
-    background: #1e262f !important;
+    background: #272b35 !important;
+}
+
+.dark\:border-l-blue-400:is(.dark *) {
+    border-left-color: #005f56;
+}
+
+.dark\:bg-gray-700:is(.dark *) {
+    background-color: #005f56;
+}
+
+.dark\:border-gray-600:is(.dark *) {
+    border-color: #005f56;
+}
+
+@media (min-width: 640px) {
+    .dark .sm\:text-xl {
+        font-size: 1.4rem;
+        line-height: 1.75rem;
+        font-weight: 500;
+        color: #edf9ffc9;
+        margin-bottom: 0.25rem;
+        margin-left: 0.5rem;
+    }
+}
+
+.dark\:text-white:is(.dark *) {
+    font-weight: 500;
+    color: #edf9ffc9;
+}
+
+@media (min-width: 640px) {
+        .sm\:text-xl {
+        font-size: 1.4rem;
+        line-height: 1.75rem;
+        font-weight: 500;
+        margin-bottom: 0.25rem;
+        margin-left: 0.5rem;
+    }
+}
+
+.dark\:text-gray-200:is(.dark *) {
+    opacity: 0;
+}
+
+html {
+  --darkmode: 1 !important; 
 }
 
 @media (min-width: 1280px) {
