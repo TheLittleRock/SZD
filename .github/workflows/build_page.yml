@@ -38,7 +38,7 @@ jobs:
       - name: Build HTML Assets 
         run: myst build --html 
       - name: Replace content_type in Homework_1
-        run: cat ./_build/html/homework-2.json
+        run: ls
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
