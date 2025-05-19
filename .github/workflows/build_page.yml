@@ -36,10 +36,9 @@ jobs:
       - name: Install MyST Markdown
         run: npm install -g mystmd
       - name: Build HTML Assets 
-        run: |
-          myst build --html 
-          sed -i 's/"content_type": "image\/svg\+xml"/"content_type": "image"/g' ./_build/html/homework-2.json
-          echo replaced
+        run: myst build --html 
+      - name: Replace content_type in Homework_1
+        run: cat ./_build/html/homework-2.json
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
