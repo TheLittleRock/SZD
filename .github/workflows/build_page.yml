@@ -39,6 +39,7 @@ jobs:
         run: |
           myst build --html 
           sed -i 's/"content_type": "image\/svg\+xml"/"content_type": "image"/g' ./_build/html/homework-2.json
+          echo replaced
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
