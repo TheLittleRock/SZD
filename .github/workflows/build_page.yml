@@ -39,9 +39,9 @@ jobs:
         run: myst build --html 
       - name: Replace SVG content_type in homework-2.json and show result
         run: |
-          sed -i 's/"content_type":"image\/svg\+xml"/"content_type":"image"/g' ./_build/html/homework-2.json
-          echo "Replacement complete."
-          grep '"content_type":"image"' ./_build/html/homework-2.json
+          grep 'content_type' ./_build/html/homework-2.json || echo "No content_type found before"
+          sed -i 's/"content_type":"image\/svg+xml"/"content_type":"image"/g' ./_build/html/homework-2.json
+          grep 'content_type' ./_build/html/homework-2.json || echo "No content_type found after"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
