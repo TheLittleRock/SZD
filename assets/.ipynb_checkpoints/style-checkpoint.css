@@ -1,0 +1,42 @@
+.dark\:bg-stone-900:is(.dark *) {
+    background-color: #151a20;
+}
+
+.dark\:bg-stone-900\/80:is(.dark *) {
+    background-color: #1f2630;
+}
+
+.dark .hljs {
+    background: #1e262f !important;
+}
+
+@media (min-width: 1280px) {
+    @media (min-width: 1536px) {
+        .xl\:article-grid {
+            grid-template-columns: [screen-start] .5rem [screen-inset-start] 0fr [page-start] 2rem [page-inset-start] minmax(4rem, 9rem) [body-outset-start] 3rem [body-start gutter-left-start] 1rem [body-inset-start] minmax(8ch, 10ch) [middle-start] minmax(8ch, 10ch) [gutter-left-end] minmax(8ch, 10ch) minmax(8ch, 10ch) [gutter-right-start] minmax(8ch, 10ch) [middle-end] minmax(8ch, 10ch) [body-inset-end] 1rem [body-end gutter-right-end] 3rem [body-outset-end] minmax(5rem, 13rem) [page-inset-end] 3rem [page-end] 1fr [screen-inset-end] .5rem [screen-end];
+        }
+    }
+}
+
+@media (min-width: 1280px) {
+    .article-grid {
+        grid-template-columns: [screen-start] .25rem [screen-inset-start] 1fr [page-start] 3rem [page-inset-start] minmax(4rem, 9rem) [body-outset-start] 3rem [body-start gutter-left-start] 1rem [body-inset-start] minmax(8ch, 10ch) [middle-start] minmax(8ch, 10ch) [gutter-left-end] minmax(8ch, 10ch) minmax(8ch, 10ch) [gutter-right-start] minmax(8ch, 10ch) [middle-end] minmax(70ch, 80ch) [body-inset-end] 1rem [body-end gutter-right-end] 3rem [body-outset-end] minmax(5rem, 13rem) [page-inset-end] 3rem [page-end] 1fr [screen-inset-end] .25rem [screen-end];
+    }
+}
+
+@media (min-width: 1280px) {
+    @media (min-width: 1280px) {
+        .xl\:article-grid {
+            grid-template-columns: [screen-start] .25rem [screen-inset-start] 1fr [page-start] 3rem [page-inset-start] minmax(4rem, 9rem) [body-outset-start] 3rem [body-start gutter-left-start] 1rem [body-inset-start] minmax(8ch, 10ch) [middle-start] minmax(8ch, 10ch) [gutter-left-end] minmax(8ch, 10ch) minmax(8ch, 10ch) [gutter-right-start] minmax(80ch, 40ch) [middle-end] minmax(8ch, 10ch) [body-inset-end] 1rem [body-end gutter-right-end] 3rem [body-outset-end] minmax(5rem, 13rem) [page-inset-end] 3rem [page-end] 1fr [screen-inset-end] .25rem [screen-end];
+        }
+    }
+}
+
+img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* width: 40%; */
+}
