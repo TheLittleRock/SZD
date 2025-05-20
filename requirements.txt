@@ -5,3 +5,4 @@ jupyterlab==4.4.2
 jupyterlab_myst==2.4.2
 numpy==2.2.5
 scipy==1.15.3
+matplotlib
