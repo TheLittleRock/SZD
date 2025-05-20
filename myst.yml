@@ -24,16 +24,17 @@ site:
     style: assets/style.css
     logo_text: SZD Homeworks
     #logo_text: SZD 1+2
+    #folders: true
   nav:
     - title: SZD1
       children:
       - title: HOMEWORK I
-        url: /homework-1
+        url: /SZD/homework-1
       - title: HOMEWORK II
-        url: /homework-2
+        url: /SZD/homework-2
       - title: HOMEWORK III
-        url: /homework-3
+        url: /SZD/homework-3
     - title: SZD2
       children:
       - title: ROOT test
-        url: /root-test
+        url: /SZD/root-test
