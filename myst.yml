@@ -24,7 +24,7 @@ site:
     style: assets/style.css
     logo_text: SZD Homeworks
     #logo_text: SZD 1+2
-    folders: true
+    #folders: true
   nav:
     - title: SZD1
       children:
