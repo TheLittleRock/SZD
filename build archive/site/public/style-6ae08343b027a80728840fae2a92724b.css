@@ -1,0 +1,89 @@
+.dark\:bg-stone-900:is(.dark *) {
+    background-color: #1e2129;
+}
+
+.dark\:bg-stone-900\/80:is(.dark *) {
+    /*background-color: #1f2630;*/
+    background-color: #009385;
+}
+
+.dark .hljs {
+    background: #272b35 !important;
+}
+
+.dark\:border-l-blue-400:is(.dark *) {
+    border-left-color: #005f56;
+}
+
+.dark\:bg-gray-700:is(.dark *) {
+    background-color: #005f56;
+}
+
+.dark\:border-gray-600:is(.dark *) {
+    border-color: #005f56;
+}
+
+@media (min-width: 640px) {
+    .dark .sm\:text-xl {
+        font-size: 1.4rem;
+        line-height: 1.75rem;
+        font-weight: 500;
+        color: #edf9ffc9;
+        margin-bottom: 0.25rem;
+        margin-left: 0.5rem;
+    }
+}
+
+.dark\:text-white:is(.dark *) {
+    font-weight: 500;
+    color: #edf9ffc9;
+}
+
+@media (min-width: 640px) {
+        .sm\:text-xl {
+        font-size: 1.4rem;
+        line-height: 1.75rem;
+        font-weight: 500;
+        margin-bottom: 0.25rem;
+        margin-left: 0.5rem;
+    }
+}
+
+.dark\:text-gray-200:is(.dark *) {
+    opacity: 0;
+}
+
+html {
+  --darkmode: 1 !important; 
+}
+
+@media (min-width: 1280px) {
+    @media (min-width: 1536px) {
+        .xl\:article-grid {
+            grid-template-columns: [screen-start] .5rem [screen-inset-start] 0fr [page-start] 2rem [page-inset-start] minmax(4rem, 9rem) [body-outset-start] 3rem [body-start gutter-left-start] 1rem [body-inset-start] minmax(8ch, 10ch) [middle-start] minmax(8ch, 10ch) [gutter-left-end] minmax(8ch, 10ch) minmax(8ch, 10ch) [gutter-right-start] minmax(8ch, 10ch) [middle-end] minmax(8ch, 10ch) [body-inset-end] 1rem [body-end gutter-right-end] 3rem [body-outset-end] minmax(5rem, 13rem) [page-inset-end] 3rem [page-end] 1fr [screen-inset-end] .5rem [screen-end];
+        }
+    }
+}
+
+@media (min-width: 1280px) {
+    .article-grid {
+        grid-template-columns: [screen-start] .25rem [screen-inset-start] 1fr [page-start] 3rem [page-inset-start] minmax(4rem, 9rem) [body-outset-start] 3rem [body-start gutter-left-start] 1rem [body-inset-start] minmax(8ch, 10ch) [middle-start] minmax(8ch, 10ch) [gutter-left-end] minmax(8ch, 10ch) minmax(8ch, 10ch) [gutter-right-start] minmax(8ch, 10ch) [middle-end] minmax(70ch, 80ch) [body-inset-end] 1rem [body-end gutter-right-end] 3rem [body-outset-end] minmax(5rem, 13rem) [page-inset-end] 3rem [page-end] 1fr [screen-inset-end] .25rem [screen-end];
+    }
+}
+
+@media (min-width: 1280px) {
+    @media (min-width: 1280px) {
+        .xl\:article-grid {
+            grid-template-columns: [screen-start] .25rem [screen-inset-start] 1fr [page-start] 3rem [page-inset-start] minmax(4rem, 9rem) [body-outset-start] 3rem [body-start gutter-left-start] 1rem [body-inset-start] minmax(8ch, 10ch) [middle-start] minmax(8ch, 10ch) [gutter-left-end] minmax(8ch, 10ch) minmax(8ch, 10ch) [gutter-right-start] minmax(80ch, 40ch) [middle-end] minmax(8ch, 10ch) [body-inset-end] 1rem [body-end gutter-right-end] 3rem [body-outset-end] minmax(5rem, 13rem) [page-inset-end] 3rem [page-end] 1fr [screen-inset-end] .25rem [screen-end];
+        }
+    }
+}
+
+img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* width: 40%; */
+}
