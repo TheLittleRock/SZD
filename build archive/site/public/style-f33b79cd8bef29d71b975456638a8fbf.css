@@ -1,0 +1,3 @@
+.dark\:bg-stone-900:is(.dark *) {
+    background-color: #121212;
+}

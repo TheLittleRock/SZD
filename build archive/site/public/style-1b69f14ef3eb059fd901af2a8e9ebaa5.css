@@ -1,0 +1,11 @@
+.dark\:bg-stone-900:is(.dark *) {
+    background-color: #151a20;
+}
+
+.dark\:bg-stone-900\/80:is(.dark *) {
+    background-color: #1f2630;
+}
+
+.dark .hljs {
+    background: #1e262f !important;
+}

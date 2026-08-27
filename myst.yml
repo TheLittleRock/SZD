@@ -1,12 +1,12 @@
 # See docs at: https://mystmd.org/guide/frontmatter
 version: 1
-project:
-  id: 881ea5c5-aca1-4f87-9e1e-d9333dbba273
+#project:
+ # id: 881ea5c5-aca1-4f87-9e1e-d9333dbba273
   # title:
   # description:
   # keywords: []
   #authors: [Štěpán Skalka]
-  github: https://github.com/TheLittleRock/SZD
+  #github: https://github.com/TheLittleRock/SZD
   # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
   #jupyter:
   #  lite: true
@@ -14,12 +14,29 @@ project:
   #  server:
   #    url: https://jupyter.fjfi.cvut.cz/
   #    token: e4372e8c9122454d83127138b2a1734e
+
+project:
+  id: 881ea5c5-aca1-4f87-9e1e-d9333dbba273
+  github: https://github.com/TheLittleRock/SZD
+  toc:
+    - file: README.md  # Add your index file here
+    - title: SZD1
+      children:
+        - file: source/Homework 1.ipynb
+        - file: source/Homework 2.ipynb
+        - file: source/Homework 3.ipynb
+    - title: SZD2
+      children:
+        - file: source/ROOT_test.ipynb
+        - file: source/chi2fit.ipynb
+          title: MLM vs. χ²
+
 site:
   template: book-theme
   options:
     favicon: assets/icon.ico
-    logo: assets/mouse.svg
-    logo_dark: assets/mouse.png
+    #logo: assets/mouse.svg
+    #logo_dark: assets/mouse.png
     hide_outline: True
     style: assets/style.css
     logo_text: SZD Homeworks
@@ -29,12 +46,14 @@ site:
     - title: SZD1
       children:
       - title: HOMEWORK I
-        url: /SZD/homework-1
+        url: /homework-1
       - title: HOMEWORK II
-        url: /SZD/homework-2
+        url: /homework-2
       - title: HOMEWORK III
-        url: /SZD/homework-3
+        url: /homework-3
     - title: SZD2
       children:
       - title: ROOT test
-        url: /SZD/root-test
+        url: /root-test
+      - title: Chi2 fit
+        url: /chi2fit
