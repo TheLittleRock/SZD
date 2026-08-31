@@ -1,149 +1,305 @@
-.dark\:bg-stone-900:is(.dark *) {
-    background-color: #1e2129;
-}
+/* ==========================================================================
+   CONTENT LAYOUT & MEDIA
+   ========================================================================== */
 
-/* color adn opacity of top navbar */
-.dark\:bg-stone-900\/80:is(.dark *) {
-    /*background-color: #1f2630;*/
-    background-color: #009385b0;
-}
-
-/* left navbar padding on top and bottom */
-.py-6 {
-    padding-top: 2.5rem;
-    padding-bottom: 1.5rem;
-}
-
-.dark .hljs {
-    background: #1c1e25 !important;
-}
-
-.dark\:border-l-blue-400:is(.dark *) {
-    border-left-color: #005f56;
-}
-
-.dark\:bg-gray-700:is(.dark *) {
-    background-color: #005f56;
-}
-
-.dark\:border-gray-600:is(.dark *) {
-    border-color: #005f56;
-}
-
-@media (min-width: 640px) {
-    .dark .sm\:text-xl {
-        font-size: 1.4rem;
-        line-height: 1.75rem;
-        font-weight: 500;
-        color: #edf9ffc9;
-        margin-bottom: 0.25rem;
-        margin-left: 0.5rem;
-    }
-}
-
-.dark\:text-white:is(.dark *) {
-    font-weight: 500;
-    color: #edf9ffc9;
-}
-
-@media (min-width: 640px) {
-        .sm\:text-xl {
-        font-size: 1.4rem;
-        line-height: 1.75rem;
-        font-weight: 500;
-        margin-bottom: 0.25rem;
-        margin-left: 0.5rem;
-    }
-}
-
-.dark\:text-gray-200:is(.dark *) {
-    opacity: 0;
-}
-
-html {
-  --darkmode: 1 !important; 
-}
-
-
-img, video {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px;           /* Optional: Adds breathing room around the plot */
-    border-radius: 8px;      /* Optional: Softens the white edges */
-}
-
-
-
-.dark\:bg-stone-800:is(.dark *) {
-    --tw-bg-opacity: 1;
-    background-color: #212631 !important;
-}
-
-.dark\:bg-slate-900:is(.dark *) {
-    --tw-bg-opacity: 1;
-    background-color: rgb(15 20 31) !important;
-}
-
-.dark .hljs-keyword,
-.dark .hljs-literal,
-.dark .hljs-selector-tag {
-    color: #c586c0; /* Blue for keywords and booleans */
-}
-
-.dark .hljs-string,
-.dark .hljs-meta .hljs-string {
-    color: #5a97c3; /* Orange/Salmon for strings */
-}
-
-.dark .hljs-number {
-    color: #b5cea8; /* Light green for numbers */
-}
-
-.dark .hljs-comment,
-.dark .hljs-quote {
-    color: #6a9955; /* Green for comments */
-}
-
-.dark .hljs-title,
-.dark .hljs-title.function_,
-.dark .hljs-title.class_ {
-    color: #983d91; /* Yellow/Gold for functions */
-}
-
-.dark .hljs-type,
-.dark .hljs-built_in {
-    color: #4ec9b0; /* Teal for classes/built-ins */
-}
-
-.dark .hljs-attr,
-.dark .hljs-property,
-.dark .hljs-params {
-    color: #9cdcfe; /* Light blue for variables/properties */
-}
-
-/* Set punctuation and operators back to standard gray */
-.dark .hljs-punctuation,
-.dark .hljs-operator {
-    color: #ffaa00; 
-}
-/* ------------------------------------------ */
-
-/* bigger mouse icon */
-/*.h-9 {
-    height: 3.25rem !important;
-}*/
-
-/* 1. Remove the default 65ch character limit to allow text to stretch */
+/* Removes the 65ch line-length restriction to let text span wider */
 .article, .prose {
     max-width: none !important;
 }
 
-/* 2. Expand the default grid allocation to fill the empty right margin */
+/* Expands the main article grid to stretch across the empty right sidebar space */
 .article-center-grid > *:not(.col-screen):not(.col-page):not(.col-page-inset),
 .article-grid > *:not(.col-screen):not(.col-page):not(.col-page-inset),
 .article-left-grid > *:not(.col-screen):not(.col-page):not(.col-page-inset) {
     grid-column: body-start / page-inset-end;
+}
+
+/* Centers all plot images and videos with inner padding and rounded edges.
+   Scoped explicitly to articles and outputs to prevent breaking the navbar logo. */
+.article img:not(.myst-home-link-logo img),
+[data-name="outputs-container"] img {
+    max-width: 90%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    padding: 10px;           /* Breathing room around plots */
+    border-radius: 15px;      /* Softens image borders */
+}
+
+/* ==========================================================================
+   PAGE BACKGROUND & NAVIGATION BAR
+   ========================================================================== */
+
+/* Dark mode main page background (body, main containers) */
+html.dark body {
+    background-color: #1e2129 !important;
+}
+
+/* Dark mode top navigation bar background color and opacity */
+html.dark .myst-top-nav {
+    background-color: #009385b0 !important;
+}
+
+/* Left sidebar navigation vertical padding (top and bottom) */
+.myst-primary-sidebar-nav {
+    padding-top: 2.5rem;
+    padding-bottom: 1.5rem;
+}
+
+/* Top-left book title / logo text styling */
+.myst-home-link span {
+    font-weight: 500;
+}
+
+/* Dark-mode specific text color for the title */
+html.dark .myst-home-link span {
+    color: #edf9ffc9;
+}
+
+/* Hide "Made with MyST" footer cleanly without breaking other gray text elements */
+.myst-made-with-myst {
+    display: none !important;
+}
+
+/* Remove the blue focus outline from sidebar links and dropdown buttons */
+.myst-primary-sidebar a:focus,
+.myst-primary-sidebar button:focus,
+.myst-toc-item:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* ==========================================================================
+   SEARCH BAR
+   ========================================================================== */
+
+/* Dark mode search input box background and borders */
+html.dark .myst-search-bar {
+    background-color: #005f56 !important;
+    border-color: #005f56 !important;
+}
+
+/* ==========================================================================
+   CODE BLOCKS & DROPDOWNS ("Source" cells)
+   ========================================================================== */
+
+/* Background of expandable "Source" / code dropdown containers in dark mode */
+html.dark .myst-dropdown {
+    background-color: #212631 !important;
+}
+
+/* Background of the clickable "Source" <summary> bar in dark mode */
+html.dark .myst-dropdown-header {
+    background-color: rgb(15 20 31) !important;
+}
+
+/* Left accent bar border color on code cell blocks */
+html.dark .myst-code {
+    border-left-color: #005f56 !important;
+}
+
+/* Background of the actual code block area */
+html.dark .hljs {
+    background: #1c1e25 !important;
+}
+
+/* ==========================================================================
+   SYNTAX HIGHLIGHTING (highlight.js)
+   ========================================================================== */
+
+.dark .hljs-keyword,
+.dark .hljs-literal,
+.dark .hljs-selector-tag { 
+    color: #c586c0; /* Purple: def, import, from, return, True, False */
+}
+
+.dark .hljs-string,
+.dark .hljs-meta .hljs-string { 
+    color: #5a97c3; /* Blue: string literals */
+}
+
+.dark .hljs-number { 
+    color: #b5cea8; /* Light green: integers and floats */
+}
+
+.dark .hljs-comment,
+.dark .hljs-quote { 
+    color: #6a9955; /* Green: code comments */
+}
+
+.dark .hljs-title,
+.dark .hljs-title.function_,
+.dark .hljs-title.class_ { 
+    color: #983d91; /* Magenta: function and class definitions */
+}
+
+.dark .hljs-type,
+.dark .hljs-built_in { 
+    color: #4ec9b0; /* Teal: built-in functions (print, len, np, etc.) */
+}
+
+.dark .hljs-attr,
+.dark .hljs-property,
+.dark .hljs-params { 
+    color: #9cdcfe; /* Light blue: parameters and attributes */
+}
+
+/* Set punctuation and operators back to standard gray/orange */
+.dark .hljs-punctuation,
+.dark .hljs-operator { 
+    color: #ffaa00; /* Orange: operators (+, -, =) and punctuation */
+}
+
+/* ==========================================================================
+   INTERACTIVE CHECKBOXES
+   ========================================================================== */
+
+.task-list-item-checkbox {
+    width: 1rem !important;
+    height: 1rem !important;
+    margin-left: 0px !important;
+    
+    /* 1. Reset margin-top so it doesn't push the text */
+    margin-top: 0 !important; 
+    
+    /* 2. Shift ONLY the checkbox down relative to its original position */
+    position: relative !important;
+    top: 1.5px !important; /* Increase or decrease this to perfectly center it */
+    left: 5px !important; 
+    
+    cursor: pointer;
+    accent-color: #009385; 
+}
+
+/* Dark mode: Unchecked state styling */
+html.dark .task-list-item-checkbox {
+    background-color: #1c1e25 !important;
+    border: 2px solid #005f56 !important;
+}
+
+/* Dark mode: Remove the default blue glow when clicked */
+html.dark .task-list-item-checkbox:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #009385 !important;
+}
+
+/* ==========================================================================
+   SIDEBAR REFINEMENTS
+   ========================================================================== */
+
+/* 1. Make the side navbar thinner (default is 350px) */
+.myst-primary-sidebar-topnav,
+.myst-primary-sidebar-toc,
+.myst-primary-sidebar-footer {
+    max-width: 200px !important; /* Decrease this value to make it even thinner */
+}
+
+/* 2. Style the main "SZD Homeworks" TOC title */
+.myst-toc > a.font-bold:first-child {
+    font-size: 1.2rem !important;     /* Increases the text size */
+    margin-bottom: 1.5rem !important; /* Pushes the SZD1/SZD2 lists lower */
+    padding-bottom: 0.5rem !important; /* Optional: gives the text room to breathe */
+}
+
+/* ==========================================================================
+   TOP NAVBAR HOVER EFFECTS
+   ========================================================================== */
+
+/* Target the buttons inside the top navigation dropdowns */
+.myst-top-nav-dropdown button {
+    transition: all 0.2s ease-in-out !important;
+    border-radius: 6px !important;
+}
+
+/* Apply a color change, background highlight, and slight lift on hover */
+.myst-top-nav-dropdown button:hover {
+    color: #009385 !important; /* Your custom teal accent color */
+    background-color: rgba(0, 147, 133, 0.1) !important; /* Subtle teal background */
+    transform: translateY(-2px) !important; /* Lifts the button slightly */
+}
+
+/* Ensure the arrow icon matches the text color change */
+.myst-top-nav-dropdown button:hover svg {
+    color: #009385 !important;
+}
+
+/* Dark mode specific adjustments for the hover state */
+html.dark .myst-top-nav-dropdown button:hover {
+    color: #edf9ffc9 !important; 
+    background-color: rgba(255, 255, 255, 0.1) !important; 
+}
+
+html.dark .myst-top-nav-dropdown button:hover svg {
+    color: #edf9ffc9 !important;
+}
+
+/* ==========================================================================
+   DOWNLOAD BUTTON STYLING
+   ========================================================================== */
+
+/* 1. Layout, borders, and background */
+.myst-fm-downloads-button {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.4rem !important;
+    
+    /* New button visual styles */
+    padding: 0.3rem 0.8rem !important;
+    border: 1px solid #4b5563 !important; /* Subtle gray border */
+    border-radius: 6px !important;        /* Rounded corners */
+    background-color: rgba(255, 255, 255, 0.05) !important; /* Faint transparent background */
+    transition: all 0.2s ease-in-out !important; /* Smooth transition for hovering */
+}
+
+/* 2. Inject the text "Download" */
+.myst-fm-downloads-button::after {
+    content: "Download";
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: inherit;
+}
+
+/* 3. Hover effects (Teal outline and glow) */
+.myst-fm-downloads-button:hover {
+    border-color: #009385 !important;
+    background-color: rgba(0, 147, 133, 0.1) !important;
+    color: #edf9ffc9 !important;
+}
+
+/* Ensure the SVG icon also changes color on hover if needed */
+.myst-fm-downloads-button:hover svg {
+    color: #edf9ffc9 !important;
+}
+
+/* ==========================================================================
+   DROPDOWNS & COLLAPSIBLE ADMONITIONS
+   ========================================================================== */
+
+/* 1. Main dropdown container background (matches code cells) */
+html.dark .myst-admonition-body {
+    background-color: #1c1e25 !important;
+}
+
+/* 2. Clickable header background (matches code cells) */
+html.dark .myst-admonition-header {
+    background-color: #121722 !important;
+}
+
+/* 3. Hover effect for the clickable header */
+html.dark .myst-admonition-header:hover {
+    background-color: #151922 !important; /* Slightly lighter shade for hover feedback */
+}
+
+/* 4. Admonition accent color (left border) 
+      Matches the color used on your code blocks */
+html.dark .myst-admonition {
+    border-left-color: #005f56 !important;
+}
+
+/* 5. Admonition icon and main title text color 
+      Overrides the default blue, but leaves the "(click to reveal)" text alone */
+html.dark .myst-admonition-header,
+html.dark .myst-admonition-header .text-blue-600 {
+    color: #009385 !important;
 }

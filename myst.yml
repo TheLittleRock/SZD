@@ -16,20 +16,32 @@ version: 1
   #    token: e4372e8c9122454d83127138b2a1734e
 
 project:
+  title: SZD Homeworks
+  authors: 
+    - name: Štěpán Skalka
   id: 881ea5c5-aca1-4f87-9e1e-d9333dbba273
   github: https://github.com/TheLittleRock/SZD
   toc:
-    - file: README.md  # Add your index file here
-    - title: SZD1
-      children:
-        - file: source/Homework 1.ipynb
-        - file: source/Homework 2.ipynb
-        - file: source/Homework 3.ipynb
-    - title: SZD2
-      children:
-        - file: source/ROOT_test.ipynb
-        - file: source/chi2fit.ipynb
-          title: MLM vs. χ²
+  - file: README.md  # Add your index file here
+  - file: source/szd1.md
+    title: SZD1
+    children:
+      - file: source/Homework 1.ipynb
+        title: "Homework 1"              # Custom title example
+      - file: source/Homework 2.ipynb
+        title: "Homework 2"   
+      - file: source/Homework 3.ipynb
+        title: "Homework 3"   
+  - file: source/szd2.md
+    title: SZD2
+    children:
+      - file: source/ROOT_test.ipynb
+      - file: source/chi2fit.ipynb
+        title: "MLM vs. χ²"               # Custom title example
+      - file: source/RooFitWW.ipynb
+        title: "RooFit WW"
+  - file: source/root_install.md
+    title: ROOT install
 
 site:
   template: book-theme
@@ -43,17 +55,22 @@ site:
     #logo_text: SZD 1+2
     #folders: true
   nav:
-    - title: SZD1
-      children:
-      - title: HOMEWORK I
+  - title: SZD1
+    children:
+      - title: "SZD1"  # The landing page
+        url: /szd1
+      - title: Homework I
         url: /homework-1
-      - title: HOMEWORK II
+      - title: Homework II
         url: /homework-2
-      - title: HOMEWORK III
+      - title: Homework III
         url: /homework-3
-    - title: SZD2
-      children:
+
+  - title: SZD2
+    children:
+      - title: "SZD2"  # The landing page
+        url: /szd2
       - title: ROOT test
         url: /root-test
-      - title: Chi2 fit
+      - title: "MLM vs. χ²"
         url: /chi2fit
