@@ -49,7 +49,7 @@ site:
     favicon: assets/icon.ico
     #logo: assets/mouse.svg
     #logo_dark: assets/mouse.png
-    hide_outline: True
+    hide_outline: False
     style: assets/style.css
     logo_text: SZD Homeworks
     #logo_text: SZD 1+2
