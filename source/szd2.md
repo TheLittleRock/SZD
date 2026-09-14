@@ -60,7 +60,7 @@ https://kf.fjfi.cvut.cz/myska/SZD/szd2/Lookup_Solver/LookupSolver.html
   * [Web](https://kf.fjfi.cvut.cz/myska/SZD/szd2/Hypotheses_Poisson/Hypotheses_Poisson.html)
 - [ ] **4) Contour plot** in ROOT and RooFit
   * Sunrise paths: `/data2/vyuka/szd/SZD2-codes/Majak-withError` and `/data2/vyuka/szd/SZD2-codes/Root-RooFit/3-RooFit_Jpsi`
-- [ ] **5) Higgs boson mass significance** vs. size of mass window
+- [x] **5) Higgs boson mass significance** vs. size of mass window
   * Sunrise path: `/data2/vyuka/szd/SZD2-codes/HIGGS`
 - [ ] **6) Machine Learning** - Boosted Decision Trees in Python
   * [Web](https://kf.fjfi.cvut.cz/myska/SZD/szd2/BDT/BDT.html)
