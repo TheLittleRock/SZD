@@ -80,7 +80,7 @@ cells.append(nbf.v4.new_markdown_cell(c2_md))
 # ==============================================================================
 # CELL 3: Setup & Data Loading (Code)
 # ==============================================================================
-c3_code = """import os
+c3_code = r"""import os
 import ROOT
 import numpy as np
 import matplotlib.pyplot as plt
@@ -150,7 +150,7 @@ cells.append(nbf.v4.new_markdown_cell(c4_md))
 # ==============================================================================
 # CELL 5: Exploratory Analysis Code & ROOT Plot (Code)
 # ==============================================================================
-c5_code = """# Výpočet základních statistických ukazatelů
+c5_code = r"""# Výpočet základních statistických ukazatelů
 sample_mean = np.mean(hits_data)
 sample_median = np.median(hits_data)
 q25, q75 = np.percentile(hits_data, [25, 75])
@@ -232,7 +232,7 @@ cells.append(nbf.v4.new_markdown_cell(c6_md))
 # ==============================================================================
 # CELL 7: Matplotlib Hits Plot (Code)
 # ==============================================================================
-c7_code = """plt.rcParams.update({
+c7_code = r"""plt.rcParams.update({
     "font.size": 10,
     "xtick.direction": "in",
     "ytick.direction": "in",
@@ -305,7 +305,7 @@ cells.append(nbf.v4.new_markdown_cell(c8_md))
 # ==============================================================================
 # CELL 9: MLE Optimization (Code)
 # ==============================================================================
-c9_code = """# Definice záporné logaritmické věrohodnosti (NLL)
+c9_code = r"""# Definice záporné logaritmické věrohodnosti (NLL)
 def compute_nll(params):
     x, y = params
     if y <= 1e-5:
@@ -381,7 +381,7 @@ cells.append(nbf.v4.new_markdown_cell(c10_md))
 # ==============================================================================
 # CELL 11: 1D Slices Calculation & ROOT Plot (Code)
 # ==============================================================================
-c11_code = """# Výpočet 1D profilu pro x při fixním y = y_hat
+c11_code = r"""# Výpočet 1D profilu pro x při fixním y = y_hat
 xs_slice = np.linspace(x_hat - 0.035, x_hat + 0.035, 201)
 nll_x_slice = np.zeros(len(xs_slice))
 for i, x_val in enumerate(xs_slice):
@@ -484,7 +484,7 @@ cells.append(nbf.v4.new_markdown_cell(c12_md))
 # ==============================================================================
 # CELL 13: Matplotlib 1D Slices (Code)
 # ==============================================================================
-c13_code = """fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9.5, 4.0))
+c13_code = r"""fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9.5, 4.0))
 
 # Subplot 1: Profil x
 ax1.plot(xs_slice, nll_x_slice, color="#2980b9", lw=2.0, label=r"$\Delta(-2\ln L)(x \mid \hat{y})$")
@@ -561,7 +561,7 @@ cells.append(nbf.v4.new_markdown_cell(c14_md))
 # ==============================================================================
 # CELL 15: 2D Grid & ROOT Contour Plot (Code)
 # ==============================================================================
-c15_code = """# Výpočet jemné 2D mřížky v okolí minima (vektorizovaně pro vysokou rychlost)
+c15_code = r"""# Výpočet jemné 2D mřížky v okolí minima (vektorizovaně pro vysokou rychlost)
 grid_n_points = 81
 x_grid = np.linspace(x_hat - 0.025, x_hat + 0.025, grid_n_points)
 y_grid = np.linspace(y_hat - 0.025, y_hat + 0.025, grid_n_points)
@@ -637,7 +637,7 @@ cells.append(nbf.v4.new_markdown_cell(c16_md))
 # ==============================================================================
 # CELL 17: Matplotlib 2D Contours (Code)
 # ==============================================================================
-c17_code = """fig, ax = plt.subplots(figsize=(7, 5.2))
+c17_code = r"""fig, ax = plt.subplots(figsize=(7, 5.2))
 
 # Vyplněné vrstevnice věrohodnosti
 c_fill = ax.contourf(X_mesh, Y_mesh, delta_nll_2d, levels=np.linspace(0, 15, 31), 
