@@ -107,6 +107,10 @@
         </div>
       </div>
     </div>
+    <a href="../../index.html" class="jb-back-button" title="Zpět do JupyterBooku" style="display: inline-flex; align-items: center; gap: 6px; margin: auto 12px; padding: 4px 12px; background: rgba(255, 255, 255, 0.18); border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 4px; color: #ffffff; text-decoration: none; font-size: 0.8rem; font-weight: 500; line-height: 1.5; white-space: nowrap; transition: background 0.2s, border-color 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.28)'" onmouseout="this.style.background='rgba(255,255,255,0.18)'">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+      <span>← JupyterBook</span>
+    </a>
     
       
         <form class="md-header__option" data-md-component="palette">
@@ -927,5 +931,13 @@
         <script src="../javascripts/site-link.js"></script>
       
     
+    <script>
+      (function() {
+        var root = window.location.pathname.split('/public_html/')[0] + '/';
+        document.querySelectorAll('.jb-back-link, .jb-back-button').forEach(function(el) {
+          el.href = root;
+        });
+      })();
+    </script>
   </body>
 </html>
