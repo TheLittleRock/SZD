@@ -62,6 +62,8 @@ https://kf.fjfi.cvut.cz/myska/SZD/szd2/Lookup_Solver/LookupSolver.html
   * Sunrise paths: `/data2/vyuka/szd/SZD2-codes/Majak-withError` and `/data2/vyuka/szd/SZD2-codes/Root-RooFit/3-RooFit_Jpsi`
 - [x] **5) Higgs boson mass significance** vs. size of mass window
   * Sunrise path: `/data2/vyuka/szd/SZD2-codes/HIGGS`
+  * [Higgs signifikance (Jupyter Notebook)](Higgs.ipynb)
+  * [Higgs C++ podrobný rozbor kódu (MyST)](higgs_cpp_explanation.md)
 - [ ] **6) Machine Learning** - Boosted Decision Trees in Python
   * [Web](https://kf.fjfi.cvut.cz/myska/SZD/szd2/BDT/BDT.html)
 - [ ] **7) Geant4**

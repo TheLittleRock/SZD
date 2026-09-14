@@ -46,6 +46,8 @@ project:
         title: "J/ψ contour plt"
       - file: source/Higgs.ipynb
         title: "Higgs signifikance"
+  - file: source/higgs_cpp_explanation.md
+    title: "Higgs C++ vs Python"
   - file: source/root_install.md
     title: ROOT install
 
@@ -88,3 +90,5 @@ site:
         url: /jpsi
       - title: "Higgs signifikance"
         url: /higgs
+      - title: "Higgs C++ vysvětlení"
+        url: /higgs-cpp
