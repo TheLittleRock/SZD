@@ -80,7 +80,7 @@ cells.append(nbf.v4.new_markdown_cell(c2_md))
 # ==============================================================================
 # CELL 3: Setup & Data Loading (Code)
 # ==============================================================================
-c3_code = """import os
+c3_code = r"""import os
 import ROOT
 import numpy as np
 import matplotlib.pyplot as plt
@@ -150,7 +150,7 @@ cells.append(nbf.v4.new_markdown_cell(c4_md))
 # ==============================================================================
 # CELL 5: Exploratory Analysis Code & ROOT Plot (Code)
 # ==============================================================================
-c5_code = """# Výpočet základních statistických ukazatelů
+c5_code = r"""# Výpočet základních statistických ukazatelů
 sample_mean = np.mean(hits_data)
 sample_median = np.median(hits_data)
 q25, q75 = np.percentile(hits_data, [25, 75])
@@ -232,7 +232,7 @@ cells.append(nbf.v4.new_markdown_cell(c6_md))
 # ==============================================================================
 # CELL 7: Matplotlib Hits Plot (Code)
 # ==============================================================================
-c7_code = """plt.rcParams.update({
+c7_code = r"""plt.rcParams.update({
     "font.size": 10,
     "xtick.direction": "in",
     "ytick.direction": "in",
@@ -247,16 +247,16 @@ bin_w = bins_hist[1] - bins_hist[0]
 counts, edges, patches = ax.hist(hits_data, bins=bins_hist, color="#3498db", alpha=0.4, 
                                  edgecolor="#2980b9", lw=1.2, label="Flashes on shore")
 
-ax.axvline(sample_median, color="#27ae60", linestyle="-", lw=1.8, 
-           label=f"Sample median $\\\\tilde{{x}} = {sample_median:.3f}\\\\ \\\\mathrm{{km}}$")
-ax.axvline(sample_mean, color="#e74c3c", linestyle="--", lw=1.8, 
-           label=f"Sample mean $\\\\bar{{x}} = {sample_mean:.3f}\\\\ \\\\mathrm{{km}}$")
+lbl_med = r"Sample median $\tilde{x} = %.3f\ \mathrm{km}$" % sample_median
+lbl_mean = r"Sample mean $\bar{x} = %.3f\ \mathrm{km}$" % sample_mean
+ax.axvline(sample_median, color="#27ae60", linestyle="-", lw=1.8, label=lbl_med)
+ax.axvline(sample_mean, color="#e74c3c", linestyle="--", lw=1.8, label=lbl_mean)
 
 # Teoretická Cauchyho křivka s parametry odhadnutými z robustních statistik
 x_plot = np.linspace(0, 10, 1000)
 cauchy_pdf_scaled = (n_hits * bin_w) * (1.0 / np.pi) * (estimated_y0 / (estimated_y0**2 + (x_plot - sample_median)**2))
-ax.plot(x_plot, cauchy_pdf_scaled, color="#2c3e50", lw=1.6, linestyle="-.",
-        label=f"Cauchy PDF ($x_0={sample_median:.2f}, y_0={estimated_y0:.2f}$)")
+lbl_cauchy = r"Cauchy PDF ($x_0=%.2f, y_0=%.2f$)" % (sample_median, estimated_y0)
+ax.plot(x_plot, cauchy_pdf_scaled, color="#2c3e50", lw=1.6, linestyle="-.", label=lbl_cauchy)
 
 ax.set_xlabel("Position along shoreline $x$ [km]", fontsize=10.5)
 ax.set_ylabel(f"Events / {bin_w:.2f} km", fontsize=10.5)
@@ -267,8 +267,11 @@ ax.xaxis.set_minor_locator(AutoMinorLocator())
 ax.yaxis.set_minor_locator(AutoMinorLocator())
 ax.legend(loc="upper right", frameon=False, fontsize=9.2)
 
-msg_stats = (f"$N = {n_hits:,}$\\\\n"
-             f"$\\\\bar{{x}} - \\\\tilde{{x}} = {sample_mean - sample_median:+.3f}\\\\ \\\\mathrm{{km}}$")
+diff_val = sample_mean - sample_median
+msg_stats = "\n".join([
+    r"$N = %s$" % f"{n_hits:,}",
+    r"$\bar{x} - \tilde{x} = %+.3f\ \mathrm{km}$" % diff_val
+])
 ax.annotate(msg_stats, xy=(sample_mean, np.max(counts) * 0.4), xytext=(sample_mean + 1.2, np.max(counts) * 0.55),
             arrowprops=dict(arrowstyle="->", color="#e74c3c", lw=1.2),
             fontsize=9, bbox=dict(boxstyle="square,pad=0.3", fc="white", ec="lightgray", alpha=0.9))
@@ -302,7 +305,7 @@ cells.append(nbf.v4.new_markdown_cell(c8_md))
 # ==============================================================================
 # CELL 9: MLE Optimization (Code)
 # ==============================================================================
-c9_code = """# Definice záporné logaritmické věrohodnosti (NLL)
+c9_code = r"""# Definice záporné logaritmické věrohodnosti (NLL)
 def compute_nll(params):
     x, y = params
     if y <= 1e-5:
@@ -378,7 +381,7 @@ cells.append(nbf.v4.new_markdown_cell(c10_md))
 # ==============================================================================
 # CELL 11: 1D Slices Calculation & ROOT Plot (Code)
 # ==============================================================================
-c11_code = """# Výpočet 1D profilu pro x při fixním y = y_hat
+c11_code = r"""# Výpočet 1D profilu pro x při fixním y = y_hat
 xs_slice = np.linspace(x_hat - 0.035, x_hat + 0.035, 201)
 nll_x_slice = np.zeros(len(xs_slice))
 for i, x_val in enumerate(xs_slice):
@@ -481,7 +484,7 @@ cells.append(nbf.v4.new_markdown_cell(c12_md))
 # ==============================================================================
 # CELL 13: Matplotlib 1D Slices (Code)
 # ==============================================================================
-c13_code = """fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9.5, 4.0))
+c13_code = r"""fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9.5, 4.0))
 
 # Subplot 1: Profil x
 ax1.plot(xs_slice, nll_x_slice, color="#2980b9", lw=2.0, label=r"$\Delta(-2\ln L)(x \mid \hat{y})$")
@@ -558,7 +561,7 @@ cells.append(nbf.v4.new_markdown_cell(c14_md))
 # ==============================================================================
 # CELL 15: 2D Grid & ROOT Contour Plot (Code)
 # ==============================================================================
-c15_code = """# Výpočet jemné 2D mřížky v okolí minima (vektorizovaně pro vysokou rychlost)
+c15_code = r"""# Výpočet jemné 2D mřížky v okolí minima (vektorizovaně pro vysokou rychlost)
 grid_n_points = 81
 x_grid = np.linspace(x_hat - 0.025, x_hat + 0.025, grid_n_points)
 y_grid = np.linspace(y_hat - 0.025, y_hat + 0.025, grid_n_points)
@@ -634,7 +637,7 @@ cells.append(nbf.v4.new_markdown_cell(c16_md))
 # ==============================================================================
 # CELL 17: Matplotlib 2D Contours (Code)
 # ==============================================================================
-c17_code = """fig, ax = plt.subplots(figsize=(7, 5.2))
+c17_code = r"""fig, ax = plt.subplots(figsize=(7, 5.2))
 
 # Vyplněné vrstevnice věrohodnosti
 c_fill = ax.contourf(X_mesh, Y_mesh, delta_nll_2d, levels=np.linspace(0, 15, 31), 
@@ -663,7 +666,7 @@ fmt_dict = {
 ax.clabel(cs, inline=True, fmt=fmt_dict, fontsize=8.5)
 
 # Bod nejlepšího odhadu MLE s chybovým křížem
-lbl_best_fit = "MLE: $\\\\hat{{x}} = %.4f, \\\\hat{{y}} = %.4f$" % (x_hat, y_hat)
+lbl_best_fit = r"MLE: $\hat{x} = %.4f, \hat{y} = %.4f$" % (x_hat, y_hat)
 ax.errorbar([x_hat], [y_hat], xerr=[sigma_x_mle], yerr=[sigma_y_mle],
             fmt="o", color="gold", markeredgecolor="black", markersize=7,
             capsize=3, elinewidth=1.4, zorder=6, label=lbl_best_fit)
@@ -677,7 +680,7 @@ ax.xaxis.set_minor_locator(AutoMinorLocator())
 ax.yaxis.set_minor_locator(AutoMinorLocator())
 ax.legend(loc="upper right", frameon=False, fontsize=9)
 
-msg_contour = "Orthogonal axes\\\\nCorrelation $\\\\rho \\\\approx 0$"
+msg_contour = "\n".join(["Orthogonal axes", r"Correlation $\rho \approx 0$"])
 ax.annotate(msg_contour, xy=(x_hat, y_hat - 0.012), xytext=(x_hat - 0.022, y_hat - 0.021),
             arrowprops=dict(arrowstyle="->", color="black", lw=1.0),
             fontsize=8.5, bbox=dict(boxstyle="square,pad=0.3", fc="white", ec="lightgray", alpha=0.9))

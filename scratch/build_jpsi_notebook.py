@@ -2,7 +2,8 @@
 Builder script for source/Jpsi.ipynb
 Generates a polished, publication-grade Jupyter Notebook in Czech
 with full theoretical background, programmatic explanation,
-and dual visualization in CERN ROOT (JSROOT) and Matplotlib.
+and refined dual visualization in CERN ROOT (JSROOT) and Matplotlib.
+Font sizes and styles tailored for LaTeX article inclusion (no giant fonts, no titles, zero clutter).
 """
 import json
 import os
@@ -68,8 +69,8 @@ V tomto cvičení analyzujeme invariantní hmotnostní spektrum v oblasti těžk
    * Generování řezů věrohodnostní plochy pro dvojici parametrů $(\sigma_2, \tau)$ na hladinách $1\sigma$ ($\Delta(-2\ln L) = 2.30$), $2\sigma$ ($\Delta(-2\ln L) = 6.18$) a $3\sigma$ ($\Delta(-2\ln L) = 11.83$).
    * Fyzikální interpretace sklonu korelační elipsy (vliv strmosti pozadí na odhad šířky slabého signálu).
 5. **Publikační vizualizace v CERN ROOT (JSROOT):**
-   * Nastavení publikačního stylu (font Helvetica 42, odstranění horního titulu, vypnutí statistických boxů).
-   * Vykreslení fitu invariantní hmoty s rozkladem na signál a pozadí a s přehledným parametrickým boxem.
+   * Nastavení publikačního stylu (font Helvetica 42, žádné horní titulky, žádné statistické boxy, kompaktní publikační velikost písma vhodná pro sazbu v LaTeXu).
+   * Vykreslení fitu invariantní hmoty s rozkladem na signál a pozadí bez překryvu textů.
    * Vykreslení 2D kontur spolehlivosti.
 6. **Publikační vizualizace v Matplotlib:**
    * Převod křivek a kontur z ROOT struktur do NumPy polí.
@@ -97,8 +98,8 @@ Protože přirozená šířka těchto mezonů je velmi malá ($\Gamma_{J/\psi} \
 Abychom zajistili stabilitu v Jupyter prostředí na Linuxu:
 * Zapneme batch mód `ROOT.gROOT.SetBatch(True)`, který zamezí otevírání externích X11 oken.
 * Aktivujeme `%jsroot on`, což umožní plně interaktivní vykreslování pláten přímo v buňkách pomocí WebGL/SVG.
-* Nastavíme publikační styl: bez automatických statistik (`SetOptStat(0)`), bez horních titulů (`SetOptTitle(0)`) a s fontem 42 (Helvetica).
-* Nastavíme Matplotlib na vysoké rozlišení (`figure_format='retina'`).""")
+* Nastavíme publikační styl: bez automatických statistik (`SetOptStat(0)`), bez horních titulů (`SetOptTitle(0)`), font 42 (Helvetica) s jemnou publikační velikostí (0.035 / 0.030).
+* Nastavíme Matplotlib na standardní velikost písma (10 pt) a vysoké rozlišení (`figure_format='retina'`).""")
 
 # ==============================================================================
 # CELL 2: STEP 1 CODE
@@ -121,11 +122,17 @@ ROOT.RooMsgService.instance().setSilentMode(True)
 %matplotlib inline
 %config InlineBackend.figure_format='retina'
 
-# Globální publikační styl pro CERN ROOT
+# Globální publikační styl pro CERN ROOT (font 42 = Helvetica, kompaktní velikosti pro LaTeX)
 ROOT.gStyle.SetOptStat(0)
 ROOT.gStyle.SetOptTitle(0)
 ROOT.gStyle.SetTextFont(42)
 ROOT.gStyle.SetLegendFont(42)
+ROOT.gStyle.SetLabelFont(42, "XYZ")
+ROOT.gStyle.SetTitleFont(42, "XYZ")
+ROOT.gStyle.SetTitleSize(0.035, "XYZ")
+ROOT.gStyle.SetLabelSize(0.030, "XYZ")
+ROOT.gStyle.SetPadTickX(1)
+ROOT.gStyle.SetPadTickY(1)
 
 # Robustní vyhledání datového souboru
 candidate_paths = [
@@ -331,23 +338,23 @@ print(f"-> Kvalita kovarianční matice (3 = plně přesná a pozitivně definit
 # ==============================================================================
 add_md(r"""## 5. Vizualizace v CERN ROOT (JSROOT)
 
-Nyní vykreslíme fit a kontury v prostředí CERN ROOT. V souladu s požadavky na publikační kvalitu:
-* **Odstranění titulků:** Horní automatické titulky oken a grafů jsou zcela potlačeny (`SetOptTitle(0)`), neboť v odborných článcích se veškerý popis umisťuje do popisku obrázku (caption).
-* **Typografie:** Všechny popisky os, ticky a legendy používají standardní font 42 (Helvetica) s dostatečnou velikostí čitelnou i při zmenšení do dvousloupcové sazby LaTeXu.
-* **Rozmístění prvků:** 
-  * V grafu invariantní hmoty je parametrický box `TPaveText` umístěn v levém dolním rohu ($x \in [2200, 2900]\text{ MeV}/c^2$, pod exponenciálou), kde nezasahuje do žádných datových bodů ani signálových píků.
-  * V grafu kontur je levý okraj nastaven na $0.20$ a posun popisku svislé osy na $2.05$, aby nedocházelo k překrývání vědeckého zápisu čísel na ose $y$ s popiskem osy.
-* Všechny texty v grafech jsou v anglickém jazyce.""")
+Nyní vykreslíme fit a kontury v prostředí CERN ROOT. V souladu s přísnými požadavky na publikační kvalitu pro LaTeXové články:
+* **Žádné horní titulky:** Automatické horní titulky pláten jsou vypnuty (`SetOptTitle(0)`).
+* **Publikační typografie:** Standardní písmo Helvetica (font 42) s jemnými velikostmi odpovídajícími proporcím původních notebooků (0.035 pro popisky os, 0.030 pro čísla).
+* **Čisté rozložení bez překryvů:** 
+  * V grafu invariantní hmoty je parametrický box `TPaveText` kompaktní (velikost písma 0.023) a umístěn v levém dolním volném rohu ($x \in [2200, 2800]\text{ MeV}/c^2$, pod exponenciálou) bez rušivých ohraničení.
+  * V grafu kontur je levý okraj nastaven na $0.16$ a odsazení popisku svislé osy na $1.65$, čímž je eliminován jakýkoliv překryv se zápornými hodnotami $\tau$.
+* Všechny texty a popisky os v grafech jsou v anglickém jazyce.""")
 
 # ==============================================================================
 # CELL 10: STEP 5 CODE (ROOT MASS FIT)
 # ==============================================================================
 add_code(r"""# Vytvoření plátna pro fit invariantní hmoty
-c_mass = ROOT.TCanvas("c_mass", "Invariant Mass Fit", 850, 650)
-c_mass.SetLeftMargin(0.14)
+c_mass = ROOT.TCanvas("c_mass", "Invariant Mass Fit", 780, 560)
+c_mass.SetLeftMargin(0.13)
 c_mass.SetRightMargin(0.05)
 c_mass.SetBottomMargin(0.12)
-c_mass.SetTopMargin(0.06)
+c_mass.SetTopMargin(0.05)
 
 # Vytvoření frame s optimálním binováním (70 binů = 30 MeV na bin)
 xframe = x.frame(ROOT.RooFit.Title(""), ROOT.RooFit.Bins(70))
@@ -356,7 +363,7 @@ xframe = x.frame(ROOT.RooFit.Title(""), ROOT.RooFit.Bins(70))
 data.plotOn(xframe, ROOT.RooFit.Name("Data_Hist"), ROOT.RooFit.MarkerSize(0.8))
 
 # Vykreslení celkového fitu
-TotalPDF.plotOn(xframe, ROOT.RooFit.Name("Fit_Curve"), ROOT.RooFit.LineColor(ROOT.kRed+1), ROOT.RooFit.LineWidth(3))
+TotalPDF.plotOn(xframe, ROOT.RooFit.Name("Fit_Curve"), ROOT.RooFit.LineColor(ROOT.kRed+1), ROOT.RooFit.LineWidth(2))
 
 # Vykreslení signálových komponent (J/psi + psi(2S))
 TotalPDF.plotOn(
@@ -378,43 +385,40 @@ TotalPDF.plotOn(
     ROOT.RooFit.LineWidth(2)
 )
 
-# Formátování os
+# Formátování os (jemné, publikační rozměry fontů)
 xframe.GetXaxis().SetTitle("Invariant Mass m(#mu^{+}#mu^{-}) [MeV/c^{2}]")
 xframe.GetYaxis().SetTitle("Events / 30 MeV/c^{2}")
-xframe.GetXaxis().SetTitleSize(0.045)
-xframe.GetYaxis().SetTitleSize(0.045)
-xframe.GetXaxis().SetLabelSize(0.04)
-xframe.GetYaxis().SetLabelSize(0.04)
-xframe.GetYaxis().SetTitleOffset(1.4)
-xframe.GetXaxis().SetTitleOffset(1.1)
+xframe.GetXaxis().SetTitleSize(0.035)
+xframe.GetYaxis().SetTitleSize(0.035)
+xframe.GetXaxis().SetLabelSize(0.030)
+xframe.GetYaxis().SetLabelSize(0.030)
+xframe.GetYaxis().SetTitleOffset(1.35)
+xframe.GetXaxis().SetTitleOffset(1.15)
 xframe.Draw()
 
 # Legenda bez ohraničení v pravém horním rohu
-leg = ROOT.TLegend(0.65, 0.68, 0.93, 0.91)
+leg = ROOT.TLegend(0.66, 0.70, 0.92, 0.91)
 leg.SetBorderSize(0)
 leg.SetFillStyle(0)
 leg.SetTextFont(42)
-leg.SetTextSize(0.035)
+leg.SetTextSize(0.025)
 leg.AddEntry("Data_Hist", "Data", "pe")
 leg.AddEntry("Fit_Curve", "Total Fit", "l")
 leg.AddEntry("Sig_Curve", "Signal (J/#psi, #psi(2S))", "l")
 leg.AddEntry("Bck_Curve", "Background (Exp)", "l")
 leg.Draw()
 
-# Parametrický box umístěný v levém dolním volném prostoru bez kolizí s daty
-pbox = ROOT.TPaveText(0.18, 0.16, 0.50, 0.44, "NDC")
-pbox.SetBorderSize(1)
-pbox.SetLineColor(ROOT.kGray+1)
-pbox.SetFillColorAlpha(ROOT.kWhite, 0.9)
+# Kompaktní parametrický box v levém dolním rohu bez rušivého rámečku
+pbox = ROOT.TPaveText(0.18, 0.16, 0.45, 0.34, "NDC")
+pbox.SetBorderSize(0)
+pbox.SetFillStyle(0)
 pbox.SetTextFont(42)
-pbox.SetTextSize(0.03)
+pbox.SetTextSize(0.023)
 pbox.SetTextAlign(12)
 pbox.AddText(f"N(J/#psi) = {N1.getVal():.0f} #pm {N1.getError():.0f}")
 pbox.AddText(f"N(#psi(2S)) = {N2.getVal():.0f} #pm {N2.getError():.0f}")
 pbox.AddText(f"m(J/#psi) = {mean1.getVal():.1f} #pm {mean1.getError():.1f} MeV/c^{{2}}")
-pbox.AddText(f"#sigma(J/#psi) = {sigma1.getVal():.1f} #pm {sigma1.getError():.1f} MeV/c^{{2}}")
 pbox.AddText(f"m(#psi(2S)) = {mean2.getVal():.1f} #pm {mean2.getError():.1f} MeV/c^{{2}}")
-pbox.AddText(f"#sigma(#psi(2S)) = {sigma2.getVal():.1f} ^{{+{sigma2.getAsymErrorHi():.1f}}}_{{{sigma2.getAsymErrorLo():.1f}}} MeV/c^{{2}}")
 pbox.Draw()
 
 c_mass.Draw()""")
@@ -428,26 +432,26 @@ Objekt `frameContour` generovaný metodou `m.contour(sigma2, tau, 1, 2, 3)` obsa
 * **$2\sigma$ kontura:** $\Delta(-2\ln L) = 6.18$ ($95.4\%$ konfidence),
 * **$3\sigma$ kontura:** $\Delta(-2\ln L) = 11.83$ ($99.7\%$ konfidence).
 
-Nastavujeme dostatečný levý okraj (`0.20`) a odstup popisku osy (`2.05`), aby se záporné hodnoty exponenciálního sklonu $\tau \approx -10^{-3}$ nepřekrývaly s popisem osy.""")
+Levý okraj je nastaven na $0.16$ a odsazení osy na $1.65$, aby se číselné hodnoty $\tau \approx -10^{-3}$ nepřekrývaly s popisem osy.""")
 
 # ==============================================================================
 # CELL 12: STEP 5 CONTcontour CODE
 # ==============================================================================
-add_code(r"""c_contour = ROOT.TCanvas("c_contour", "Likelihood Contours", 850, 650)
-c_contour.SetLeftMargin(0.20)
+add_code(r"""c_contour = ROOT.TCanvas("c_contour", "Likelihood Contours", 780, 560)
+c_contour.SetLeftMargin(0.16)
 c_contour.SetRightMargin(0.05)
 c_contour.SetBottomMargin(0.12)
-c_contour.SetTopMargin(0.06)
+c_contour.SetTopMargin(0.05)
 
 frameContour.SetTitle("")
 frameContour.GetXaxis().SetTitle("#psi(2S) Gaussian Width #sigma_{2} [MeV/c^{2}]")
 frameContour.GetYaxis().SetTitle("Background Slope #tau [c^{2}/MeV]")
-frameContour.GetXaxis().SetTitleSize(0.045)
-frameContour.GetYaxis().SetTitleSize(0.045)
-frameContour.GetXaxis().SetLabelSize(0.04)
-frameContour.GetYaxis().SetLabelSize(0.04)
-frameContour.GetYaxis().SetTitleOffset(2.05)
-frameContour.GetXaxis().SetTitleOffset(1.1)
+frameContour.GetXaxis().SetTitleSize(0.035)
+frameContour.GetYaxis().SetTitleSize(0.035)
+frameContour.GetXaxis().SetLabelSize(0.030)
+frameContour.GetYaxis().SetLabelSize(0.030)
+frameContour.GetYaxis().SetTitleOffset(1.65)
+frameContour.GetXaxis().SetTitleOffset(1.15)
 
 # Přesné vymezení rozsahu os kolem fyzikálního řešení
 frameContour.GetXaxis().SetLimits(120.0, 200.0)
@@ -455,12 +459,12 @@ frameContour.SetMinimum(-0.00106)
 frameContour.SetMaximum(-0.00094)
 frameContour.Draw()
 
-# Doplnění přehledné legendy
-leg_c = ROOT.TLegend(0.63, 0.70, 0.93, 0.91)
+# Doplnění přehledné legendy bez rámečku
+leg_c = ROOT.TLegend(0.63, 0.72, 0.92, 0.91)
 leg_c.SetBorderSize(0)
 leg_c.SetFillStyle(0)
 leg_c.SetTextFont(42)
-leg_c.SetTextSize(0.035)
+leg_c.SetTextSize(0.024)
 leg_c.AddEntry(frameContour.getObject(0), "Best fit (#hat{#sigma}_{2}, #hat{#tau})", "p")
 leg_c.AddEntry(frameContour.getObject(1), "1 #sigma contour (68.3% CL)", "l")
 leg_c.AddEntry(frameContour.getObject(2), "2 #sigma contour (95.4% CL)", "l")
@@ -475,6 +479,7 @@ c_contour.Draw()""")
 add_md(r"""## 6. Publikační grafy v Matplotlib
 
 Pro tisk do článků a závěrečných zpráv se v částicové fyzice často upřednostňuje **Matplotlib** s přísnými typografickými pravidly:
+* Kompaktní velikosti písem (10 pt pro osy, 9 pt pro legendy a popisky) vhodné pro vložení do dvousloupcové LaTeXové sazby.
 * Všechny ticky směřují dovnitř (`tick.direction: in`), ticky jsou na všech čtyřech stranách rámu.
 * Používají se jemné pomocné dílky (`AutoMinorLocator`).
 * Pod grafem spektra vykreslíme **reziduální panel (pull distribution)**:
@@ -536,42 +541,39 @@ V horním panelu zobrazujeme naměřená data s chybami, fit celkový i jednotli
 # ==============================================================================
 # CELL 16: STEP 6 MPL MASS FIT CODE
 # ==============================================================================
-add_code(r"""# Globální nastavení Matplotlibu pro částicovou fyziku
+add_code(r"""# Standardní publikační nastavení Matplotlibu (10 pt pro LaTeX články)
 plt.rcParams.update({
-    "font.sans-serif": ["Helvetica", "Arial", "DejaVu Sans"],
-    "font.family": "sans-serif",
-    "font.size": 12,
-    "axes.labelsize": 14,
+    "font.size": 10,
     "xtick.direction": "in",
     "ytick.direction": "in",
     "xtick.top": True,
     "ytick.right": True,
-    "xtick.major.size": 6,
-    "ytick.major.size": 6,
-    "xtick.minor.size": 3,
-    "ytick.minor.size": 3,
+    "xtick.major.size": 5,
+    "ytick.major.size": 5,
+    "xtick.minor.size": 2.5,
+    "ytick.minor.size": 2.5,
 })
 
 fig, (ax, ax_pull) = plt.subplots(
-    2, 1, figsize=(9, 7.5),
-    gridspec_kw={"height_ratios": [3.5, 1], "hspace": 0.08},
+    2, 1, figsize=(7.5, 5.8),
+    gridspec_kw={"height_ratios": [3.2, 1], "hspace": 0.08},
     sharex=True
 )
 
 # Horní panel: Data a křivky modelu
-ax.errorbar(x_data, y_data, yerr=[y_err_low, y_err_high], fmt="o", color="black", markersize=4, capsize=0, label="Data")
-ax.plot(x_fit, y_fit, color="#d62728", linewidth=2.2, label="Total Fit")
-ax.plot(x_sig, y_sig, color="#2ca02c", linestyle="--", linewidth=2.0, label=r"Signals ($J/\psi + \psi(2S)$)")
-ax.plot(x_bck, y_bck, color="#1f77b4", linestyle=":", linewidth=2.0, label="Combinatorial Bkg (Exp)")
+ax.errorbar(x_data, y_data, yerr=[y_err_low, y_err_high], fmt="o", color="black", markersize=3.5, capsize=0, label="Data")
+ax.plot(x_fit, y_fit, color="#d62728", linewidth=1.8, label="Total Fit")
+ax.plot(x_sig, y_sig, color="#2ca02c", linestyle="--", linewidth=1.6, label=r"Signals ($J/\psi + \psi(2S)$)")
+ax.plot(x_bck, y_bck, color="#1f77b4", linestyle=":", linewidth=1.6, label="Combinatorial Bkg (Exp)")
 
-ax.set_ylabel("Events / 30 MeV/$c^{2}$")
+ax.set_ylabel("Events / 30 MeV/$c^{2}$", fontsize=10.5)
 ax.set_xlim(2100, 4200)
 ax.set_ylim(bottom=0)
 ax.xaxis.set_minor_locator(AutoMinorLocator())
 ax.yaxis.set_minor_locator(AutoMinorLocator())
-ax.legend(loc="upper right", frameon=False, fontsize=11)
+ax.legend(loc="upper right", frameon=False, fontsize=9.2)
 
-# Přehledný textový box s parametry fitu
+# Kompaktní textový box s parametry fitu umístěný pod křivkou pozadí
 textstr = "\n".join([
     r"$N(J/\psi) = %.0f \pm %.0f$" % (N1.getVal(), N1.getError()),
     r"$N(\psi(2S)) = %.0f \pm %.0f$" % (N2.getVal(), N2.getError()),
@@ -580,8 +582,8 @@ textstr = "\n".join([
     r"$m(\psi(2S)) = %.1f \pm %.1f\ \mathrm{MeV}/c^2$" % (mean2.getVal(), mean2.getError()),
     r"$\sigma(\psi(2S)) = %.1f_{-%.1f}^{+%.1f}\ \mathrm{MeV}/c^2$" % (sigma2.getVal(), abs(sigma2.getAsymErrorLo()), sigma2.getAsymErrorHi()),
 ])
-props = dict(boxstyle="square,pad=0.5", facecolor="white", alpha=0.9, edgecolor="lightgray")
-ax.text(0.04, 0.46, textstr, transform=ax.transAxes, fontsize=10.5, verticalalignment="top", bbox=props)
+props = dict(boxstyle="square,pad=0.4", facecolor="white", alpha=0.9, edgecolor="lightgray")
+ax.text(0.04, 0.38, textstr, transform=ax.transAxes, fontsize=8.5, verticalalignment="top", bbox=props)
 
 # Dolní panel: Rozdělení pull reziduí
 y_fit_at_data = np.interp(x_data, x_fit, y_fit)
@@ -589,12 +591,12 @@ y_err_mean = 0.5 * (y_err_low + y_err_high)
 y_err_mean[y_err_mean == 0] = 1.0
 pulls = (y_data - y_fit_at_data) / y_err_mean
 
-ax_pull.axhline(0, color="gray", linestyle="--", linewidth=1)
-ax_pull.axhline(2, color="red", linestyle=":", linewidth=0.8, alpha=0.7)
-ax_pull.axhline(-2, color="red", linestyle=":", linewidth=0.8, alpha=0.7)
-ax_pull.errorbar(x_data, pulls, yerr=1.0, fmt="o", color="black", markersize=3, capsize=0)
-ax_pull.set_ylabel(r"Pull $[\sigma]$", fontsize=11)
-ax_pull.set_xlabel(r"Invariant Mass $m(\mu^{+}\mu^{-})$ [MeV/$c^{2}$]")
+ax_pull.axhline(0, color="gray", linestyle="--", linewidth=0.8)
+ax_pull.axhline(2, color="red", linestyle=":", linewidth=0.8, alpha=0.6)
+ax_pull.axhline(-2, color="red", linestyle=":", linewidth=0.8, alpha=0.6)
+ax_pull.errorbar(x_data, pulls, yerr=1.0, fmt="o", color="black", markersize=2.5, capsize=0)
+ax_pull.set_ylabel(r"Pull $[\sigma]$", fontsize=9.5)
+ax_pull.set_xlabel(r"Invariant Mass $m(\mu^{+}\mu^{-})$ [MeV/$c^{2}$]", fontsize=10.5)
 ax_pull.set_ylim(-3.5, 3.5)
 ax_pull.xaxis.set_minor_locator(AutoMinorLocator())
 ax_pull.yaxis.set_minor_locator(AutoMinorLocator())
@@ -610,7 +612,7 @@ Graf níže zobrazuje uzavřené konturové křivky spolehlivosti $1\sigma$, $2\
 # ==============================================================================
 # CELL 18: STEP 6 MPL CONTOUR CODE
 # ==============================================================================
-add_code(r"""fig2, ax2 = plt.subplots(figsize=(8, 6))
+add_code(r"""fig2, ax2 = plt.subplots(figsize=(7, 5))
 
 # Uzavření konturových smyček přidáním počátečního bodu na konec
 c1_x = np.append(x_c1, x_c1[0])
@@ -621,30 +623,30 @@ c3_x = np.append(x_c3, x_c3[0])
 c3_y = np.append(y_c3, y_c3[0])
 
 # Vykreslení kontur
-ax2.plot(c3_x, c3_y, color="#1f77b4", linestyle=":", linewidth=2.2, label=r"$3\sigma$ CL ($\Delta(-2\ln L) = 11.83$)")
-ax2.plot(c2_x, c2_y, color="#1f77b4", linestyle="--", linewidth=2.2, label=r"$2\sigma$ CL ($\Delta(-2\ln L) = 6.18$)")
-ax2.plot(c1_x, c1_y, color="#1f77b4", linestyle="-", linewidth=2.5, label=r"$1\sigma$ CL ($\Delta(-2\ln L) = 2.30$)")
+ax2.plot(c3_x, c3_y, color="#1f77b4", linestyle=":", linewidth=1.6, label=r"$3\sigma$ CL ($\Delta(-2\ln L) = 11.83$)")
+ax2.plot(c2_x, c2_y, color="#1f77b4", linestyle="--", linewidth=1.6, label=r"$2\sigma$ CL ($\Delta(-2\ln L) = 6.18$)")
+ax2.plot(c1_x, c1_y, color="#1f77b4", linestyle="-", linewidth=2.0, label=r"$1\sigma$ CL ($\Delta(-2\ln L) = 2.30$)")
 
 # Zvýraznění bodu minima
 if best_fit_x is not None:
-    ax2.plot(best_fit_x, best_fit_y, marker="*", markersize=14, color="#d62728", linestyle="None", label=r"Best fit $(\hat{\sigma}_2, \hat{\tau})$", zorder=5)
+    ax2.plot(best_fit_x, best_fit_y, marker="*", markersize=11, color="#d62728", linestyle="None", label=r"Best fit $(\hat{\sigma}_2, \hat{\tau})$", zorder=5)
 
-ax2.set_xlabel(r"$\psi(2S)$ Gaussian Width $\sigma_2$ [MeV/$c^{2}$]")
-ax2.set_ylabel(r"Background Decay Parameter $\tau$ [$c^{2}$/MeV]")
+ax2.set_xlabel(r"$\psi(2S)$ Gaussian Width $\sigma_2$ [MeV/$c^{2}$]", fontsize=10.5)
+ax2.set_ylabel(r"Background Decay Parameter $\tau$ [$c^{2}$/MeV]", fontsize=10.5)
 ax2.set_xlim(120, 200)
 ax2.set_ylim(-0.00106, -0.00094)
 ax2.xaxis.set_minor_locator(AutoMinorLocator())
 ax2.yaxis.set_minor_locator(AutoMinorLocator())
-ax2.grid(True, linestyle=":", alpha=0.5)
-ax2.legend(loc="upper right", frameon=True, framealpha=0.9, fontsize=11)
+ax2.grid(True, linestyle=":", alpha=0.4)
+ax2.legend(loc="upper right", frameon=False, fontsize=9)
 
 # Anotace vysvětlující fyzikální původ korelace
 ax2.annotate(
-    "Negative correlation:\n" + r"Steeper bkg ($\tau \downarrow$) $\rightarrow$ wider peak ($\sigma_2 \uparrow$)",
-    xy=(173, -0.001025), xytext=(126, -0.001048),
-    arrowprops=dict(arrowstyle="->", color="#333333", lw=1.3),
-    fontsize=10.5,
-    bbox=dict(boxstyle="round,pad=0.4", facecolor="#fff9e6", edgecolor="goldenrod", alpha=0.95)
+    "Negative correlation:\n" + r"$\tau \downarrow$ (steeper bkg) $\rightarrow \sigma_2 \uparrow$ (wider peak)",
+    xy=(173, -0.001025), xytext=(125, -0.001050),
+    arrowprops=dict(arrowstyle="->", color="#333333", lw=1.0),
+    fontsize=8.5,
+    bbox=dict(boxstyle="square,pad=0.3", facecolor="#fff9e6", edgecolor="goldenrod", alpha=0.95)
 )
 
 plt.show()""")
@@ -697,4 +699,3 @@ with open(output_path, "w", encoding="utf-8") as f:
     json.dump(notebook, f, indent=1, ensure_ascii=False)
 
 print(f"-> Successfully generated {output_path} with {len(cells)} cells.")
-

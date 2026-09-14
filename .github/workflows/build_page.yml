@@ -37,6 +37,27 @@ jobs:
         run: npm install -g mystmd
       - name: Build HTML Assets 
         run: myst build --html 
+      - name: Fix base URL for public_html in built assets
+        run: |
+          python3 -c "
+          import os
+          base_url = os.environ.get('BASE_URL', '').rstrip('/')
+          if base_url:
+              count = 0
+              for root, dirs, files in os.walk('./_build/html'):
+                  for file in files:
+                      if file.endswith(('.html', '.json', '.js')):
+                          path = os.path.join(root, file)
+                          with open(path, 'r', encoding='utf-8', errors='ignore') as f:
+                              content = f.read()
+                          modified = content.replace('\"/public_html/', f'\"{base_url}/public_html/')
+                          modified = modified.replace('href=\"/public_html/', f'href=\"{base_url}/public_html/')
+                          if modified != content:
+                              count += 1
+                              with open(path, 'w', encoding='utf-8') as f:
+                                  f.write(modified)
+              print(f'Prepended BASE_URL ({base_url}) in {count} built files.')
+          "
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
