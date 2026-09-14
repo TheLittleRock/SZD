@@ -1,0 +1,196 @@
+##################################################
+# Technical parameters for this run
+##################################################
+cd /Herwig/Generators
+set LHCGenerator:NumberOfEvents 100000
+set LHCGenerator:RandomNumberGenerator:Seed 31122001
+set LHCGenerator:MaxErrors 10000
+set LHCGenerator:EventHandler:StatLevel Full
+
+set LHCGenerator:DebugLevel 0
+set LHCGenerator:PrintEvent 1
+
+
+##################################################
+# LHC physics parameters (override defaults here)
+##################################################
+
+set LHCGenerator:EventHandler:LuminosityFunction:Energy 200.0
+
+#set /Herwig/Shower/Evolver:IntrinsicPtGaussian 2.2*GeV
+
+
+#cd /Herwig/Partons
+#create ThePEG::LHAPDF myPDFset
+#set myPDFset:PDFName cteq6l1.LHpdf
+#set myPDFset:PDFName MMHT2014lo68cl
+#set myPDFset:PDFName MRSTMCal
+#set myPDFset:Member 0
+#set myPDFset:RemnantHandler HadronRemnants
+#set /Herwig/Particles/p+:PDF myPDFset
+
+
+##################################################
+# Matrix Elements for hadron-hadron collisions
+##################################################
+
+cd /Herwig/MatrixElements
+
+## Drell-Yan g/Z production
+##############################
+#insert SimpleQCD:MatrixElements[0] MEqq2gZ2ff
+## http://herwig.hepforge.org/doxygen/MEqq2gZ2ffInterfaces.html
+## set the decay to muons only
+#set MEqq2gZ2ff:Process 6
+## Gamma, Z, Both with interference
+#set MEqq2gZ2ff:GammaZ 0
+#cd /Herwig/Cuts
+#set MassCut:MinM 1.*GeV
+#set LeptonKtCut:MinKT 1.0*GeV
+#set LeptonKtCut:MaxEta 5.
+#set LeptonKtCut:MinEta -5.
+
+
+
+## QCD 2-2 scattering
+#############################
+insert SimpleQCD:MatrixElements[0] MEQCD2to2
+cd /Herwig/Cuts
+set JetKtCut:MinKT 10.0*GeV
+set QCDCuts:MHatMin 20.0*GeV
+
+
+
+## Minimum Bias
+#############################
+#cd /Herwig/MatrixElements/
+#insert SimpleQCD:MatrixElements[0] MEMinBias
+
+#cd /Herwig/Generators
+#create Herwig::MPIXSecReweighter MPIXSecReweighter
+#insert LHCGenerator:EventHandler:PostSubProcessHandlers 0 MPIXSecReweighter
+
+#set LHCGenerator:EventHandler:Cuts /Herwig/Cuts/MinBiasCuts
+#set /Herwig/UnderlyingEvent/MPIHandler:IdenticalToUE 0
+
+
+
+## Diffraction
+#############################
+#insert SimpleQCD:MatrixElements[0] /Herwig/UnderlyingEvent/MEQCD2to2Fast
+#set /Herwig/Partons/PomeronPDF:RootName /home/ssd/Programs/Herwig-7.0.2/share/Herwig/PDF/diffraction/
+#set /Herwig/Partons/PomeronFlux:PDFFit Pomeron2007
+#set /Herwig/Partons/PomeronPDF:PDFFit 2007
+#set /Herwig/Particles/pomeron:PDF /Herwig/Partons/PomeronPDF
+#cd /Herwig/Cuts
+#set QCDCuts:MHatMin 1.
+#set QCDCuts:MHatMax 20000
+#set QCDCuts:X2Min 1.0e-7
+#set QCDCuts:X2Max 1.
+#set QCDCuts:X1Min 1.0e-7
+#set QCDCuts:X1Max 1.
+#set JetKtCut:MinKT 10.
+#set LeptonKtCut:MinKT 1.
+#cd /Herwig/Partons
+## Single or double diffraction: (comment out right ammount)
+#set QCDExtractor:FirstPDF  PomeronFlux
+#set QCDExtractor:SecondPDF PomeronFlux
+#set QCDExtractor:FlatSHatY 0
+#set /Herwig/UnderlyingEvent/MPIHandler:IdenticalToUE 0
+## MPI doesn't work with diffraction!!
+#cd /Herwig/Generators
+#set LHCGenerator:EventHandler:CascadeHandler:MPIHandler NULL
+
+
+## Examples of cuts - for different ME's
+#############################
+#set PhotonKtCut:MinKT 0.0*GeV
+#set PhotonKtCut:MinEta -10.
+#set PhotonKtCut:MaxEta 10.
+#set WBosonKtCut:MinKT 0.0*GeV
+#set MassCut:MinM 0.*GeV
+#set MassCut:MaxM 13000.*GeV
+
+
+##################################################
+# Switching generator steps ON/OFF
+##################################################
+
+#set /Herwig/EventHandlers/LHCHandler:DecayHandler NULL
+#set /Herwig/EventHandlers/LHCHandler:HadronizationHandler NULL
+## shower
+#set /Herwig/EventHandlers/LHCHandler:CascadeHandler NULL
+#set /Herwig/Shower/SplittingGenerator:ISR No
+#set /Herwig/Shower/SplittingGenerator:FSR No
+## MPI
+#set /Herwig/Shower/ShowerHandler:MPIHandler NULL
+
+
+##################################################
+# UE settings - MPI, Colour Reconnection
+##################################################
+
+#set /Herwig/UnderlyingEvent/MPIHandler:ReferenceScale 7000.*GeV
+#set /Herwig/UnderlyingEvent/MPIHandler:Power 0.33
+#set /Herwig/UnderlyingEvent/MPIHandler:pTmin0 3.91*GeV
+#set /Herwig/UnderlyingEvent/MPIHandler:InvRadius 2.30
+#set /Herwig/UnderlyingEvent/MPIHandler:softInt Yes
+#set /Herwig/UnderlyingEvent/MPIHandler:twoComp Yes
+#set /Herwig/UnderlyingEvent/MPIHandler:DLmode 2
+
+#set /Herwig/Hadronization/ColourReconnector:ColourReconnection Yes
+#set /Herwig/Hadronization/ColourReconnector:ReconnectionProbability 0.49
+#set /Herwig/Partons/RemnantDecayer:colourDisrupt 0.80
+
+## Herwig 7.0.2 values for 200 GeV:
+## ptmin:   1.19364 GeV, mu2: 2.3 GeV2
+
+
+
+
+##################################################
+##  User analyses
+##################################################
+
+ cd /Herwig/Analysis
+ create Mira::Browser BrowserAnalysis Browser.so
+ insert /Herwig/Generators/LHCGenerator:AnalysisHandlers 0 BrowserAnalysis
+
+#create Mira::MyPrint MyPrintAnalysis MyPrint.so
+#insert /Herwig/Generators/LHCGenerator:AnalysisHandlers 0 MyPrintAnalysis
+
+##################################################
+##  Rivet analyses
+##################################################
+## https://rivet.hepforge.org/analyses
+
+#cd /Herwig/Generators
+#create ThePEG::RivetAnalysis /Herwig/Analysis/RivetAnalysis RivetAnalysis.so
+#insert LHCGenerator:AnalysisHandlers 0 /Herwig/Analysis/RivetAnalysis
+#insert /Herwig/Analysis/RivetAnalysis:Analyses 0 STAR_2006_S6870392
+
+
+##################################################
+#  Event diagram plot
+##################################################
+#cd /Herwig/Generators
+#insert LHCGenerator:AnalysisHandlers 0 /Herwig/Analysis/Plot
+
+##################################################
+#  HepMC output file - very large!
+##################################################
+#cd /Herwig/Generators
+#insert LHCGenerator:AnalysisHandlers 0 /Herwig/Analysis/HepMCFile
+#set /Herwig/Analysis/HepMCFile:PrintEvent 100000
+#set /Herwig/Analysis/HepMCFile:Format GenEvent
+#set /Herwig/Analysis/HepMCFile:Units GeV_mm
+
+
+##################################################
+# Save run for later usage with 'Herwig run'
+##################################################
+
+cd /Herwig/Generators
+saverun LHC-all LHCGenerator
+
+

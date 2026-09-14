@@ -1,0 +1,45 @@
+random links:
+
+https://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/part3/regularisation/
+
+
+
+
+
+
+RooFit links:
+
+https://hepunx.rl.ac.uk/~adye/software/unfold/htmldoc/SRC_Index.html
+
+https://hepunx.rl.ac.uk/~adye/software/unfold/htmldoc-dev/RooUnfold.html
+
+
+
+
+
+
+https://root.cern/doc/master/classTUnfold.html
+
+https://hepunx.rl.ac.uk/~adye/software/unfold/htmldoc-dev/RooUnfoldTUnfold.html
+-> constructory, tau, RegMode table
+
+=====================
+
+
+
+https://root.cern/doc/master/classTSVDUnfold.html
+
+https://hepunx.rl.ac.uk/~adye/software/unfold/htmldoc/RooUnfoldSvd.html
+//popis Tau v clanku, nenulove Tau pridava spec. regularizacni clen
+
+=====================
+
+
+https://hepunx.rl.ac.uk/~adye/software/unfold/htmldoc-1.0.3/RooUnfoldBayesImpl.html
+
+https://hepunx.rl.ac.uk/~adye/software/unfold/htmldoc-dev/RooUnfoldBayes.html
+
+
+
+
+

@@ -21,6 +21,8 @@ project:
     - name: Štěpán Skalka
   id: 881ea5c5-aca1-4f87-9e1e-d9333dbba273
   github: https://github.com/TheLittleRock/SZD
+  static_files:
+    - public_html
   toc:
   - file: README.md  # Add your index file here
   - file: source/szd1.md
@@ -42,14 +44,22 @@ project:
         title: "RooFit WW"
       - file: source/significance.ipynb
         title: "Signifikance"
+      - file: source/Jpsi_original.ipynb
+        title: "J/ψ original"
       - file: source/Jpsi.ipynb
         title: "J/ψ contour plt"
+      - file: source/Majak.ipynb
+        title: "Maják contour plt"
       - file: source/Higgs.ipynb
         title: "Higgs signifikance"
   - file: source/higgs_cpp_explanation.md
     title: "Higgs C++ vs Python"
   - file: source/root_install.md
     title: ROOT install
+  - title: "SZD web"
+    url: /public_html/SZD/index.html
+  #- file: source/szd_web.md
+  #  title: "Web předmětu SZD"
 
 site:
   template: book-theme
@@ -88,7 +98,20 @@ site:
         url: /significance
       - title: "J/ψ contour plt"
         url: /jpsi
+      - title: "Maják contour plt"
+        url: /majak
       - title: "Higgs signifikance"
         url: /higgs
       - title: "Higgs C++ vysvětlení"
         url: /higgs-cpp
+
+  - title: Web předmětu
+    children:
+      - title: "SZD main page"
+        url: /public_html/SZD/index.html
+      - title: "SZD1"
+        url: /public_html/SZD/szd1/doors/doors.html
+      - title: "SZD2"
+        url: /public_html/SZD/szd2/Geant4/geant4.html
+      - title: "Přehled webu"
+        url: /szd-web

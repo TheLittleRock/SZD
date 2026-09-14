@@ -55,19 +55,21 @@ https://kf.fjfi.cvut.cz/myska/SZD/szd2/Lookup_Solver/LookupSolver.html
 - [x] **1) $\chi^2$ fit** of binned "dirty Gauss"
 - [x] **2) RooFit template fit** of WW data
   * Sunrise: `/data2/vyuka/szd/SZD2-codes/Root-RooFit/4-RooFit_WW_homework`
-  * [Web](https://kf.fjfi.cvut.cz/myska/SZD/szd2/RooFit_WW_fraction/Roofit_WW.html)
+  * [Web](/public_html/SZD/szd2/RooFit_WW_fraction/Roofit_WW.html?view)
 - [x] **3) Significance for Poisson distribution**
-  * [Web](https://kf.fjfi.cvut.cz/myska/SZD/szd2/Hypotheses_Poisson/Hypotheses_Poisson.html)
-- [ ] **4) Contour plot** in ROOT and RooFit
+  * [Web](/public_html/SZD/szd2/Hypotheses_Poisson/Hypotheses_Poisson.html?view)
+- [x] **4) Contour plot** in ROOT and RooFit
   * Sunrise paths: `/data2/vyuka/szd/SZD2-codes/Majak-withError` and `/data2/vyuka/szd/SZD2-codes/Root-RooFit/3-RooFit_Jpsi`
+  * [Maják: 2D kontury věrohodnosti pro Cauchyho rozdělení (Jupyter Notebook)](Majak.ipynb)
+  * [J/$\psi$: Fit invariantní hmoty a 2D kontury věrohodnosti (Jupyter Notebook)](Jpsi.ipynb)
 - [x] **5) Higgs boson mass significance** vs. size of mass window
   * Sunrise path: `/data2/vyuka/szd/SZD2-codes/HIGGS`
   * [Higgs signifikance (Jupyter Notebook)](Higgs.ipynb)
   * [Higgs C++ podrobný rozbor kódu (MyST)](higgs_cpp_explanation.md)
 - [ ] **6) Machine Learning** - Boosted Decision Trees in Python
-  * [Web](https://kf.fjfi.cvut.cz/myska/SZD/szd2/BDT/BDT.html)
+  * [Web](/public_html/SZD/szd2/BDT/BDT.html?view)
 - [ ] **7) Geant4**
-  * [Web](https://kf.fjfi.cvut.cz/myska/SZD/szd2/Geant4/geant4.html)
+  * [Web](/public_html/SZD/szd2/Geant4/geant4.html?view)
 - [ ] **8) Machine Learning** - Lookup Problem Solver
-  * [Web](https://kf.fjfi.cvut.cz/myska/SZD/szd2/Lookup_Solver/LookupSolver.html)
+  * [Web](/public_html/SZD/szd2/Lookup_Solver/LookupSolver.html?view)
 - [ ] **9) Unfolding** of detector data to particle level

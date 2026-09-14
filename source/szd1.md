@@ -59,13 +59,13 @@ libovolné fce. z uniformní distr.
 
 - [x] **1) RAA (Propagace chyb pro dělení)**
   Výstupem je histogram/graf několika binů RAA s asymetrickými chybami. Na webu je část kódu pro Python i ROOT – vyberte si jeden k doplnění, nebo napište celý vlastní kód.
-  * [Web](https://kf.fjfi.cvut.cz/myska/SZD/szd1/Uncertainty/uncertainty.html)
+  * [Web](/public_html/SZD/szd1/ErrPropag/uncertainty.html?view)
 - [ ] **2) Zářič v místnosti**
   ML fit ne-binovaných dat.
-  * [Web](https://kf.fjfi.cvut.cz/myska/SZD/szd1/radiator/radiator.html)
+  * [Web](/public_html/SZD/szd1/radiator/radiator.html?view)
 - [x] **3) Template fit (Signal vs. Background)**
   ML fit binovaných dat pro tzv. template fit.
-  * [Web](https://kf.fjfi.cvut.cz/myska/SZD/szd1/ML_fit/ml_fit.html)
+  * [Web](/public_html/SZD/szd1/ML_fit/ml_fit.html?view)
 
 **Otázky ke zkoušce (Dle státnic)**
 - [ ] Statistická rozdělení a jejich parametry (spec. Gaussovo rozdělení)

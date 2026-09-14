@@ -1,0 +1,498 @@
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>> Toolkit for HEP Event Generation - ThePEG 2.0.2 <<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+>> Herwig 7.0.2 / ThePEG 2.0.2
+
+==============================================================================
+Statistics for event handler 'LHCHandler':
+                                       generated    number of    Cross-section
+                                          events     attempts             (nb)
+==============================================================================
+Total (from   weighted events): including vetoed events           4.052(7)e+03
+==============================================================================
+Total (from unweighted events):           100000       100001     4.052(7)e+03
+==============================================================================
+Per matrix element breakdown:
+MEQCD2to2                                 100000       100001     4.052(7)e+03
+==============================================================================
+Per parton extractor breakdown:
+QCDExtractor                              100000       100001     4.052(7)e+03
+==============================================================================
+Per incoming partons breakdown:
+d d                                         1184         1184        48(1)e+00
+d dbar                                       515          515      20.9(9)e+00
+d ubar                                       251          251      10.2(6)e+00
+d u                                         2462         2462      99.8(2)e+00
+d c                                           89           89       3.6(4)e+00
+d cbar                                        84           84       3.4(4)e+00
+d sbar                                       136          136       5.5(5)e+00
+d s                                          147          147       6.0(5)e+00
+d b                                           28           28       1.1(2)e+00
+d bbar                                        33           33       1.3(2)e+00
+d g                                         7022         7022     0.285(3)e+03
+dbar d                                       434          434      17.6(8)e+00
+dbar dbar                                     48           48       1.9(3)e+00
+dbar ubar                                     54           54       2.2(3)e+00
+dbar u                                       669          669        27(1)e+00
+dbar c                                        17           17       0.7(2)e+00
+dbar cbar                                     18           18       0.7(2)e+00
+dbar sbar                                     17           17       0.7(2)e+00
+dbar s                                        24           24      0.97(2)e+00
+dbar b                                         6            6       0.2(1)e+00
+dbar bbar                                      8            8       0.3(1)e+00
+dbar g                                      1344         1344        54(1)e+00
+ubar d                                       237          237       9.6(6)e+00
+ubar dbar                                     52           52       2.1(3)e+00
+ubar ubar                                     26           26       1.1(2)e+00
+ubar u                                       751          751        30(1)e+00
+ubar c                                         9            9       0.4(1)e+00
+ubar cbar                                     13           13       0.5(1)e+00
+ubar sbar                                     13           13       0.5(1)e+00
+ubar s                                        17           17       0.7(2)e+00
+ubar b                                         3            3      0.12(7)e+00
+ubar bbar                                      4            4      0.16(8)e+00
+ubar g                                       994          994        40(1)e+00
+u d                                         2480         2480     0.100(2)e+03
+u dbar                                       666          666        27(1)e+00
+u ubar                                       747          747        30(1)e+00
+u u                                         4125         4125     0.167(3)e+03
+u c                                          162          162       6.6(5)e+00
+u cbar                                       185          185       7.5(6)e+00
+u sbar                                       282          282      11.4(7)e+00
+u s                                          332          332      13.5(7)e+00
+u b                                           68           68       2.8(3)e+00
+u bbar                                        56           56       2.3(3)e+00
+u g                                        14903        14903     0.604(5)e+03
+c d                                           76           76       3.1(4)e+00
+c dbar                                        24           24      0.97(2)e+00
+c ubar                                        10           10       0.4(1)e+00
+c u                                          169          169       6.8(5)e+00
+c c                                            5            5      0.20(9)e+00
+c cbar                                         3            3      0.12(7)e+00
+c sbar                                         6            6       0.2(1)e+00
+c s                                            4            4      0.16(8)e+00
+c b                                            4            4      0.16(8)e+00
+c bbar                                         1            1       40(40)e-03
+c g                                          339          339      13.7(7)e+00
+cbar d                                        77           77       3.1(4)e+00
+cbar dbar                                     26           26       1.1(2)e+00
+cbar ubar                                      8            8       0.3(1)e+00
+cbar u                                       167          167       6.8(5)e+00
+cbar c                                         3            3      0.12(7)e+00
+cbar cbar                                      6            6       0.2(1)e+00
+cbar sbar                                      6            6       0.2(1)e+00
+cbar s                                         5            5      0.20(9)e+00
+cbar b                                         0            0                0
+cbar bbar                                      0            0                0
+cbar g                                       355          355      14.4(8)e+00
+sbar d                                       137          137       5.6(5)e+00
+sbar dbar                                     33           33       1.3(2)e+00
+sbar ubar                                     21           21       0.9(2)e+00
+sbar u                                       271          271      11.0(7)e+00
+sbar c                                         7            7       0.3(1)e+00
+sbar cbar                                      6            6       0.2(1)e+00
+sbar sbar                                      6            6       0.2(1)e+00
+sbar s                                        15           15       0.6(2)e+00
+sbar b                                         2            2       80(60)e-03
+sbar bbar                                      1            1       40(40)e-03
+sbar g                                       510          510      20.7(9)e+00
+s d                                          136          136       5.5(5)e+00
+s dbar                                        37           37       1.5(2)e+00
+s ubar                                        17           17       0.7(2)e+00
+s u                                          286          286      11.6(7)e+00
+s c                                            3            3      0.12(7)e+00
+s cbar                                         6            6       0.2(1)e+00
+s sbar                                        14           14       0.6(2)e+00
+s s                                            7            7       0.3(1)e+00
+s b                                            3            3      0.12(7)e+00
+s bbar                                         0            0                0
+s g                                          608          608        25(1)e+00
+b d                                           30           30       1.2(2)e+00
+b dbar                                         5            5      0.20(9)e+00
+b ubar                                         4            4      0.16(8)e+00
+b u                                           57           57       2.3(3)e+00
+b c                                            2            2       80(60)e-03
+b cbar                                         0            0                0
+b sbar                                         3            3      0.12(7)e+00
+b s                                            0            0                0
+b b                                            0            0                0
+b bbar                                         0            0                0
+b g                                          110          110       4.5(4)e+00
+bbar d                                        37           37       1.5(2)e+00
+bbar dbar                                      8            8       0.3(1)e+00
+bbar ubar                                      5            5      0.20(9)e+00
+bbar u                                        60           60       2.4(3)e+00
+bbar c                                         1            1       40(40)e-03
+bbar cbar                                      1            1       40(40)e-03
+bbar sbar                                      3            3      0.12(7)e+00
+bbar s                                         2            2       80(60)e-03
+bbar b                                         0            0                0
+bbar bbar                                      0            0                0
+bbar g                                       126          126       5.1(5)e+00
+g d                                         6984         6984     0.283(3)e+03
+g dbar                                      1369         1369        55(1)e+00
+g ubar                                      1063         1063        43(1)e+00
+g u                                        14747        14747     0.598(5)e+03
+g c                                          317          317      12.8(7)e+00
+g cbar                                       312          312      12.6(7)e+00
+g sbar                                       507          507      20.5(9)e+00
+g s                                          604          604        24(1)e+00
+g b                                          126          126       5.1(5)e+00
+g bbar                                       111          112       4.5(4)e+00
+g g                                        29271        29271     1.186(6)e+03
+==============================================================================
+Detailed breakdown:
+(QCDExtractor) bbar bbar (MEQCD2to2 bbar,bbar->bbar,bbar) 
+                                               0            0                0
+(QCDExtractor) bbar cbar (MEQCD2to2 cbar,bbar->bbar,cbar) 
+                                               1            1       40(40)e-03
+(QCDExtractor) bbar sbar (MEQCD2to2 sbar,bbar->bbar,sbar) 
+                                               3            3      0.12(7)e+00
+(QCDExtractor) bbar ubar (MEQCD2to2 ubar,bbar->bbar,ubar) 
+                                               5            5      0.20(9)e+00
+(QCDExtractor) bbar dbar (MEQCD2to2 dbar,bbar->bbar,dbar) 
+                                               8            8       0.3(1)e+00
+(QCDExtractor) bbar d (MEQCD2to2 d,bbar->bbar,d) 
+                                              37           37       1.5(2)e+00
+(QCDExtractor) bbar u (MEQCD2to2 u,bbar->bbar,u) 
+                                              60           60       2.4(3)e+00
+(QCDExtractor) bbar s (MEQCD2to2 s,bbar->bbar,s) 
+                                               2            2       80(60)e-03
+(QCDExtractor) bbar c (MEQCD2to2 c,bbar->bbar,c) 
+                                               1            1       40(40)e-03
+(QCDExtractor) bbar b (MEQCD2to2 b,bbar->b,bbar) 
+                                               0            0                0
+(QCDExtractor) bbar b (MEQCD2to2 b,bbar->c,cbar) 
+                                               0            0                0
+(QCDExtractor) bbar b (MEQCD2to2 b,bbar->d,dbar) 
+                                               0            0                0
+(QCDExtractor) bbar b (MEQCD2to2 b,bbar->g,g) 
+                                               0            0                0
+(QCDExtractor) bbar b (MEQCD2to2 b,bbar->s,sbar) 
+                                               0            0                0
+(QCDExtractor) bbar b (MEQCD2to2 b,bbar->u,ubar) 
+                                               0            0                0
+(QCDExtractor) bbar g (MEQCD2to2 bbar,g->g,bbar) 
+                                             126          126       5.1(5)e+00
+(QCDExtractor) cbar bbar (MEQCD2to2 cbar,bbar->bbar,cbar) 
+                                               0            0                0
+(QCDExtractor) cbar cbar (MEQCD2to2 cbar,cbar->cbar,cbar) 
+                                               6            6       0.2(1)e+00
+(QCDExtractor) cbar sbar (MEQCD2to2 sbar,cbar->cbar,sbar) 
+                                               6            6       0.2(1)e+00
+(QCDExtractor) cbar ubar (MEQCD2to2 ubar,cbar->cbar,ubar) 
+                                               8            8       0.3(1)e+00
+(QCDExtractor) cbar dbar (MEQCD2to2 dbar,cbar->cbar,dbar) 
+                                              26           26       1.1(2)e+00
+(QCDExtractor) cbar d (MEQCD2to2 d,cbar->cbar,d) 
+                                              77           77       3.1(4)e+00
+(QCDExtractor) cbar u (MEQCD2to2 u,cbar->cbar,u) 
+                                             167          167       6.8(5)e+00
+(QCDExtractor) cbar s (MEQCD2to2 s,cbar->cbar,s) 
+                                               5            5      0.20(9)e+00
+(QCDExtractor) cbar c (MEQCD2to2 c,cbar->b,bbar) 
+                                               0            0                0
+(QCDExtractor) cbar c (MEQCD2to2 c,cbar->c,cbar) 
+                                               2            2       80(60)e-03
+(QCDExtractor) cbar c (MEQCD2to2 c,cbar->d,dbar) 
+                                               0            0                0
+(QCDExtractor) cbar c (MEQCD2to2 c,cbar->g,g) 
+                                               1            1       40(40)e-03
+(QCDExtractor) cbar c (MEQCD2to2 c,cbar->s,sbar) 
+                                               0            0                0
+(QCDExtractor) cbar c (MEQCD2to2 c,cbar->u,ubar) 
+                                               0            0                0
+(QCDExtractor) cbar b (MEQCD2to2 b,cbar->b,cbar) 
+                                               0            0                0
+(QCDExtractor) cbar g (MEQCD2to2 cbar,g->g,cbar) 
+                                             355          355      14.4(8)e+00
+(QCDExtractor) sbar bbar (MEQCD2to2 sbar,bbar->bbar,sbar) 
+                                               1            1       40(40)e-03
+(QCDExtractor) sbar cbar (MEQCD2to2 sbar,cbar->cbar,sbar) 
+                                               6            6       0.2(1)e+00
+(QCDExtractor) sbar sbar (MEQCD2to2 sbar,sbar->sbar,sbar) 
+                                               6            6       0.2(1)e+00
+(QCDExtractor) sbar ubar (MEQCD2to2 ubar,sbar->sbar,ubar) 
+                                              21           21       0.9(2)e+00
+(QCDExtractor) sbar dbar (MEQCD2to2 dbar,sbar->sbar,dbar) 
+                                              33           33       1.3(2)e+00
+(QCDExtractor) sbar d (MEQCD2to2 d,sbar->sbar,d) 
+                                             137          137       5.6(5)e+00
+(QCDExtractor) sbar u (MEQCD2to2 u,sbar->sbar,u) 
+                                             271          271      11.0(7)e+00
+(QCDExtractor) sbar s (MEQCD2to2 s,sbar->b,bbar) 
+                                               1            1       40(40)e-03
+(QCDExtractor) sbar s (MEQCD2to2 s,sbar->c,cbar) 
+                                               0            0                0
+(QCDExtractor) sbar s (MEQCD2to2 s,sbar->d,dbar) 
+                                               0            0                0
+(QCDExtractor) sbar s (MEQCD2to2 s,sbar->g,g) 
+                                               3            3      0.12(7)e+00
+(QCDExtractor) sbar s (MEQCD2to2 s,sbar->s,sbar) 
+                                              11           11       0.4(1)e+00
+(QCDExtractor) sbar s (MEQCD2to2 s,sbar->u,ubar) 
+                                               0            0                0
+(QCDExtractor) sbar c (MEQCD2to2 c,sbar->c,sbar) 
+                                               7            7       0.3(1)e+00
+(QCDExtractor) sbar b (MEQCD2to2 b,sbar->b,sbar) 
+                                               2            2       80(60)e-03
+(QCDExtractor) sbar g (MEQCD2to2 sbar,g->g,sbar) 
+                                             510          510      20.7(9)e+00
+(QCDExtractor) ubar bbar (MEQCD2to2 ubar,bbar->bbar,ubar) 
+                                               4            4      0.16(8)e+00
+(QCDExtractor) ubar cbar (MEQCD2to2 ubar,cbar->cbar,ubar) 
+                                              13           13       0.5(1)e+00
+(QCDExtractor) ubar sbar (MEQCD2to2 ubar,sbar->sbar,ubar) 
+                                              13           13       0.5(1)e+00
+(QCDExtractor) ubar ubar (MEQCD2to2 ubar,ubar->ubar,ubar) 
+                                              26           26       1.1(2)e+00
+(QCDExtractor) ubar dbar (MEQCD2to2 dbar,ubar->ubar,dbar) 
+                                              52           52       2.1(3)e+00
+(QCDExtractor) ubar d (MEQCD2to2 d,ubar->ubar,d) 
+                                             237          237       9.6(6)e+00
+(QCDExtractor) ubar u (MEQCD2to2 u,ubar->b,bbar) 
+                                              25           25       1.0(2)e+00
+(QCDExtractor) ubar u (MEQCD2to2 u,ubar->c,cbar) 
+                                              27           27       1.1(2)e+00
+(QCDExtractor) ubar u (MEQCD2to2 u,ubar->d,dbar) 
+                                              17           17       0.7(2)e+00
+(QCDExtractor) ubar u (MEQCD2to2 u,ubar->g,g) 
+                                              97           97       3.9(4)e+00
+(QCDExtractor) ubar u (MEQCD2to2 u,ubar->s,sbar) 
+                                              18           18       0.7(2)e+00
+(QCDExtractor) ubar u (MEQCD2to2 u,ubar->u,ubar) 
+                                             567          567        23(1)e+00
+(QCDExtractor) ubar s (MEQCD2to2 s,ubar->s,ubar) 
+                                              17           17       0.7(2)e+00
+(QCDExtractor) ubar c (MEQCD2to2 c,ubar->c,ubar) 
+                                               9            9       0.4(1)e+00
+(QCDExtractor) ubar b (MEQCD2to2 b,ubar->b,ubar) 
+                                               3            3      0.12(7)e+00
+(QCDExtractor) ubar g (MEQCD2to2 ubar,g->g,ubar) 
+                                             994          994        40(1)e+00
+(QCDExtractor) dbar bbar (MEQCD2to2 dbar,bbar->bbar,dbar) 
+                                               8            8       0.3(1)e+00
+(QCDExtractor) dbar cbar (MEQCD2to2 dbar,cbar->cbar,dbar) 
+                                              18           18       0.7(2)e+00
+(QCDExtractor) dbar sbar (MEQCD2to2 dbar,sbar->sbar,dbar) 
+                                              17           17       0.7(2)e+00
+(QCDExtractor) dbar ubar (MEQCD2to2 dbar,ubar->ubar,dbar) 
+                                              54           54       2.2(3)e+00
+(QCDExtractor) dbar dbar (MEQCD2to2 dbar,dbar->dbar,dbar) 
+                                              48           48       1.9(3)e+00
+(QCDExtractor) dbar d (MEQCD2to2 d,dbar->b,bbar) 
+                                              20           20       0.8(2)e+00
+(QCDExtractor) dbar d (MEQCD2to2 d,dbar->c,cbar) 
+                                              18           18       0.7(2)e+00
+(QCDExtractor) dbar d (MEQCD2to2 d,dbar->d,dbar) 
+                                             331          331      13.4(7)e+00
+(QCDExtractor) dbar d (MEQCD2to2 d,dbar->g,g) 
+                                              35           35       1.4(2)e+00
+(QCDExtractor) dbar d (MEQCD2to2 d,dbar->s,sbar) 
+                                              10           10       0.4(1)e+00
+(QCDExtractor) dbar d (MEQCD2to2 d,dbar->u,ubar) 
+                                              20           20       0.8(2)e+00
+(QCDExtractor) dbar u (MEQCD2to2 u,dbar->u,dbar) 
+                                             669          669        27(1)e+00
+(QCDExtractor) dbar s (MEQCD2to2 s,dbar->s,dbar) 
+                                              24           24      0.97(2)e+00
+(QCDExtractor) dbar c (MEQCD2to2 c,dbar->c,dbar) 
+                                              17           17       0.7(2)e+00
+(QCDExtractor) dbar b (MEQCD2to2 b,dbar->b,dbar) 
+                                               6            6       0.2(1)e+00
+(QCDExtractor) dbar g (MEQCD2to2 dbar,g->g,dbar) 
+                                            1344         1344        54(1)e+00
+(QCDExtractor) d bbar (MEQCD2to2 d,bbar->bbar,d) 
+                                              33           33       1.3(2)e+00
+(QCDExtractor) d cbar (MEQCD2to2 d,cbar->cbar,d) 
+                                              84           84       3.4(4)e+00
+(QCDExtractor) d sbar (MEQCD2to2 d,sbar->sbar,d) 
+                                             136          136       5.5(5)e+00
+(QCDExtractor) d ubar (MEQCD2to2 d,ubar->ubar,d) 
+                                             251          251      10.2(6)e+00
+(QCDExtractor) d dbar (MEQCD2to2 d,dbar->b,bbar) 
+                                              14           14       0.6(2)e+00
+(QCDExtractor) d dbar (MEQCD2to2 d,dbar->c,cbar) 
+                                              13           13       0.5(1)e+00
+(QCDExtractor) d dbar (MEQCD2to2 d,dbar->d,dbar) 
+                                             396          396      16.0(8)e+00
+(QCDExtractor) d dbar (MEQCD2to2 d,dbar->g,g) 
+                                              51           51       2.1(3)e+00
+(QCDExtractor) d dbar (MEQCD2to2 d,dbar->s,sbar) 
+                                              21           21       0.9(2)e+00
+(QCDExtractor) d dbar (MEQCD2to2 d,dbar->u,ubar) 
+                                              20           20       0.8(2)e+00
+(QCDExtractor) d d (MEQCD2to2 d,d->d,d) 
+                                            1184         1184        48(1)e+00
+(QCDExtractor) d u (MEQCD2to2 d,u->u,d) 
+                                            2462         2462      99.8(2)e+00
+(QCDExtractor) d s (MEQCD2to2 d,s->s,d) 
+                                             147          147       6.0(5)e+00
+(QCDExtractor) d c (MEQCD2to2 d,c->c,d) 
+                                              89           89       3.6(4)e+00
+(QCDExtractor) d b (MEQCD2to2 d,b->b,d) 
+                                              28           28       1.1(2)e+00
+(QCDExtractor) d g (MEQCD2to2 d,g->g,d) 
+                                            7022         7022     0.285(3)e+03
+(QCDExtractor) u bbar (MEQCD2to2 u,bbar->bbar,u) 
+                                              56           56       2.3(3)e+00
+(QCDExtractor) u cbar (MEQCD2to2 u,cbar->cbar,u) 
+                                             185          185       7.5(6)e+00
+(QCDExtractor) u sbar (MEQCD2to2 u,sbar->sbar,u) 
+                                             282          282      11.4(7)e+00
+(QCDExtractor) u ubar (MEQCD2to2 u,ubar->b,bbar) 
+                                              25           25       1.0(2)e+00
+(QCDExtractor) u ubar (MEQCD2to2 u,ubar->c,cbar) 
+                                              27           27       1.1(2)e+00
+(QCDExtractor) u ubar (MEQCD2to2 u,ubar->d,dbar) 
+                                              23           23       0.9(2)e+00
+(QCDExtractor) u ubar (MEQCD2to2 u,ubar->g,g) 
+                                              86           86       3.5(4)e+00
+(QCDExtractor) u ubar (MEQCD2to2 u,ubar->s,sbar) 
+                                              25           25       1.0(2)e+00
+(QCDExtractor) u ubar (MEQCD2to2 u,ubar->u,ubar) 
+                                             561          561        23(1)e+00
+(QCDExtractor) u dbar (MEQCD2to2 u,dbar->u,dbar) 
+                                             666          666        27(1)e+00
+(QCDExtractor) u d (MEQCD2to2 d,u->u,d) 
+                                            2480         2480     0.100(2)e+03
+(QCDExtractor) u u (MEQCD2to2 u,u->u,u) 
+                                            4125         4125     0.167(3)e+03
+(QCDExtractor) u s (MEQCD2to2 u,s->s,u) 
+                                             332          332      13.5(7)e+00
+(QCDExtractor) u c (MEQCD2to2 u,c->c,u) 
+                                             162          162       6.6(5)e+00
+(QCDExtractor) u b (MEQCD2to2 u,b->b,u) 
+                                              68           68       2.8(3)e+00
+(QCDExtractor) u g (MEQCD2to2 u,g->g,u) 
+                                           14903        14903     0.604(5)e+03
+(QCDExtractor) s bbar (MEQCD2to2 s,bbar->bbar,s) 
+                                               0            0                0
+(QCDExtractor) s cbar (MEQCD2to2 s,cbar->cbar,s) 
+                                               6            6       0.2(1)e+00
+(QCDExtractor) s sbar (MEQCD2to2 s,sbar->b,bbar) 
+                                               1            1       40(40)e-03
+(QCDExtractor) s sbar (MEQCD2to2 s,sbar->c,cbar) 
+                                               0            0                0
+(QCDExtractor) s sbar (MEQCD2to2 s,sbar->d,dbar) 
+                                               0            0                0
+(QCDExtractor) s sbar (MEQCD2to2 s,sbar->g,g) 
+                                               0            0                0
+(QCDExtractor) s sbar (MEQCD2to2 s,sbar->s,sbar) 
+                                              12           12       0.5(1)e+00
+(QCDExtractor) s sbar (MEQCD2to2 s,sbar->u,ubar) 
+                                               1            1       40(40)e-03
+(QCDExtractor) s ubar (MEQCD2to2 s,ubar->s,ubar) 
+                                              17           17       0.7(2)e+00
+(QCDExtractor) s dbar (MEQCD2to2 s,dbar->s,dbar) 
+                                              37           37       1.5(2)e+00
+(QCDExtractor) s d (MEQCD2to2 d,s->s,d) 
+                                             136          136       5.5(5)e+00
+(QCDExtractor) s u (MEQCD2to2 u,s->s,u) 
+                                             286          286      11.6(7)e+00
+(QCDExtractor) s s (MEQCD2to2 s,s->s,s) 
+                                               7            7       0.3(1)e+00
+(QCDExtractor) s c (MEQCD2to2 s,c->c,s) 
+                                               3            3      0.12(7)e+00
+(QCDExtractor) s b (MEQCD2to2 s,b->b,s) 
+                                               3            3      0.12(7)e+00
+(QCDExtractor) s g (MEQCD2to2 s,g->g,s) 
+                                             608          608        25(1)e+00
+(QCDExtractor) c bbar (MEQCD2to2 c,bbar->bbar,c) 
+                                               1            1       40(40)e-03
+(QCDExtractor) c cbar (MEQCD2to2 c,cbar->b,bbar) 
+                                               0            0                0
+(QCDExtractor) c cbar (MEQCD2to2 c,cbar->c,cbar) 
+                                               3            3      0.12(7)e+00
+(QCDExtractor) c cbar (MEQCD2to2 c,cbar->d,dbar) 
+                                               0            0                0
+(QCDExtractor) c cbar (MEQCD2to2 c,cbar->g,g) 
+                                               0            0                0
+(QCDExtractor) c cbar (MEQCD2to2 c,cbar->s,sbar) 
+                                               0            0                0
+(QCDExtractor) c cbar (MEQCD2to2 c,cbar->u,ubar) 
+                                               0            0                0
+(QCDExtractor) c sbar (MEQCD2to2 c,sbar->c,sbar) 
+                                               6            6       0.2(1)e+00
+(QCDExtractor) c ubar (MEQCD2to2 c,ubar->c,ubar) 
+                                              10           10       0.4(1)e+00
+(QCDExtractor) c dbar (MEQCD2to2 c,dbar->c,dbar) 
+                                              24           24      0.97(2)e+00
+(QCDExtractor) c d (MEQCD2to2 d,c->c,d) 
+                                              76           76       3.1(4)e+00
+(QCDExtractor) c u (MEQCD2to2 u,c->c,u) 
+                                             169          169       6.8(5)e+00
+(QCDExtractor) c s (MEQCD2to2 s,c->c,s) 
+                                               4            4      0.16(8)e+00
+(QCDExtractor) c c (MEQCD2to2 c,c->c,c) 
+                                               5            5      0.20(9)e+00
+(QCDExtractor) c b (MEQCD2to2 c,b->b,c) 
+                                               4            4      0.16(8)e+00
+(QCDExtractor) c g (MEQCD2to2 c,g->g,c) 
+                                             339          339      13.7(7)e+00
+(QCDExtractor) b bbar (MEQCD2to2 b,bbar->b,bbar) 
+                                               0            0                0
+(QCDExtractor) b bbar (MEQCD2to2 b,bbar->c,cbar) 
+                                               0            0                0
+(QCDExtractor) b bbar (MEQCD2to2 b,bbar->d,dbar) 
+                                               0            0                0
+(QCDExtractor) b bbar (MEQCD2to2 b,bbar->g,g) 
+                                               0            0                0
+(QCDExtractor) b bbar (MEQCD2to2 b,bbar->s,sbar) 
+                                               0            0                0
+(QCDExtractor) b bbar (MEQCD2to2 b,bbar->u,ubar) 
+                                               0            0                0
+(QCDExtractor) b cbar (MEQCD2to2 b,cbar->b,cbar) 
+                                               0            0                0
+(QCDExtractor) b sbar (MEQCD2to2 b,sbar->b,sbar) 
+                                               3            3      0.12(7)e+00
+(QCDExtractor) b ubar (MEQCD2to2 b,ubar->b,ubar) 
+                                               4            4      0.16(8)e+00
+(QCDExtractor) b dbar (MEQCD2to2 b,dbar->b,dbar) 
+                                               5            5      0.20(9)e+00
+(QCDExtractor) b d (MEQCD2to2 d,b->b,d) 
+                                              30           30       1.2(2)e+00
+(QCDExtractor) b u (MEQCD2to2 u,b->b,u) 
+                                              57           57       2.3(3)e+00
+(QCDExtractor) b s (MEQCD2to2 s,b->b,s) 
+                                               0            0                0
+(QCDExtractor) b c (MEQCD2to2 c,b->b,c) 
+                                               2            2       80(60)e-03
+(QCDExtractor) b b (MEQCD2to2 b,b->b,b) 
+                                               0            0                0
+(QCDExtractor) b g (MEQCD2to2 b,g->g,b) 
+                                             110          110       4.5(4)e+00
+(QCDExtractor) g bbar (MEQCD2to2 bbar,g->g,bbar) 
+                                             111          112       4.5(4)e+00
+(QCDExtractor) g cbar (MEQCD2to2 cbar,g->g,cbar) 
+                                             312          312      12.6(7)e+00
+(QCDExtractor) g sbar (MEQCD2to2 sbar,g->g,sbar) 
+                                             507          507      20.5(9)e+00
+(QCDExtractor) g ubar (MEQCD2to2 ubar,g->g,ubar) 
+                                            1063         1063        43(1)e+00
+(QCDExtractor) g dbar (MEQCD2to2 dbar,g->g,dbar) 
+                                            1369         1369        55(1)e+00
+(QCDExtractor) g d (MEQCD2to2 d,g->g,d) 
+                                            6984         6984     0.283(3)e+03
+(QCDExtractor) g u (MEQCD2to2 u,g->g,u) 
+                                           14747        14747     0.598(5)e+03
+(QCDExtractor) g s (MEQCD2to2 s,g->g,s) 
+                                             604          604        24(1)e+00
+(QCDExtractor) g c (MEQCD2to2 c,g->g,c) 
+                                             317          317      12.8(7)e+00
+(QCDExtractor) g b (MEQCD2to2 b,g->g,b) 
+                                             126          126       5.1(5)e+00
+(QCDExtractor) g g (MEQCD2to2 g,g->b,bbar) 
+                                             232          232       9.4(6)e+00
+(QCDExtractor) g g (MEQCD2to2 g,g->c,cbar) 
+                                             240          240       9.7(6)e+00
+(QCDExtractor) g g (MEQCD2to2 g,g->d,dbar) 
+                                             235          235       9.5(6)e+00
+(QCDExtractor) g g (MEQCD2to2 g,g->g,g) 
+                                           28093        28093     1.138(6)e+03
+(QCDExtractor) g g (MEQCD2to2 g,g->s,sbar) 
+                                             229          229       9.3(6)e+00
+(QCDExtractor) g g (MEQCD2to2 g,g->u,ubar) 
+                                             242          242       9.8(6)e+00
+==============================================================================

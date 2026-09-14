@@ -1,0 +1,1432 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Newton/newton.html">
+      
+      
+        <link rel="next" href="../radiator/radiator.html">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.0">
+    
+    
+      
+        <title>Error propagation - SZD</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.9f615399.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.649f08f9.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#error-propagation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="SZD" class="md-header__button md-logo" aria-label="SZD" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SZD
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Error propagation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../doors/doors.html" class="md-tabs__link">
+          
+  
+    
+  
+  SZD1
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../szd2/Geant4/geant4.html" class="md-tabs__link">
+          
+  
+    
+  
+  SZD2
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SZD" class="md-nav__button md-logo" aria-label="SZD" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    SZD
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SZD1
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            SZD1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1" checked>
+        
+          <label class="md-nav__link" for="__nav_1_1" id="__nav_1_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SZD1 Codes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            SZD1 Codes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../doors/doors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The three door problem
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DAlembert/DAlembert.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    D'Alembert Strategy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Correlation/correlation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Correlation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Newton/newton.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Newton
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Error propagation
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="uncertainty.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Error propagation
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#formula-assuming-normal-distribution-of-f" class="md-nav__link">
+    Formula - assuming Normal distribution of f
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bootstrap-method-of-error-propagation" class="md-nav__link">
+    Bootstrap method of error propagation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-bootstrap-method-of-error-estimation" class="md-nav__link">
+    The bootstrap method of error estimation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#homework" class="md-nav__link">
+    Homework
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../radiator/radiator.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MLM Fit - Radiator
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ML_fit/ml_fit.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MLM Fit - S/B templates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chi2_fit/chi2_fit.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chi2 Fit - Least Squares Method
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" >
+        
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Python tutorials
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Python tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_tutorial/analysis-visualisation-python.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Analysis and Visualization in Python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_tutorial/python_libraries_overview.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📚 Python Scientific Computing & Data Analysis Libraries
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SZD2
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            SZD2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../szd2/Geant4/geant4.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Geant4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../szd2/RooFit_WW_fraction/Roofit_WW.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RooFit - WW fraction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../szd2/RooFit_Punzi/Roofit_Punzi.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RooFit - Conditional Likelihood
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../szd2/Hypotheses_Poisson/Hypotheses_Poisson.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing of hypotheses - Poisson
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../szd2/BDT/BDT.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BDT = Boosted Decision Trees
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../szd2/Lookup_Solver/LookupSolver.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ML - Lookup Problem Solver
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../szd2/UpsilonFitter/UpsFitter.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upsilon Fitter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../szd2/Stars/Stars.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Neutron stars
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+<nav class="md-tags" >
+  
+    
+    
+    
+      <span class="md-tag">SZD1 Homework</span>
+    
+  
+</nav>
+
+
+
+<h1 id="error-propagation">Error propagation</h1>
+<p>Perhaps the single most important aspect of experimental physics is knowing the precision of a measurement. Besides postulated constants (which are of course defined precisely) a value of a physical quantity is meaningless unless we know the accuracy with which it was measured. Quite often are physical properties not measurable directly and a set of different measurements is made to be later combined into our desired property through some theory. It is then necessary to know how do measurement errors propagate through the formulas to estimate the uncertainty of our result.</p>
+<h2 id="formula-assuming-normal-distribution-of-f">Formula - assuming Normal distribution of f</h2>
+<p>We have a physical property <em>f</em> which is a function of <em>n</em> other measurable variables <span class="arithmatex">\(x_i\)</span> ( <span class="arithmatex">\(f = f(x_1,...,x_n)\)</span> ) with mean values <span class="arithmatex">\(\mu_i\)</span> and standard deviations <span class="arithmatex">\(\sigma_i\)</span>. What is the expected value and variance of <span class="arithmatex">\(f\)</span>?</p>
+<p>Let's start by performing a Taylor series expansion of <span class="arithmatex">\(f\)</span> around <span class="arithmatex">\(\vec{\mu}\)</span>:</p>
+<div class="arithmatex">\[
+f(\vec{x}) = f(\vec{\mu}) + \sum_i^n \frac{\partial f}{\partial x_i}\bigg|_{\vec{\mu}} (x_i - \mu_i) + \text{higher orders}.
+\]</div>
+<p>We now take the expected value of <span class="arithmatex">\(f\)</span> while neglecting the higher order derivatives:</p>
+<div class="arithmatex">\[
+E[f] \approx \underbrace{f(\vec{\mu})}_{\text{constant}} + \sum_i^n \underbrace{\frac{\partial f}{\partial x_i}\bigg|_{\vec{\mu}}}_{\text{constant}} (x_i - \mu_i) = f(\vec{\mu}).
+\]</div>
+<p>Knowing the mean value we can calculate the variation (still in first order derivatives):</p>
+<div class="arithmatex">\[
+V[f] = E[(f - E[f])^2] \approx E\bigg[\sum_i^n \sum_j^n \frac{\partial f}{\partial x_i}\bigg|_{\vec{\mu}}\frac{\partial f}{\partial x_j}\bigg|_{\vec{\mu}}\bigg]E[(x_i - \mu_i)(x_j - \mu_j)],
+\]</div>
+<p>specifically when <span class="arithmatex">\(x_u\)</span> are independent (<span class="arithmatex">\(E[(x_i - \mu_i)(x_j - \mu_j)] = 0, i \neq j\)</span>)</p>
+<div class="arithmatex">\[
+V[f] = \sum_i^n\bigg(\frac{\partial f}{\partial x_i}\bigg|_{\vec{\mu}}\bigg)^2\sigma_i^2,
+\]</div>
+<p>which is a well known result.</p>
+<h2 id="bootstrap-method-of-error-propagation">Bootstrap method of error propagation</h2>
+<p>The assumptions leading to the result in the previous section were differentiability and low value of higher order derivatives. The outcome of the error propagation formula is a single value which we would like to call the standard deviation. Let's show how misleading the results stemming from this formula can be when the second assumption is false. We use a simple example of a ratio of two independent variables.</p>
+<p>We have a variable <span class="arithmatex">\(f\)</span> defined as <span class="arithmatex">\(a / b\)</span> (supposed normally distributed) whose values are <span class="arithmatex">\(5 \pm 1\)</span> and <span class="arithmatex">\(3 \pm 0.6\)</span>. According to the first result in the previous section the expected value is simply <span class="arithmatex">\(f = 5/3\)</span> and the variance is</p>
+<div class="arithmatex">\[
+V[f] = \frac{1}{b^2}\sigma_a^2 + \frac{a^2}{b^4}\sigma_b^2 \sim 0.22, \implies \sigma_f = 0.47,
+\]</div>
+<p>which is a result one might be satisfied with. We can however guess the errors in a different way. Let's just use the extreme values of our measurements to arrive at the extreme values of the variable <span class="arithmatex">\(f\)</span>. To get a maximum we need a maximum in the numerator and a minimum in the denominator. This way we get that the maximum within 1 <span class="arithmatex">\(\sigma\)</span> is 2.50. Analogously for the minimum we get roughly 1.11. Compared to the expected value of about 1.67 we see that the standard deviation is very uneven and so the result from the error propagation formula might heavily differ from reality (as is the case for the mean value itself). The method we used here is similar to the bootstrap method.</p>
+<h2 id="the-bootstrap-method-of-error-estimation">The bootstrap method of error estimation</h2>
+<p>Suppose we have two gaussian distributed variables, <span class="arithmatex">\(A = N(\mu_{A}, \sigma_{A})\)</span> and <span class="arithmatex">\(B = N(\mu_{B}, \sigma_{B})\)</span> and we want to know the distribution of their ratio <span class="arithmatex">\(R = A / B\)</span>. Since we know the mean values and standard deviations we can generate an arbitrarily large random set. We generate pairs of our random variables, take their ratio and fill a histogram of <span class="arithmatex">\(R\)</span>. Then we extract the mean value as well as the one-sided errors by fitting a gaussian curve left and right of the most probable value (most filled bin) individually. Below is a demonstration of the method from the example in the previous section.</p>
+<details class="success" open="open">
+<summary>Output</summary>
+<p><img alt="ratio" src="RAA_example.png" /></p>
+<p>Note the logarithmic scale in the last plot.</p>
+</details>
+<p>In the example one can clearly see that by taking a ratio of two normally distributed variables where the denominator is close to zero (with respect to its standard devitaion) a result with very uneven tails is produced. Quantitatively we can compare the sigmas of the total, left and right sided fit. A logarithmic scale in the right-most figure was chosen to highlight the large relative differences near zero which could stay hidden in linear scale. </p>
+<p>Besides changing the errors the mean value is different as well. In the right-most figure we see that the mean value is 1.75, somewhat larger that the expected 1.67. This happens because of the long large-valued tail. The most probable value on the other hand is about 1.55.</p>
+<h2 id="homework">Homework</h2>
+<p>Imagine we experimentally measured two variables and we have them in a form of a histogram: each bin has a value and an error associated with that. This is illustrated in the figure bellow.</p>
+<p><img alt="haa_hpp_illustration" src="RAA_input_hist.png" /></p>
+<p>Our task is to calculate the ratio of these two histogram (haa histogram divided by hpp histogram). This is in principle easy, but we also need to estimate the error associated with these bins. As we have established, the simple error propagation formula would not work here, because we obtain an asymmetrical error. </p>
+<p>Following the simple example in the <a href="#the-bootstrap-method-of-error-estimation">previous section</a>, we need to:</p>
+<ol>
+<li>Approximate the value of each bin value with a Gaussian distribution. 
+(<em>Try explaining why... 🙃</em>)</li>
+<li>Generate random values based on this distribution.</li>
+<li>Divide these generated values for each corresponding haa and hpp bin.</li>
+<li>Fit the result with two gaussian functions: one from left and one from right to obtain the asymmetrical left and right error.</li>
+<li>Present the outcome in a form of a histogram.</li>
+</ol>
+<div class="admonition example">
+<p class="admonition-title">Task</p>
+<p>Using <a href="data.csv" target="_blank">these sample data</a>, write a code to perform the steps above and calculate the errors of the ration of haa and hpp. You may select only 3 bins and perform it using that (but select the nonzero bins!).</p>
+<p>Alternatively, use the code skeleton bellow and complete the missing parts.</p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python</label><label for="__tabbed_1_2">C++ and ROOT</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1">#define a gaussian curve</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">def</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">):</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">def</span> <span class="nf">find_bin_centers</span><span class="p">(</span><span class="n">edges</span><span class="p">):</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="k">return</span> <span class="p">(</span><span class="n">edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="c1">#the point is to show the difference between symmetric and asymmetric error.</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="c1">#this difference can result when error propagation is not well discribed by the first order of taylor expansion of the given variable with respect to measured quantities (see lecture)</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="c1">#lets generate 2 sets of gaussian data from our measurements and plot their ratio</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="n">chosenBins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">])</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="n">numOfBins</span> <span class="o">=</span> <span class="n">chosenBins</span><span class="o">.</span><span class="n">size</span> <span class="c1"># number of raa bins to fit</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="n">MCsize</span> <span class="o">=</span> <span class="mi">100000</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="n">ratios</span><span class="p">,</span> <span class="n">gaus1</span><span class="p">,</span> <span class="n">gaus2</span><span class="p">,</span> <span class="n">centers</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">edges</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)]</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">chosenBins</span><span class="p">:</span> <span class="c1"># fill gaus1, gaus2 and ratios with arrays of normally distributed data of size MCsize</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>        <span class="c1"># CODE HERE</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="n">numOfMCbins</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># to how many bins will ratio data be separated into?</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">14</span> <span class="c1"># set font size of figures</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">numOfBins</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">[</span><span class="mi">15</span><span class="p">,</span><span class="mi">4</span> <span class="o">*</span> <span class="n">numOfBins</span><span class="p">])</span> <span class="c1"># prepare figure and axes (numOfBins is number of rows, hard coded 3 is number of columns (for haa, hpp, raa))</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="n">sigma_asym</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numOfBins</span><span class="p">):</span> <span class="c1"># iterate over rows</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>        <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="p">[</span><span class="n">gaus1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">gaus2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">ratios</span><span class="p">[</span><span class="n">i</span><span class="p">]]):</span> <span class="c1"># plot histograms of haa, hpp and raa, save raa histogram values and edges for fitting. To plot numpy histogram use np.stairs()</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>        <span class="c1"># CODE HERE</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>        <span class="c1"># fit raa histogram values -&gt; total, left and right fit (taken from the maximum value); output fit_total, fit_left and fit_right</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>        <span class="c1"># CODE HERE</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">centers</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">centers</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">*</span><span class="n">fit_total</span><span class="p">),</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">sigma_t = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fit_total</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">centers</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">])],</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">centers</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">])],</span> <span class="o">*</span><span class="n">fit_left</span><span class="p">),</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">sigma_l = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fit_left</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">centers</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]):],</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">centers</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]):],</span> <span class="o">*</span><span class="n">fit_right</span><span class="p">),</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">sigma_r = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fit_right</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>    <span class="n">Raa</span> <span class="o">=</span> <span class="n">hAA_content</span> <span class="o">/</span> <span class="n">hpp_content</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>    <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hAA&#39;</span><span class="p">,</span> <span class="s1">&#39;hpp&#39;</span><span class="p">,</span> <span class="s1">&#39;RAA&#39;</span><span class="p">]</span>   
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>        <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;RAA_plots.png&#39;</span><span class="p">)</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    <span class="n">fig2</span><span class="p">,</span> <span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    <span class="n">ax2</span><span class="o">.</span><span class="n">stairs</span><span class="p">(</span><span class="n">edges</span> <span class="o">=</span> <span class="n">xAxis1</span><span class="p">[</span><span class="mi">11</span><span class="p">:],</span> <span class="n">values</span> <span class="o">=</span> <span class="n">Raa</span><span class="p">[</span><span class="mi">11</span><span class="p">:],</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span><span class="p">)</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    <span class="n">ax2</span><span class="o">.</span><span class="n">errorbar</span><span class="p">([</span><span class="n">xAxis1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">+</span> <span class="n">xAxis1</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">chosenBins</span><span class="p">],</span> <span class="p">[</span><span class="n">Raa</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">chosenBins</span><span class="p">],</span> <span class="n">yerr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">sigma_asym</span><span class="p">)),</span> <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$p_T$&#39;</span><span class="p">)</span>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$R_</span><span class="si">{AA}</span><span class="s1">$&#39;</span><span class="p">)</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>    <span class="n">fig2</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;bins_with_errors.png&#39;</span><span class="p">)</span>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a><span class="c1">#data to fit</span>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a><span class="c1"># 1. Bin edges (xAxis1)</span>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a><span class="n">xAxis1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a><span class="c1"># 2. Bin content for hpp</span>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a><span class="n">hpp_content</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.118516</span><span class="p">,</span> <span class="mf">0.1920894</span><span class="p">,</span> <span class="mf">0.007120608</span><span class="p">,</span> <span class="mf">0.001577695</span><span class="p">,</span> <span class="mf">0.0004146155</span><span class="p">,</span> <span class="mf">0.0001296542</span><span class="p">,</span> <span class="mf">4.644327e-05</span><span class="p">,</span> <span class="mf">2.057404e-05</span><span class="p">,</span> <span class="mf">9.958874e-06</span><span class="p">,</span> <span class="mf">4.334099e-06</span><span class="p">,</span> <span class="mf">1.442999e-06</span><span class="p">,</span> <span class="mf">5.654266e-07</span><span class="p">,</span> <span class="mf">2.407638e-07</span><span class="p">,</span> <span class="mf">1.094223e-07</span><span class="p">,</span> <span class="mf">3.354351e-08</span><span class="p">,</span> <span class="mf">6.04691e-09</span><span class="p">,</span> <span class="mf">7.423793e-10</span><span class="p">,</span> <span class="mf">3.350337e-11</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a><span class="c1"># 3. Bin errors for hpp</span>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a><span class="n">hpp_errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0006107765</span><span class="p">,</span> <span class="mf">0.0003700558</span><span class="p">,</span> <span class="mf">4.49924e-05</span><span class="p">,</span> <span class="mf">1.821935e-05</span><span class="p">,</span> <span class="mf">7.447584e-06</span><span class="p">,</span> <span class="mf">2.939223e-06</span><span class="p">,</span> <span class="mf">1.155389e-06</span><span class="p">,</span> <span class="mf">5.875219e-07</span><span class="p">,</span> <span class="mf">1.855936e-07</span><span class="p">,</span> <span class="mf">1.141886e-07</span><span class="p">,</span> <span class="mf">3.0114e-08</span><span class="p">,</span> <span class="mf">5.526975e-09</span><span class="p">,</span> <span class="mf">2.701332e-09</span><span class="p">,</span> <span class="mf">1.525211e-09</span><span class="p">,</span> <span class="mf">6.343152e-10</span><span class="p">,</span> <span class="mf">9.460454e-11</span><span class="p">,</span> <span class="mf">2.709424e-11</span><span class="p">,</span> <span class="mf">4.271672e-13</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a><span class="c1"># 4. Bin content for hAA</span>
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a><span class="n">hAA_content</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0004135252</span><span class="p">,</span> <span class="mf">0.0001128615</span><span class="p">,</span> <span class="mf">5.329878e-05</span><span class="p">,</span> <span class="mf">2.740152e-05</span><span class="p">,</span> <span class="mf">1.417387e-05</span><span class="p">,</span> <span class="mf">8.002939e-06</span><span class="p">,</span> <span class="mf">3.765388e-06</span><span class="p">,</span> <span class="mf">1.418623e-06</span><span class="p">,</span> <span class="mf">5.724047e-07</span><span class="p">,</span> <span class="mf">2.704585e-07</span><span class="p">,</span> <span class="mf">1.308473e-07</span><span class="p">,</span> <span class="mf">3.482406e-08</span><span class="p">,</span> <span class="mf">5.969517e-09</span><span class="p">,</span> <span class="mf">8.159869e-10</span><span class="p">,</span> <span class="mf">1.976192e-11</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a><span class="c1"># 5. Bin errors for hAA</span>
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a><span class="n">hAA_errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.06535e-06</span><span class="p">,</span> <span class="mf">4.957864e-07</span><span class="p">,</span> <span class="mf">3.151375e-07</span><span class="p">,</span> <span class="mf">2.136749e-07</span><span class="p">,</span> <span class="mf">1.451485e-07</span><span class="p">,</span> <span class="mf">1.005136e-07</span><span class="p">,</span> <span class="mf">5.988379e-08</span><span class="p">,</span> <span class="mf">3.659272e-08</span><span class="p">,</span> <span class="mf">2.201622e-08</span><span class="p">,</span> <span class="mf">1.464843e-08</span><span class="p">,</span> <span class="mf">9.694462e-09</span><span class="p">,</span> <span class="mf">3.96629e-09</span><span class="p">,</span> <span class="mf">1.470905e-09</span><span class="p">,</span> <span class="mf">4.142606e-10</span><span class="p">,</span> <span class="mf">1.499208e-11</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>    <span class="n">main</span><span class="p">()</span>
+</span></code></pre></div>
+<details class="success" open="open">
+<summary>Output</summary>
+<p><img alt="raa_plot" src="RAA_py_plots1.png" />
+Plotting the <span class="arithmatex">\(R_{AA} - P_T\)</span> histogram with the estimated <span class="arithmatex">\(R_{AA}\)</span> errors yields (obviously more than 3 bin errors were calculated)
+<img alt="bins_with_errors" src="RAA_py_plots2.png" /></p>
+</details>
+</div>
+<div class="tabbed-block">
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">//</span><span class="n">void</span> <span class="n">RAA</span><span class="p">()</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="p">{</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  <span class="n">Double_t</span> <span class="n">xAxis1</span><span class="p">[</span><span class="mi">31</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">100</span><span class="p">};</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  <span class="n">TH1D</span> <span class="o">*</span><span class="n">hpp</span> <span class="o">=</span> <span class="n">new</span> <span class="n">TH1D</span><span class="p">(</span><span class="s2">&quot;hpp&quot;</span><span class="p">,</span><span class="s2">&quot;measured data pp&quot;</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span> <span class="n">xAxis1</span><span class="p">);</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.118516</span><span class="p">);</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.1920894</span><span class="p">);</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.007120608</span><span class="p">);</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mf">0.001577695</span><span class="p">);</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mf">0.0004146155</span><span class="p">);</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mf">0.0001296542</span><span class="p">);</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mf">4.644327e-05</span><span class="p">);</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mf">2.057404e-05</span><span class="p">);</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mf">9.958874e-06</span><span class="p">);</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mf">4.334099e-06</span><span class="p">);</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mf">1.442999e-06</span><span class="p">);</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mf">5.654266e-07</span><span class="p">);</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="mf">2.407638e-07</span><span class="p">);</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mf">1.094223e-07</span><span class="p">);</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mf">3.354351e-08</span><span class="p">);</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mf">6.04691e-09</span><span class="p">);</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span><span class="mf">7.423793e-10</span><span class="p">);</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mf">3.350337e-11</span><span class="p">);</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.0006107765</span><span class="p">);</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.0003700558</span><span class="p">);</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mf">4.49924e-05</span><span class="p">);</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mf">1.821935e-05</span><span class="p">);</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mf">7.447584e-06</span><span class="p">);</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mf">2.939223e-06</span><span class="p">);</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mf">1.155389e-06</span><span class="p">);</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mf">5.875219e-07</span><span class="p">);</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mf">1.855936e-07</span><span class="p">);</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mf">1.141886e-07</span><span class="p">);</span>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mf">3.0114e-08</span><span class="p">);</span>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mf">5.526975e-09</span><span class="p">);</span>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="mf">2.701332e-09</span><span class="p">);</span>
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mf">1.525211e-09</span><span class="p">);</span>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mf">6.343152e-10</span><span class="p">);</span>
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mf">9.460454e-11</span><span class="p">);</span>
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span><span class="mf">2.709424e-11</span><span class="p">);</span>
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mf">4.271672e-13</span><span class="p">);</span>
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>  <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">SetEntries</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>  <span class="n">TH1D</span> <span class="o">*</span><span class="n">hAA</span> <span class="o">=</span> <span class="n">new</span> <span class="n">TH1D</span><span class="p">(</span><span class="s2">&quot;hAA&quot;</span><span class="p">,</span><span class="s2">&quot;measured data AA&quot;</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span> <span class="n">xAxis1</span><span class="p">);</span>
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mf">0.0004135252</span><span class="p">);</span>
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mf">0.0001128615</span><span class="p">);</span>
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mf">5.329878e-05</span><span class="p">);</span>
+</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mf">2.740152e-05</span><span class="p">);</span>
+</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mf">1.417387e-05</span><span class="p">);</span>
+</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mf">8.002939e-06</span><span class="p">);</span>
+</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mf">3.765388e-06</span><span class="p">);</span>
+</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mf">1.418623e-06</span><span class="p">);</span>
+</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mf">5.724047e-07</span><span class="p">);</span>
+</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="mf">2.704585e-07</span><span class="p">);</span>
+</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mf">1.308473e-07</span><span class="p">);</span>
+</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mf">3.482406e-08</span><span class="p">);</span>
+</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mf">5.969517e-09</span><span class="p">);</span>
+</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span><span class="mf">8.159869e-10</span><span class="p">);</span>
+</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mf">1.976192e-11</span><span class="p">);</span>
+</span><span id="__span-1-61"><a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mf">1.06535e-06</span><span class="p">);</span>
+</span><span id="__span-1-62"><a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mf">4.957864e-07</span><span class="p">);</span>
+</span><span id="__span-1-63"><a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mf">3.151375e-07</span><span class="p">);</span>
+</span><span id="__span-1-64"><a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mf">2.136749e-07</span><span class="p">);</span>
+</span><span id="__span-1-65"><a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mf">1.451485e-07</span><span class="p">);</span>
+</span><span id="__span-1-66"><a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mf">1.005136e-07</span><span class="p">);</span>
+</span><span id="__span-1-67"><a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mf">5.988379e-08</span><span class="p">);</span>
+</span><span id="__span-1-68"><a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mf">3.659272e-08</span><span class="p">);</span>
+</span><span id="__span-1-69"><a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mf">2.201622e-08</span><span class="p">);</span>
+</span><span id="__span-1-70"><a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="mf">1.464843e-08</span><span class="p">);</span>
+</span><span id="__span-1-71"><a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mf">9.694462e-09</span><span class="p">);</span>
+</span><span id="__span-1-72"><a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mf">3.96629e-09</span><span class="p">);</span>
+</span><span id="__span-1-73"><a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mf">1.470905e-09</span><span class="p">);</span>
+</span><span id="__span-1-74"><a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span><span class="mf">4.142606e-10</span><span class="p">);</span>
+</span><span id="__span-1-75"><a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mf">1.499208e-11</span><span class="p">);</span>
+</span><span id="__span-1-76"><a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>  <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">SetEntries</span><span class="p">(</span><span class="mi">60</span><span class="p">);</span>
+</span><span id="__span-1-77"><a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>
+</span><span id="__span-1-78"><a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>    <span class="o">//</span> <span class="n">Extracting</span> <span class="n">spectra</span>
+</span><span id="__span-1-79"><a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>    <span class="o">//</span> <span class="n">We</span> <span class="n">choose</span> <span class="mi">3</span> <span class="n">bins</span> <span class="ow">in</span> <span class="n">the</span> <span class="nb">range</span> <span class="n">of</span> <span class="mi">20</span> <span class="n">to</span> <span class="mi">40</span> <span class="n">to</span> <span class="n">simplify</span> <span class="n">looping</span>
+</span><span id="__span-1-80"><a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>    <span class="o">//</span> <span class="n">The</span> <span class="n">goal</span> <span class="ow">is</span> <span class="n">to</span> <span class="n">visualize</span> <span class="mi">3</span> <span class="n">plots</span> <span class="n">per</span> <span class="nb">bin</span><span class="p">,</span> <span class="k">as</span> <span class="n">plotting</span> <span class="nb">all</span> <span class="mi">30</span> <span class="n">original</span> <span class="n">bins</span> <span class="n">would</span> <span class="n">be</span> <span class="n">too</span> <span class="n">much</span><span class="o">.</span>
+</span><span id="__span-1-81"><a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a>
+</span><span id="__span-1-82"><a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a>    <span class="n">const</span> <span class="n">Int_t</span> <span class="n">iNumBins</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>  <span class="o">//</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">bins</span>
+</span><span id="__span-1-83"><a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>    <span class="n">Double_t</span> <span class="n">dAxis</span><span class="p">[</span><span class="n">iNumBins</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">};</span>  <span class="o">//</span> <span class="n">Bin</span> <span class="n">edges</span>
+</span><span id="__span-1-84"><a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a>
+</span><span id="__span-1-85"><a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a>    <span class="o">//</span> <span class="n">Define</span> <span class="n">histograms</span> <span class="k">for</span> <span class="n">pp</span><span class="p">,</span> <span class="n">AA</span><span class="p">,</span> <span class="ow">and</span> <span class="n">RAA</span>
+</span><span id="__span-1-86"><a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a>    <span class="n">TH1D</span><span class="o">*</span> <span class="n">h_data_pp</span> <span class="o">=</span> <span class="n">new</span> <span class="n">TH1D</span><span class="p">(</span><span class="s2">&quot;h_data_pp&quot;</span><span class="p">,</span> <span class="s2">&quot;pp&quot;</span><span class="p">,</span> <span class="n">iNumBins</span><span class="p">,</span> <span class="n">dAxis</span><span class="p">);</span>
+</span><span id="__span-1-87"><a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a>    <span class="n">TH1D</span><span class="o">*</span> <span class="n">h_data_AA</span> <span class="o">=</span> <span class="n">new</span> <span class="n">TH1D</span><span class="p">(</span><span class="s2">&quot;h_data_AA&quot;</span><span class="p">,</span> <span class="s2">&quot;AA&quot;</span><span class="p">,</span> <span class="n">iNumBins</span><span class="p">,</span> <span class="n">dAxis</span><span class="p">);</span>
+</span><span id="__span-1-88"><a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a>    <span class="n">TH1D</span><span class="o">*</span> <span class="n">h_data_RAA</span> <span class="o">=</span> <span class="n">new</span> <span class="n">TH1D</span><span class="p">(</span><span class="s2">&quot;h_data_RAA&quot;</span><span class="p">,</span> <span class="s2">&quot;RAA&quot;</span><span class="p">,</span> <span class="n">iNumBins</span><span class="p">,</span> <span class="n">dAxis</span><span class="p">);</span>
+</span><span id="__span-1-89"><a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a>
+</span><span id="__span-1-90"><a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a>    <span class="o">//</span> <span class="n">Load</span> <span class="n">values</span> <span class="ow">and</span> <span class="n">errors</span> <span class="k">for</span> <span class="n">each</span> <span class="nb">bin</span><span class="p">,</span> <span class="n">calculate</span> <span class="n">the</span> <span class="n">RAA</span> <span class="n">ratio</span><span class="p">,</span> <span class="ow">and</span> <span class="n">store</span> <span class="n">it</span>
+</span><span id="__span-1-91"><a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a>    <span class="k">for</span> <span class="p">(</span><span class="n">Int_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">iNumBins</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span id="__span-1-92"><a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a>        <span class="n">Double_t</span> <span class="n">dValuePP</span> <span class="o">=</span> <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">GetBinContent</span><span class="p">(</span><span class="mi">14</span> <span class="o">+</span> <span class="n">i</span><span class="p">);</span>  <span class="o">//</span> <span class="n">Get</span> <span class="n">pp</span> <span class="n">value</span> <span class="kn">from</span> <span class="nn">original</span> <span class="nb">bin</span>
+</span><span id="__span-1-93"><a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a>        <span class="n">Double_t</span> <span class="n">dSigmaPP</span> <span class="o">=</span> <span class="n">hpp</span><span class="o">-&gt;</span><span class="n">GetBinError</span><span class="p">(</span><span class="mi">14</span> <span class="o">+</span> <span class="n">i</span><span class="p">);</span>    <span class="o">//</span> <span class="n">Get</span> <span class="n">pp</span> <span class="n">error</span> <span class="kn">from</span> <span class="nn">original</span> <span class="nb">bin</span>
+</span><span id="__span-1-94"><a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a>        <span class="n">h_data_pp</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">dValuePP</span><span class="p">);</span>           <span class="o">//</span> <span class="n">Set</span> <span class="n">pp</span> <span class="nb">bin</span> <span class="n">value</span>
+</span><span id="__span-1-95"><a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a>        <span class="n">h_data_pp</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">dSigmaPP</span><span class="p">);</span>             <span class="o">//</span> <span class="n">Set</span> <span class="n">pp</span> <span class="nb">bin</span> <span class="n">error</span>
+</span><span id="__span-1-96"><a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a>
+</span><span id="__span-1-97"><a id="__codelineno-1-97" name="__codelineno-1-97" href="#__codelineno-1-97"></a>        <span class="n">Double_t</span> <span class="n">dValueAA</span> <span class="o">=</span> <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">GetBinContent</span><span class="p">(</span><span class="mi">14</span> <span class="o">+</span> <span class="n">i</span><span class="p">);</span>  <span class="o">//</span> <span class="n">Get</span> <span class="n">AA</span> <span class="n">value</span> <span class="kn">from</span> <span class="nn">original</span> <span class="nb">bin</span>
+</span><span id="__span-1-98"><a id="__codelineno-1-98" name="__codelineno-1-98" href="#__codelineno-1-98"></a>        <span class="n">Double_t</span> <span class="n">dSigmaAA</span> <span class="o">=</span> <span class="n">hAA</span><span class="o">-&gt;</span><span class="n">GetBinError</span><span class="p">(</span><span class="mi">14</span> <span class="o">+</span> <span class="n">i</span><span class="p">);</span>    <span class="o">//</span> <span class="n">Get</span> <span class="n">AA</span> <span class="n">error</span> <span class="kn">from</span> <span class="nn">original</span> <span class="nb">bin</span>
+</span><span id="__span-1-99"><a id="__codelineno-1-99" name="__codelineno-1-99" href="#__codelineno-1-99"></a>        <span class="n">h_data_AA</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">dValueAA</span><span class="p">);</span>           <span class="o">//</span> <span class="n">Set</span> <span class="n">AA</span> <span class="nb">bin</span> <span class="n">value</span>
+</span><span id="__span-1-100"><a id="__codelineno-1-100" name="__codelineno-1-100" href="#__codelineno-1-100"></a>        <span class="n">h_data_AA</span><span class="o">-&gt;</span><span class="n">SetBinError</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">dSigmaAA</span><span class="p">);</span>             <span class="o">//</span> <span class="n">Set</span> <span class="n">AA</span> <span class="nb">bin</span> <span class="n">error</span>
+</span><span id="__span-1-101"><a id="__codelineno-1-101" name="__codelineno-1-101" href="#__codelineno-1-101"></a>
+</span><span id="__span-1-102"><a id="__codelineno-1-102" name="__codelineno-1-102" href="#__codelineno-1-102"></a>        <span class="n">Double_t</span> <span class="n">dValueRAA</span> <span class="o">=</span> <span class="n">dValueAA</span> <span class="o">/</span> <span class="n">dValuePP</span><span class="p">;</span>        <span class="o">//</span> <span class="n">Calculate</span> <span class="n">RAA</span> <span class="k">as</span> <span class="n">ratio</span> <span class="n">of</span> <span class="n">AA</span><span class="o">/</span><span class="n">pp</span>
+</span><span id="__span-1-103"><a id="__codelineno-1-103" name="__codelineno-1-103" href="#__codelineno-1-103"></a>        <span class="n">h_data_RAA</span><span class="o">-&gt;</span><span class="n">SetBinContent</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">dValueRAA</span><span class="p">);</span>         <span class="o">//</span> <span class="n">Store</span> <span class="n">RAA</span> <span class="n">value</span>
+</span><span id="__span-1-104"><a id="__codelineno-1-104" name="__codelineno-1-104" href="#__codelineno-1-104"></a>    <span class="p">}</span>
+</span><span id="__span-1-105"><a id="__codelineno-1-105" name="__codelineno-1-105" href="#__codelineno-1-105"></a>
+</span><span id="__span-1-106"><a id="__codelineno-1-106" name="__codelineno-1-106" href="#__codelineno-1-106"></a>    <span class="o">//</span> <span class="n">Systematic</span> <span class="n">uncertainty</span> <span class="n">generation</span>
+</span><span id="__span-1-107"><a id="__codelineno-1-107" name="__codelineno-1-107" href="#__codelineno-1-107"></a>    <span class="k">if</span> <span class="p">(</span><span class="n">gRandom</span><span class="p">)</span> <span class="n">delete</span> <span class="n">gRandom</span><span class="p">;</span>
+</span><span id="__span-1-108"><a id="__codelineno-1-108" name="__codelineno-1-108" href="#__codelineno-1-108"></a>    <span class="n">gRandom</span> <span class="o">=</span> <span class="n">new</span> <span class="n">TRandom3</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>  <span class="o">//</span> <span class="n">Initialize</span> <span class="n">random</span> <span class="n">generator</span>
+</span><span id="__span-1-109"><a id="__codelineno-1-109" name="__codelineno-1-109" href="#__codelineno-1-109"></a>
+</span><span id="__span-1-110"><a id="__codelineno-1-110" name="__codelineno-1-110" href="#__codelineno-1-110"></a>    <span class="n">TCanvas</span><span class="o">*</span> <span class="n">cAsym</span> <span class="o">=</span> <span class="n">new</span> <span class="n">TCanvas</span><span class="p">(</span><span class="s2">&quot;cAsym&quot;</span><span class="p">,</span> <span class="s2">&quot;Systematics&quot;</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="mi">600</span><span class="p">);</span>
+</span><span id="__span-1-111"><a id="__codelineno-1-111" name="__codelineno-1-111" href="#__codelineno-1-111"></a>    <span class="n">cAsym</span><span class="o">-&gt;</span><span class="n">Divide</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>  <span class="o">//</span> <span class="n">Create</span> <span class="n">a</span> <span class="mi">3</span><span class="n">x3</span> <span class="n">canvas</span> <span class="k">for</span> <span class="n">the</span> <span class="mi">3</span> <span class="n">bins</span>
+</span><span id="__span-1-112"><a id="__codelineno-1-112" name="__codelineno-1-112" href="#__codelineno-1-112"></a>
+</span><span id="__span-1-113"><a id="__codelineno-1-113" name="__codelineno-1-113" href="#__codelineno-1-113"></a>    <span class="o">//</span> <span class="n">Scaling</span> <span class="n">factors</span> <span class="n">to</span> <span class="n">normalize</span> <span class="n">values</span> <span class="k">for</span> <span class="n">easier</span> <span class="n">plotting</span> <span class="p">(</span><span class="n">these</span> <span class="n">will</span> <span class="n">cancel</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">ratio</span><span class="p">)</span>
+</span><span id="__span-1-114"><a id="__codelineno-1-114" name="__codelineno-1-114" href="#__codelineno-1-114"></a>    <span class="n">Double_t</span> <span class="n">Factor</span><span class="p">[</span><span class="n">iNumBins</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mf">1e8</span><span class="p">,</span> <span class="mf">1e9</span><span class="p">,</span> <span class="mf">1e10</span><span class="p">};</span>  <span class="o">//</span> <span class="n">Scaling</span> <span class="n">factors</span> <span class="n">per</span> <span class="nb">bin</span>
+</span><span id="__span-1-115"><a id="__codelineno-1-115" name="__codelineno-1-115" href="#__codelineno-1-115"></a>
+</span><span id="__span-1-116"><a id="__codelineno-1-116" name="__codelineno-1-116" href="#__codelineno-1-116"></a>    <span class="o">//</span> <span class="n">Create</span> <span class="n">histograms</span> <span class="k">for</span> <span class="n">toy</span> <span class="n">data</span> <span class="k">for</span> <span class="n">pp</span><span class="p">,</span> <span class="n">AA</span><span class="p">,</span> <span class="ow">and</span> <span class="n">their</span> <span class="n">ratio</span> <span class="n">RAA</span>
+</span><span id="__span-1-117"><a id="__codelineno-1-117" name="__codelineno-1-117" href="#__codelineno-1-117"></a>    <span class="n">TH1D</span><span class="o">*</span> <span class="n">h_toy_pp</span><span class="p">[</span><span class="n">iNumBins</span><span class="p">];</span>   <span class="o">//</span> <span class="n">pp</span> <span class="n">toy</span> <span class="n">histograms</span>
+</span><span id="__span-1-118"><a id="__codelineno-1-118" name="__codelineno-1-118" href="#__codelineno-1-118"></a>    <span class="n">TH1D</span><span class="o">*</span> <span class="n">h_toy_AA</span><span class="p">[</span><span class="n">iNumBins</span><span class="p">];</span>   <span class="o">//</span> <span class="n">AA</span> <span class="n">toy</span> <span class="n">histograms</span>
+</span><span id="__span-1-119"><a id="__codelineno-1-119" name="__codelineno-1-119" href="#__codelineno-1-119"></a>    <span class="n">TH1D</span><span class="o">*</span> <span class="n">h_toy_RAA</span><span class="p">[</span><span class="n">iNumBins</span><span class="p">];</span>  <span class="o">//</span> <span class="n">RAA</span> <span class="n">ratio</span> <span class="n">toy</span> <span class="n">histograms</span>
+</span><span id="__span-1-120"><a id="__codelineno-1-120" name="__codelineno-1-120" href="#__codelineno-1-120"></a>
+</span><span id="__span-1-121"><a id="__codelineno-1-121" name="__codelineno-1-121" href="#__codelineno-1-121"></a>    <span class="o">//</span> <span class="n">Histogram</span> <span class="n">binning</span> <span class="ow">and</span> <span class="n">ranges</span>
+</span><span id="__span-1-122"><a id="__codelineno-1-122" name="__codelineno-1-122" href="#__codelineno-1-122"></a>    <span class="n">Double_t</span> <span class="n">MinBinVal</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="n">MaxBinVal</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+</span><span id="__span-1-123"><a id="__codelineno-1-123" name="__codelineno-1-123" href="#__codelineno-1-123"></a>    <span class="n">Double_t</span> <span class="n">MinBinErr</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">MaxBinErr</span> <span class="o">=</span> <span class="mf">3.5</span><span class="p">;</span>
+</span><span id="__span-1-124"><a id="__codelineno-1-124" name="__codelineno-1-124" href="#__codelineno-1-124"></a>    <span class="n">Int_t</span> <span class="n">nBinsVal</span> <span class="o">=</span> <span class="mi">1001</span><span class="p">,</span> <span class="n">nBinsErr</span> <span class="o">=</span> <span class="mi">1001</span><span class="p">;</span>
+</span><span id="__span-1-125"><a id="__codelineno-1-125" name="__codelineno-1-125" href="#__codelineno-1-125"></a>
+</span><span id="__span-1-126"><a id="__codelineno-1-126" name="__codelineno-1-126" href="#__codelineno-1-126"></a>    <span class="o">//</span> <span class="n">Define</span> <span class="n">Gaussian</span> <span class="n">functions</span> <span class="n">over</span> <span class="n">the</span> <span class="nb">range</span> <span class="n">MinBinVal</span><span class="o">-</span><span class="n">MaxBinVal</span> <span class="k">for</span> <span class="n">toy</span> <span class="n">data</span> <span class="n">generation</span>
+</span><span id="__span-1-127"><a id="__codelineno-1-127" name="__codelineno-1-127" href="#__codelineno-1-127"></a>    <span class="o">//</span> <span class="o">**</span> <span class="n">CODE</span> <span class="n">HERE</span>
+</span><span id="__span-1-128"><a id="__codelineno-1-128" name="__codelineno-1-128" href="#__codelineno-1-128"></a>
+</span><span id="__span-1-129"><a id="__codelineno-1-129" name="__codelineno-1-129" href="#__codelineno-1-129"></a>    <span class="o">//</span> <span class="n">Define</span> <span class="n">functions</span> <span class="k">for</span> <span class="n">left</span> <span class="ow">and</span> <span class="n">right</span> <span class="n">Gaussian</span> <span class="n">fits</span> <span class="n">on</span> <span class="n">both</span> <span class="n">sides</span> <span class="n">of</span> <span class="n">the</span> <span class="n">ratio</span> <span class="n">histogram</span>
+</span><span id="__span-1-130"><a id="__codelineno-1-130" name="__codelineno-1-130" href="#__codelineno-1-130"></a>    <span class="o">//</span> <span class="o">**</span> <span class="n">CODE</span> <span class="n">HERE</span>
+</span><span id="__span-1-131"><a id="__codelineno-1-131" name="__codelineno-1-131" href="#__codelineno-1-131"></a>
+</span><span id="__span-1-132"><a id="__codelineno-1-132" name="__codelineno-1-132" href="#__codelineno-1-132"></a>    <span class="o">//</span> <span class="n">Store</span> <span class="n">results</span> <span class="n">of</span> <span class="n">RAA</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">fit</span> <span class="n">asymmetry</span> <span class="n">parameters</span>
+</span><span id="__span-1-133"><a id="__codelineno-1-133" name="__codelineno-1-133" href="#__codelineno-1-133"></a>    <span class="n">Double_t</span> <span class="n">RAAval</span><span class="p">[</span><span class="n">iNumBins</span><span class="p">];</span>  <span class="o">//</span> <span class="n">RAA</span> <span class="n">values</span> <span class="p">(</span><span class="n">means</span><span class="p">)</span>
+</span><span id="__span-1-134"><a id="__codelineno-1-134" name="__codelineno-1-134" href="#__codelineno-1-134"></a>    <span class="n">RAAval</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">h_data_RAA</span><span class="o">-&gt;</span><span class="n">GetBinContent</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-1-135"><a id="__codelineno-1-135" name="__codelineno-1-135" href="#__codelineno-1-135"></a>    <span class="n">RAAval</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">h_data_RAA</span><span class="o">-&gt;</span><span class="n">GetBinContent</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</span><span id="__span-1-136"><a id="__codelineno-1-136" name="__codelineno-1-136" href="#__codelineno-1-136"></a>    <span class="n">RAAval</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">h_data_RAA</span><span class="o">-&gt;</span><span class="n">GetBinContent</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span><span id="__span-1-137"><a id="__codelineno-1-137" name="__codelineno-1-137" href="#__codelineno-1-137"></a>
+</span><span id="__span-1-138"><a id="__codelineno-1-138" name="__codelineno-1-138" href="#__codelineno-1-138"></a>    <span class="n">Double_t</span> <span class="n">sigma_left</span><span class="p">[</span><span class="n">iNumBins</span><span class="p">];</span>   <span class="o">//</span> <span class="n">Left</span><span class="o">-</span><span class="n">side</span> <span class="n">sigma</span> <span class="kn">from</span> <span class="nn">fit</span>
+</span><span id="__span-1-139"><a id="__codelineno-1-139" name="__codelineno-1-139" href="#__codelineno-1-139"></a>    <span class="n">Double_t</span> <span class="n">sigma_right</span><span class="p">[</span><span class="n">iNumBins</span><span class="p">];</span>  <span class="o">//</span> <span class="n">Right</span><span class="o">-</span><span class="n">side</span> <span class="n">sigma</span> <span class="kn">from</span> <span class="nn">fit</span>
+</span><span id="__span-1-140"><a id="__codelineno-1-140" name="__codelineno-1-140" href="#__codelineno-1-140"></a>
+</span><span id="__span-1-141"><a id="__codelineno-1-141" name="__codelineno-1-141" href="#__codelineno-1-141"></a>    <span class="o">//</span> <span class="n">Loop</span> <span class="n">over</span> <span class="n">bins</span>
+</span><span id="__span-1-142"><a id="__codelineno-1-142" name="__codelineno-1-142" href="#__codelineno-1-142"></a>    <span class="k">for</span> <span class="p">(</span><span class="n">Int_t</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">iNumBins</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span id="__span-1-143"><a id="__codelineno-1-143" name="__codelineno-1-143" href="#__codelineno-1-143"></a>        <span class="n">h_toy_pp</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">new</span> <span class="n">TH1D</span><span class="p">(</span><span class="s2">&quot;h_toy_pp&quot;</span><span class="p">,</span> <span class="s2">&quot;h_toy_pp&quot;</span><span class="p">,</span> <span class="n">nBinsVal</span><span class="p">,</span> <span class="n">MinBinVal</span><span class="p">,</span> <span class="n">MaxBinVal</span><span class="p">);</span>
+</span><span id="__span-1-144"><a id="__codelineno-1-144" name="__codelineno-1-144" href="#__codelineno-1-144"></a>        <span class="n">h_toy_AA</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">new</span> <span class="n">TH1D</span><span class="p">(</span><span class="s2">&quot;h_toy_AA&quot;</span><span class="p">,</span> <span class="s2">&quot;h_toy_AA&quot;</span><span class="p">,</span> <span class="n">nBinsVal</span><span class="p">,</span> <span class="n">MinBinVal</span><span class="p">,</span> <span class="n">MaxBinVal</span><span class="p">);</span>
+</span><span id="__span-1-145"><a id="__codelineno-1-145" name="__codelineno-1-145" href="#__codelineno-1-145"></a>        <span class="n">h_toy_RAA</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">new</span> <span class="n">TH1D</span><span class="p">(</span><span class="s2">&quot;h_toy_RAA&quot;</span><span class="p">,</span> <span class="s2">&quot;h_toy_RAA&quot;</span><span class="p">,</span> <span class="n">nBinsErr</span><span class="p">,</span> <span class="n">MinBinErr</span><span class="p">,</span> <span class="n">MaxBinErr</span><span class="p">);</span>
+</span><span id="__span-1-146"><a id="__codelineno-1-146" name="__codelineno-1-146" href="#__codelineno-1-146"></a>
+</span><span id="__span-1-147"><a id="__codelineno-1-147" name="__codelineno-1-147" href="#__codelineno-1-147"></a>        <span class="o">//</span> <span class="n">Scale</span> <span class="n">data</span> <span class="n">to</span> <span class="n">values</span> <span class="n">around</span> <span class="mi">1</span> <span class="n">using</span> <span class="n">binContent</span> <span class="o">*</span> <span class="n">Factor</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="ow">and</span> <span class="n">binError</span> <span class="o">*</span> <span class="n">Factor</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+</span><span id="__span-1-148"><a id="__codelineno-1-148" name="__codelineno-1-148" href="#__codelineno-1-148"></a>        <span class="o">//</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">crucial</span> <span class="k">for</span> <span class="n">setting</span> <span class="n">the</span> <span class="n">Gaussian</span> <span class="n">parameters</span> <span class="n">according</span> <span class="n">to</span> <span class="n">the</span> <span class="n">data</span>
+</span><span id="__span-1-149"><a id="__codelineno-1-149" name="__codelineno-1-149" href="#__codelineno-1-149"></a>
+</span><span id="__span-1-150"><a id="__codelineno-1-150" name="__codelineno-1-150" href="#__codelineno-1-150"></a>        <span class="o">//</span> <span class="o">**</span> <span class="n">CODE</span> <span class="n">HERE</span>
+</span><span id="__span-1-151"><a id="__codelineno-1-151" name="__codelineno-1-151" href="#__codelineno-1-151"></a>
+</span><span id="__span-1-152"><a id="__codelineno-1-152" name="__codelineno-1-152" href="#__codelineno-1-152"></a>        <span class="o">//</span> <span class="n">Generate</span> <span class="n">toy</span> <span class="n">data</span>
+</span><span id="__span-1-153"><a id="__codelineno-1-153" name="__codelineno-1-153" href="#__codelineno-1-153"></a>        <span class="k">for</span> <span class="p">(</span><span class="n">Int_t</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="mi">100001</span><span class="p">;</span> <span class="n">p</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span id="__span-1-154"><a id="__codelineno-1-154" name="__codelineno-1-154" href="#__codelineno-1-154"></a>            <span class="o">//</span> <span class="n">Fill</span> <span class="n">toy</span> <span class="n">histograms</span> <span class="k">with</span> <span class="n">randomly</span> <span class="n">sampled</span> <span class="n">numbers</span>
+</span><span id="__span-1-155"><a id="__codelineno-1-155" name="__codelineno-1-155" href="#__codelineno-1-155"></a>
+</span><span id="__span-1-156"><a id="__codelineno-1-156" name="__codelineno-1-156" href="#__codelineno-1-156"></a>            <span class="o">//</span> <span class="o">**</span> <span class="n">CODE</span> <span class="n">HERE</span>
+</span><span id="__span-1-157"><a id="__codelineno-1-157" name="__codelineno-1-157" href="#__codelineno-1-157"></a>        <span class="p">}</span>
+</span><span id="__span-1-158"><a id="__codelineno-1-158" name="__codelineno-1-158" href="#__codelineno-1-158"></a>
+</span><span id="__span-1-159"><a id="__codelineno-1-159" name="__codelineno-1-159" href="#__codelineno-1-159"></a>        <span class="o">//</span> <span class="n">Plot</span> <span class="n">the</span> <span class="n">toy</span> <span class="n">data</span>
+</span><span id="__span-1-160"><a id="__codelineno-1-160" name="__codelineno-1-160" href="#__codelineno-1-160"></a>        <span class="n">Int_t</span> <span class="n">N</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="mi">3</span><span class="p">;</span>  <span class="o">//</span> <span class="n">Index</span> <span class="n">offset</span> <span class="k">for</span> <span class="mi">3</span> <span class="n">histograms</span> <span class="n">per</span> <span class="nb">bin</span>
+</span><span id="__span-1-161"><a id="__codelineno-1-161" name="__codelineno-1-161" href="#__codelineno-1-161"></a>        <span class="n">cAsym</span><span class="o">-&gt;</span><span class="n">cd</span><span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span> <span class="n">h_toy_pp</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">Draw</span><span class="p">();</span>
+</span><span id="__span-1-162"><a id="__codelineno-1-162" name="__codelineno-1-162" href="#__codelineno-1-162"></a>        <span class="n">cAsym</span><span class="o">-&gt;</span><span class="n">cd</span><span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mi">2</span><span class="p">);</span> <span class="n">h_toy_AA</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">Draw</span><span class="p">();</span>
+</span><span id="__span-1-163"><a id="__codelineno-1-163" name="__codelineno-1-163" href="#__codelineno-1-163"></a>        <span class="n">cAsym</span><span class="o">-&gt;</span><span class="n">cd</span><span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mi">3</span><span class="p">);</span> <span class="n">h_toy_RAA</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">Draw</span><span class="p">();</span>
+</span><span id="__span-1-164"><a id="__codelineno-1-164" name="__codelineno-1-164" href="#__codelineno-1-164"></a>
+</span><span id="__span-1-165"><a id="__codelineno-1-165" name="__codelineno-1-165" href="#__codelineno-1-165"></a>        <span class="o">//</span> <span class="n">Set</span> <span class="n">Gaussian</span> <span class="n">fit</span> <span class="n">parameters</span> <span class="p">(</span><span class="n">mean</span> <span class="ow">is</span> <span class="n">fixed</span><span class="p">,</span> <span class="n">normalization</span> <span class="n">depends</span> <span class="n">on</span> <span class="n">toy</span> <span class="n">data</span> <span class="n">size</span><span class="p">)</span>
+</span><span id="__span-1-166"><a id="__codelineno-1-166" name="__codelineno-1-166" href="#__codelineno-1-166"></a>        <span class="o">//</span> <span class="n">Perform</span> <span class="n">the</span> <span class="n">fit</span> <span class="ow">and</span> <span class="n">store</span> <span class="n">sigmas</span> <span class="ow">in</span> <span class="n">sigma_left</span> <span class="ow">and</span> <span class="n">sigma_right</span>
+</span><span id="__span-1-167"><a id="__codelineno-1-167" name="__codelineno-1-167" href="#__codelineno-1-167"></a>
+</span><span id="__span-1-168"><a id="__codelineno-1-168" name="__codelineno-1-168" href="#__codelineno-1-168"></a>        <span class="o">//</span> <span class="o">**</span> <span class="n">CODE</span> <span class="n">HERE</span>
+</span><span id="__span-1-169"><a id="__codelineno-1-169" name="__codelineno-1-169" href="#__codelineno-1-169"></a>    <span class="p">}</span>
+</span><span id="__span-1-170"><a id="__codelineno-1-170" name="__codelineno-1-170" href="#__codelineno-1-170"></a>
+</span><span id="__span-1-171"><a id="__codelineno-1-171" name="__codelineno-1-171" href="#__codelineno-1-171"></a>    <span class="o">//</span> <span class="n">Print</span> <span class="n">results</span>
+</span><span id="__span-1-172"><a id="__codelineno-1-172" name="__codelineno-1-172" href="#__codelineno-1-172"></a>    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;### Results Review ###&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+</span><span id="__span-1-173"><a id="__codelineno-1-173" name="__codelineno-1-173" href="#__codelineno-1-173"></a>    <span class="k">for</span> <span class="p">(</span><span class="n">Int_t</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">m</span> <span class="o">&lt;</span> <span class="n">iNumBins</span><span class="p">;</span> <span class="n">m</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span id="__span-1-174"><a id="__codelineno-1-174" name="__codelineno-1-174" href="#__codelineno-1-174"></a>        <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;RAA: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">RAAval</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot; AsymLeft: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">sigma_left</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;  AsymRight: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">sigma_right</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+</span><span id="__span-1-175"><a id="__codelineno-1-175" name="__codelineno-1-175" href="#__codelineno-1-175"></a>    <span class="p">}</span>
+</span><span id="__span-1-176"><a id="__codelineno-1-176" name="__codelineno-1-176" href="#__codelineno-1-176"></a>    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;=======================&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+</span><span id="__span-1-177"><a id="__codelineno-1-177" name="__codelineno-1-177" href="#__codelineno-1-177"></a>
+</span><span id="__span-1-178"><a id="__codelineno-1-178" name="__codelineno-1-178" href="#__codelineno-1-178"></a>    <span class="o">//</span> <span class="n">Convert</span> <span class="n">histogram</span> <span class="n">to</span> <span class="n">points</span> <span class="ow">in</span> <span class="n">graph</span>
+</span><span id="__span-1-179"><a id="__codelineno-1-179" name="__codelineno-1-179" href="#__codelineno-1-179"></a>    <span class="n">Double_t</span> <span class="n">dX</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mf">22.5</span><span class="p">,</span> <span class="mf">27.5</span><span class="p">,</span> <span class="mf">35.0</span><span class="p">};</span>  <span class="o">//</span> <span class="n">X</span> <span class="n">values</span> <span class="k">for</span> <span class="n">bins</span>
+</span><span id="__span-1-180"><a id="__codelineno-1-180" name="__codelineno-1-180" href="#__codelineno-1-180"></a>    <span class="n">Double_t</span> <span class="n">dXEL</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">};</span>   <span class="o">//</span> <span class="n">X</span> <span class="n">low</span> <span class="n">errors</span>
+</span><span id="__span-1-181"><a id="__codelineno-1-181" name="__codelineno-1-181" href="#__codelineno-1-181"></a>    <span class="n">Double_t</span> <span class="n">dXEH</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">};</span>   <span class="o">//</span> <span class="n">X</span> <span class="n">high</span> <span class="n">errors</span>
+</span><span id="__span-1-182"><a id="__codelineno-1-182" name="__codelineno-1-182" href="#__codelineno-1-182"></a>    <span class="n">Double_t</span> <span class="n">dYEH</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">dYEL</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>            <span class="o">//</span> <span class="n">Y</span> <span class="n">high</span> <span class="ow">and</span> <span class="n">low</span> <span class="n">errors</span>
+</span><span id="__span-1-183"><a id="__codelineno-1-183" name="__codelineno-1-183" href="#__codelineno-1-183"></a>
+</span><span id="__span-1-184"><a id="__codelineno-1-184" name="__codelineno-1-184" href="#__codelineno-1-184"></a>    <span class="k">for</span> <span class="p">(</span><span class="n">Int_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span id="__span-1-185"><a id="__codelineno-1-185" name="__codelineno-1-185" href="#__codelineno-1-185"></a>        <span class="n">dYEL</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">TMath</span><span class="p">::</span><span class="n">Abs</span><span class="p">(</span><span class="n">sigma_left</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>  <span class="o">//</span> <span class="n">Fill</span> <span class="n">Y</span> <span class="n">low</span> <span class="n">errors</span> <span class="kn">from</span> <span class="nn">fit</span>
+</span><span id="__span-1-186"><a id="__codelineno-1-186" name="__codelineno-1-186" href="#__codelineno-1-186"></a>        <span class="n">dYEH</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">TMath</span><span class="p">::</span><span class="n">Abs</span><span class="p">(</span><span class="n">sigma_right</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span> <span class="o">//</span> <span class="n">Fill</span> <span class="n">Y</span> <span class="n">high</span> <span class="n">errors</span> <span class="kn">from</span> <span class="nn">fit</span>
+</span><span id="__span-1-187"><a id="__codelineno-1-187" name="__codelineno-1-187" href="#__codelineno-1-187"></a>    <span class="p">}</span>
+</span><span id="__span-1-188"><a id="__codelineno-1-188" name="__codelineno-1-188" href="#__codelineno-1-188"></a>
+</span><span id="__span-1-189"><a id="__codelineno-1-189" name="__codelineno-1-189" href="#__codelineno-1-189"></a>    <span class="n">TGraphAsymmErrors</span><span class="o">*</span> <span class="n">geRAA</span> <span class="o">=</span> <span class="n">new</span> <span class="n">TGraphAsymmErrors</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">dX</span><span class="p">,</span> <span class="n">RAAval</span><span class="p">,</span> <span class="n">dXEH</span><span class="p">,</span> <span class="n">dXEL</span><span class="p">,</span> <span class="n">dYEH</span><span class="p">,</span> <span class="n">dYEL</span><span class="p">);</span>
+</span><span id="__span-1-190"><a id="__codelineno-1-190" name="__codelineno-1-190" href="#__codelineno-1-190"></a>    <span class="n">geRAA</span><span class="o">-&gt;</span><span class="n">SetTitle</span><span class="p">(</span><span class="s2">&quot;RAA&quot;</span><span class="p">);</span>
+</span><span id="__span-1-191"><a id="__codelineno-1-191" name="__codelineno-1-191" href="#__codelineno-1-191"></a>
+</span><span id="__span-1-192"><a id="__codelineno-1-192" name="__codelineno-1-192" href="#__codelineno-1-192"></a>    <span class="o">//</span> <span class="n">Plotting</span>
+</span><span id="__span-1-193"><a id="__codelineno-1-193" name="__codelineno-1-193" href="#__codelineno-1-193"></a>    <span class="n">TCanvas</span><span class="o">*</span> <span class="n">cBin</span> <span class="o">=</span> <span class="n">new</span> <span class="n">TCanvas</span><span class="p">(</span><span class="s2">&quot;cBin&quot;</span><span class="p">,</span> <span class="s2">&quot;Bins&quot;</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="mi">600</span><span class="p">);</span>
+</span><span id="__span-1-194"><a id="__codelineno-1-194" name="__codelineno-1-194" href="#__codelineno-1-194"></a>    <span class="n">cBin</span><span class="o">-&gt;</span><span class="n">Divide</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-1-195"><a id="__codelineno-1-195" name="__codelineno-1-195" href="#__codelineno-1-195"></a>
+</span><span id="__span-1-196"><a id="__codelineno-1-196" name="__codelineno-1-196" href="#__codelineno-1-196"></a>    <span class="o">//</span> <span class="n">Plot</span> <span class="n">pp</span> <span class="ow">and</span> <span class="n">AA</span> <span class="n">histograms</span>
+</span><span id="__span-1-197"><a id="__codelineno-1-197" name="__codelineno-1-197" href="#__codelineno-1-197"></a>    <span class="n">cBin</span><span class="o">-&gt;</span><span class="n">cd</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-1-198"><a id="__codelineno-1-198" name="__codelineno-1-198" href="#__codelineno-1-198"></a>    <span class="n">cBin</span><span class="o">-&gt;</span><span class="n">GetPad</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">SetLogy</span><span class="p">();</span>
+</span><span id="__span-1-199"><a id="__codelineno-1-199" name="__codelineno-1-199" href="#__codelineno-1-199"></a>
+</span><span id="__span-1-200"><a id="__codelineno-1-200" name="__codelineno-1-200" href="#__codelineno-1-200"></a>    <span class="n">h_data_pp</span><span class="o">-&gt;</span><span class="n">SetMarkerColor</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span><span id="__span-1-201"><a id="__codelineno-1-201" name="__codelineno-1-201" href="#__codelineno-1-201"></a>    <span class="n">h_data_pp</span><span class="o">-&gt;</span><span class="n">SetLineColor</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span><span id="__span-1-202"><a id="__codelineno-1-202" name="__codelineno-1-202" href="#__codelineno-1-202"></a>    <span class="n">h_data_pp</span><span class="o">-&gt;</span><span class="n">Draw</span><span class="p">(</span><span class="s2">&quot;e&quot;</span><span class="p">);</span>
+</span><span id="__span-1-203"><a id="__codelineno-1-203" name="__codelineno-1-203" href="#__codelineno-1-203"></a>
+</span><span id="__span-1-204"><a id="__codelineno-1-204" name="__codelineno-1-204" href="#__codelineno-1-204"></a>    <span class="n">h_data_AA</span><span class="o">-&gt;</span><span class="n">SetMarkerColor</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</span><span id="__span-1-205"><a id="__codelineno-1-205" name="__codelineno-1-205" href="#__codelineno-1-205"></a>    <span class="n">h_data_AA</span><span class="o">-&gt;</span><span class="n">SetLineColor</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</span><span id="__span-1-206"><a id="__codelineno-1-206" name="__codelineno-1-206" href="#__codelineno-1-206"></a>    <span class="n">h_data_AA</span><span class="o">-&gt;</span><span class="n">Draw</span><span class="p">(</span><span class="s2">&quot;same&quot;</span><span class="p">);</span>
+</span><span id="__span-1-207"><a id="__codelineno-1-207" name="__codelineno-1-207" href="#__codelineno-1-207"></a>
+</span><span id="__span-1-208"><a id="__codelineno-1-208" name="__codelineno-1-208" href="#__codelineno-1-208"></a>    <span class="o">//</span> <span class="n">Plot</span> <span class="n">RAA</span> <span class="k">with</span> <span class="n">asymmetric</span> <span class="n">errors</span>
+</span><span id="__span-1-209"><a id="__codelineno-1-209" name="__codelineno-1-209" href="#__codelineno-1-209"></a>    <span class="n">cBin</span><span class="o">-&gt;</span><span class="n">cd</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</span><span id="__span-1-210"><a id="__codelineno-1-210" name="__codelineno-1-210" href="#__codelineno-1-210"></a>    <span class="n">geRAA</span><span class="o">-&gt;</span><span class="n">Draw</span><span class="p">(</span><span class="s2">&quot;ap&quot;</span><span class="p">);</span>
+</span><span id="__span-1-211"><a id="__codelineno-1-211" name="__codelineno-1-211" href="#__codelineno-1-211"></a><span class="p">}</span>
+</span></code></pre></div>
+<details class="success" open="open">
+<summary>Output</summary>
+<p><img alt="raa_plot" src="RAA_plots1.png" />
+Plotting the <span class="arithmatex">\(R_{AA} - P_T\)</span> histogram with the estimated <span class="arithmatex">\(R_{AA}\)</span> errors yields - using TGraphAsymErrors
+<img alt="bins_with_errors" src="RAA_plots2.png" /></p>
+</details>
+</div>
+</div>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../Newton/newton.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Newton" rel="prev">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Newton
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../radiator/radiator.html" class="md-footer__link md-footer__link--next" aria-label="Next: MLM Fit - Radiator" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                MLM Fit - Radiator
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.annotate", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "content.action.edit", "content.action.view", "search.suggest", "search.highlight", "navigation.footer", "toc.integrate"], "search": "../../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.4e0fa4ba.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/site-link.js"></script>
+      
+    
+  </body>
+</html>

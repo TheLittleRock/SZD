@@ -1,0 +1,31 @@
+.md-header__button.md-logo {
+    display: none !important;
+}
+.md-header__source {
+    display: none !important;
+}
+.md-header__button.md-header__button--menu {
+    display: none !important;
+}
+/* Remove right-hand TOC */
+.md-sidebar--secondary {
+    display: none !important;
+}
+/* Expand main content to full width */
+.md-main {
+    margin-right: 0 !important;
+}
+.md-sidebar--secondary {
+    display: none;
+}
+.md-main {
+    margin-right: 0;
+}
+.md-header-nav__title,
+.md-header-nav__title-link img {
+    display: none !important;
+}
+.md-header-nav {
+    padding-left: 0 !important; /* optional, remove extra space */
+}
+
