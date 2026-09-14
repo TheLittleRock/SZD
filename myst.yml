@@ -40,6 +40,10 @@ project:
         title: "MLM vs. χ²"               # Custom title example
       - file: source/RooFitWW.ipynb
         title: "RooFit WW"
+      - file: source/significance.ipynb
+        title: "Signifikance"
+      - file: source/Jpsi.ipynb
+        title: "J/ψ"
   - file: source/root_install.md
     title: ROOT install
 
@@ -49,7 +53,7 @@ site:
     favicon: assets/icon.ico
     #logo: assets/mouse.svg
     #logo_dark: assets/mouse.png
-    hide_outline: False
+    hide_outline: True
     style: assets/style.css
     logo_text: SZD Homeworks
     #logo_text: SZD 1+2

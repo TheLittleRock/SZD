@@ -26,6 +26,17 @@
     border-radius: 15px;      /* Softens image borders */
 }
 
+/* Target JSROOT plot containers using their ID prefix */
+div[id^="root_plot_"] {
+    max-width: 90% !important;      /* Match your 90% image scaling */
+    height: auto !important;        /* Override the hardcoded 600px height */
+    aspect-ratio: 4 / 3 !important; /* Maintain the standard 800x600 ROOT canvas proportion */
+    margin: 0 auto !important;      /* Center the plot horizontally */
+    padding: 10px !important;       /* Add breathing room */
+    border-radius: 5px !important; /* Soften edges like your images */
+    overflow: hidden !important;    /* Ensure the interactive canvas doesn't spill over rounded corners */
+}
+
 /* ==========================================================================
    PAGE BACKGROUND & NAVIGATION BAR
    ========================================================================== */
@@ -312,7 +323,7 @@ html.dark .myst-admonition-header .text-blue-600 {
 .article-grid > .lg\:col-margin-right {
     position: static !important;
     height: auto !important;
-    margin: 2rem 0 !important;
+    margin: -.5rem 0 !important;
     grid-column: body-start / page-inset-end !important; 
     z-index: 1 !important;
 }
@@ -320,8 +331,8 @@ html.dark .myst-admonition-header .text-blue-600 {
 /* 2. Container styling to perfectly match your code blocks and admonitions */
 .lg\:col-margin-right nav,
 .lg\:col-margin-right nav details {
-    background-color: #1c1e25 !important;
-    border: 1px solid #005f56 !important;
+    background-color: #1c1e2500 !important;
+    border: 1px solid #005f5600 !important;
     border-radius: 8px !important;
     box-shadow: none !important;
 }
@@ -329,7 +340,7 @@ html.dark .myst-admonition-header .text-blue-600 {
 /* 3. Style the "CONTENTS" dropdown toggle bar */
 .lg\:col-margin-right nav summary {
     color: #009385 !important;
-    font-weight: 600 !important;
+    font-weight: 400 !important;
     padding: 0.75rem 1rem !important;
     cursor: pointer !important;
     border-bottom: 1px solid transparent !important;
@@ -360,3 +371,4 @@ html.dark .myst-admonition-header .text-blue-600 {
     border-left: 3px solid #009385 !important;
     padding-left: calc(1rem - 3px) !important; /* Prevents text from shifting */
 }
+
