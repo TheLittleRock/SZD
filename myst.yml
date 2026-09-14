@@ -43,7 +43,9 @@ project:
       - file: source/significance.ipynb
         title: "Signifikance"
       - file: source/Jpsi.ipynb
-        title: "J/ψ"
+        title: "J/ψ contour plt"
+      - file: source/Higgs.ipynb
+        title: "Higgs signifikance"
   - file: source/root_install.md
     title: ROOT install
 
@@ -78,3 +80,11 @@ site:
         url: /root-test
       - title: "MLM vs. χ²"
         url: /chi2fit
+      - title: "RooFit WW"
+        url: /roofitww
+      - title: "Signifikance"
+        url: /significance
+      - title: "J/ψ contour plt"
+        url: /jpsi
+      - title: "Higgs signifikance"
+        url: /higgs
