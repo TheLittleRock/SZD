@@ -37,17 +37,6 @@ jobs:
         run: npm install -g mystmd
       - name: Build HTML Assets 
         run: myst build --html 
-      - name: Replace SVG content_type in homework-2.json and show result
-        run: |
-          grep 'content_type' ./_build/html/homework-2.json || echo "No content_type found before"
-          sed -i 's/"content_type":"image\/svg+xml"/"content_type":"image"/g' ./_build/html/homework-2.json
-          grep 'content_type' ./_build/html/homework-2.json || echo "No content_type found after"
-          grep 'content_type' ./_build/html/homework-1.json || echo "No content_type found before"
-          sed -i 's/"content_type":"image\/svg+xml"/"content_type":"image"/g' ./_build/html/homework-2.json
-          grep 'content_type' ./_build/html/homework-1.json || echo "No content_type found after"
-          grep 'content_type' ./_build/html/homework-2.html || echo "No content_type found before"
-          sed -i 's/"content_type":"image\/svg+xml"/"content_type":"image"/g' ./_build/html/homework-2.html
-          grep 'content_type' ./_build/html/homework-2.html || echo "No content_type found after"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
