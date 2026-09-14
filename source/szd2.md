@@ -53,10 +53,10 @@ https://kf.fjfi.cvut.cz/myska/SZD/szd2/Lookup_Solver/LookupSolver.html
 
 **Homeworks & Exercises**
 - [x] **1) $\chi^2$ fit** of binned "dirty Gauss"
-- [ ] **2) RooFit template fit** of WW data
+- [x] **2) RooFit template fit** of WW data
   * Sunrise: `/data2/vyuka/szd/SZD2-codes/Root-RooFit/4-RooFit_WW_homework`
   * [Web](https://kf.fjfi.cvut.cz/myska/SZD/szd2/RooFit_WW_fraction/Roofit_WW.html)
-- [ ] **3) Significance for Poisson distribution**
+- [x] **3) Significance for Poisson distribution**
   * [Web](https://kf.fjfi.cvut.cz/myska/SZD/szd2/Hypotheses_Poisson/Hypotheses_Poisson.html)
 - [ ] **4) Contour plot** in ROOT and RooFit
   * Sunrise paths: `/data2/vyuka/szd/SZD2-codes/Majak-withError` and `/data2/vyuka/szd/SZD2-codes/Root-RooFit/3-RooFit_Jpsi`

@@ -26,6 +26,17 @@
     border-radius: 15px;      /* Softens image borders */
 }
 
+/* Target JSROOT plot containers using their ID prefix */
+div[id^="root_plot_"] {
+    max-width: 90% !important;      /* Match your 90% image scaling */
+    height: auto !important;        /* Override the hardcoded 600px height */
+    aspect-ratio: 4 / 3 !important; /* Maintain the standard 800x600 ROOT canvas proportion */
+    margin: 0 auto !important;      /* Center the plot horizontally */
+    padding: 10px !important;       /* Add breathing room */
+    border-radius: 5px !important; /* Soften edges like your images */
+    overflow: hidden !important;    /* Ensure the interactive canvas doesn't spill over rounded corners */
+}
+
 /* ==========================================================================
    PAGE BACKGROUND & NAVIGATION BAR
    ========================================================================== */
@@ -303,3 +314,61 @@ html.dark .myst-admonition-header,
 html.dark .myst-admonition-header .text-blue-600 {
     color: #009385 !important;
 }
+
+/* ==========================================================================
+   ON-PAGE TABLE OF CONTENTS (CONTENTS DROPDOWN)
+   ========================================================================== */
+
+/* 1. Disable the buggy sticky behavior and push it into the main text column */
+.article-grid > .lg\:col-margin-right {
+    position: static !important;
+    height: auto !important;
+    margin: -.5rem 0 !important;
+    grid-column: body-start / page-inset-end !important; 
+    z-index: 1 !important;
+}
+
+/* 2. Container styling to perfectly match your code blocks and admonitions */
+.lg\:col-margin-right nav,
+.lg\:col-margin-right nav details {
+    background-color: #1c1e2500 !important;
+    border: 1px solid #005f5600 !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+}
+
+/* 3. Style the "CONTENTS" dropdown toggle bar */
+.lg\:col-margin-right nav summary {
+    color: #009385 !important;
+    font-weight: 400 !important;
+    padding: 0.75rem 1rem !important;
+    cursor: pointer !important;
+    border-bottom: 1px solid transparent !important;
+}
+
+/* Add a separator line when the dropdown is open */
+.lg\:col-margin-right nav details[open] summary {
+    border-bottom: 1px solid #005f56 !important;
+}
+
+/* 4. Style the navigation links */
+.lg\:col-margin-right nav a {
+    color: #edf9ffc9 !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 4px !important;
+    display: block !important;
+    margin: 2px 0 !important;
+    /* Force near-instant transitions to fix the "lazy" feeling */
+    transition: all 0.1s ease-in-out !important; 
+}
+
+/* 5. Snappy hover and active states */
+.lg\:col-margin-right nav a:hover,
+.lg\:col-margin-right nav a.active,
+.lg\:col-margin-right nav a[aria-current="page"] {
+    background-color: rgba(0, 147, 133, 0.15) !important;
+    color: #009385 !important;
+    border-left: 3px solid #009385 !important;
+    padding-left: calc(1rem - 3px) !important; /* Prevents text from shifting */
+}
+

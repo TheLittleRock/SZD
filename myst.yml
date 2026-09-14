@@ -40,6 +40,10 @@ project:
         title: "MLM vs. χ²"               # Custom title example
       - file: source/RooFitWW.ipynb
         title: "RooFit WW"
+      - file: source/significance.ipynb
+        title: "Signifikance"
+      - file: source/Jpsi.ipynb
+        title: "J/ψ"
   - file: source/root_install.md
     title: ROOT install
 
