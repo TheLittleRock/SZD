@@ -1,0 +1,18 @@
+For doxygen documentation please refer to Myska :-)
+
+Rychlá dokumentace k souborům v této složce, které ve finální verzi mají generovat Monte Carlo data a následně je rozmazat (tedy dodat detektorové efekty). Metoda HBOM pak funguje zpětným fitováním (protože data jsou rozmazána několikrát).
+
+Prosím nepoužívejte soubory v této složce, ale zkopírujte si je nejprve k sobě pomocí příkazu "cp -r HBOM/ /vase_cesta/"..
+
+Soubory:
+	Browser.cc+h 	-- Berou data z Herwigu a vkládají je do stromu a zároveň jej rozmazávají. Styl rozmazání je ošklivý, ale funkční. Do stromu se ukládají pouze jety, které se vytváří algoritmem FastJet.
+	LHC-all.in	-- Vstupní soubor Herwigu. (snad není potřeba dalšího komentáře.)
+	HBOM.C		-- ROOTovský soubor, který analyzuje vytvořený strom, používá "unfolding" (zde HBOM) a vytváří histogramy.
+	Makefile	-- Používá se ke kompilaci Browser.cc
+
+Postup použití:
+	1) Zkompilujte Browser.cc - K tomu je potřeba použít příkazy "source setup_ROOTxy.sh" (za xy doplňte vhodnou verzi/ viz složka Generatory), "source setup_H7_and_others.sh" a zavolat ve složce make.
+	2) Použijte Herwig - Jelikož máte vstupní soubor LHC-all.in, tak stačí zavolat příkaz "Herwig read LHC-all.in", který vytvoří soubor LHC-all.run který slouží k vytvoření nagenerovaných dat: "Herwig run LHC-all.run" - čímž se vytvoří soubor HERWIG_test.root obsahující strom.
+	3) Doporučuji otevřít soubor v ROOTu a zavolat funkci Makeclass (SNAD?), která vytvoří základní kostru analýzy = HBOM_analysis.C
+	4) Předělat HBOM.C k obrazu svému.
+	5) Spustit ROOT s kompilací - "root -l HBOM.C+" a poté vytvořit instanci a loopovat přes eventy: "HBOM a; a.Loop();", což vytvoří požadované histogramy.

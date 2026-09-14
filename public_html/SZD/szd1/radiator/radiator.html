@@ -1,0 +1,1156 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../ErrPropag/uncertainty.html">
+      
+      
+        <link rel="next" href="../ML_fit/ml_fit.html">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.0">
+    
+    
+      
+        <title>MLM Fit - Radiator - SZD</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.9f615399.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.649f08f9.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mlm-fit-radiator" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="SZD" class="md-header__button md-logo" aria-label="SZD" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SZD
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              MLM Fit - Radiator
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../doors/doors.html" class="md-tabs__link">
+          
+  
+    
+  
+  SZD1
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../szd2/Geant4/geant4.html" class="md-tabs__link">
+          
+  
+    
+  
+  SZD2
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SZD" class="md-nav__button md-logo" aria-label="SZD" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    SZD
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SZD1
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            SZD1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1" checked>
+        
+          <label class="md-nav__link" for="__nav_1_1" id="__nav_1_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SZD1 Codes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            SZD1 Codes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../doors/doors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The three door problem
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DAlembert/DAlembert.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    D'Alembert Strategy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Correlation/correlation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Correlation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Newton/newton.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Newton
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ErrPropag/uncertainty.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Error propagation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    MLM Fit - Radiator
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="radiator.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    MLM Fit - Radiator
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#theory" class="md-nav__link">
+    Theory
+  </a>
+  
+    <nav class="md-nav" aria-label="Theory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-radiates" class="md-nav__link">
+    How it radiates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-the-likelihood-function" class="md-nav__link">
+    Finding the likelihood function
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-and-homework" class="md-nav__link">
+    Code and homework
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ML_fit/ml_fit.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MLM Fit - S/B templates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chi2_fit/chi2_fit.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chi2 Fit - Least Squares Method
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" >
+        
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Python tutorials
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Python tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_tutorial/analysis-visualisation-python.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Analysis and Visualization in Python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_tutorial/python_libraries_overview.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📚 Python Scientific Computing & Data Analysis Libraries
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SZD2
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            SZD2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../szd2/Geant4/geant4.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Geant4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../szd2/RooFit_WW_fraction/Roofit_WW.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RooFit - WW fraction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../szd2/RooFit_Punzi/Roofit_Punzi.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RooFit - Conditional Likelihood
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../szd2/Hypotheses_Poisson/Hypotheses_Poisson.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing of hypotheses - Poisson
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../szd2/BDT/BDT.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BDT = Boosted Decision Trees
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../szd2/Lookup_Solver/LookupSolver.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ML - Lookup Problem Solver
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../szd2/UpsilonFitter/UpsFitter.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upsilon Fitter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../szd2/Stars/Stars.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Neutron stars
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+<nav class="md-tags" >
+  
+    
+    
+    
+      <span class="md-tag">SZD1 Homework</span>
+    
+  
+</nav>
+
+
+
+<h1 id="mlm-fit-radiator">MLM Fit - Radiator</h1>
+<p>Imagine you are in a room where a hidden radiation source is located, and your task is to pinpoint its location <span class="arithmatex">\((x_0, y_0)\)</span>. </p>
+<p>We suppose that the radiator emits uniformly in all direction. However, our detectors are located along only one wall, as illustrated in the figure bellow. NOTE: we measure exact positions, not just index of the pixel!</p>
+<figure>
+  <a href="radiator.png"><img alt="radiator" src="radiator.png" /></a>
+</figure>
+<p><strong>So, how do you determine where this source is?</strong></p>
+<p>In this task, we will utilize the method of maximum likelihood, a statistical approach that helps us estimate the position of the source based on these measured values.</p>
+<h2 id="theory">Theory</h2>
+<h3 id="how-it-radiates">How it radiates</h3>
+<p>As mentioned before, the radiator emits uniformly in all directions, in other words
+$$
+\text{pdf}(\alpha) = \frac{1}{2\pi}
+$$
+for a given angle <span class="arithmatex">\(\alpha\)</span>. The constant was selected so that the distribution is normalized 
+$$
+\int_0^{2\pi} \text{d}\alpha\, \text{pdf}(\alpha) = 1.
+$$</p>
+<p>However, we work in the Cartesian coordinate system, so we have to perform a transformation of this probability distribution function. Again, with the help of the following figure we can write</p>
+<div class="arithmatex">\[
+\alpha \rightarrow x = y_0 \tan \alpha + x_0.
+\]</div>
+<figure>
+  <a href="transformation.png"><img alt="radiator" src="transformation.png" /></a>
+</figure>
+<p>The transformation of the probability distribution function is then</p>
+<p>$$
+\text{pdf}(x|x_0,y_0) = \text{pdf}(\alpha = h(x)) \cdot \bigg\lvert\frac{\partial \alpha}{\partial x}\bigg\rvert = \dots = \frac{1}{2\pi} \frac{y_0}{(x-x_0)^2 + y_0^2},
+$$
+where we emphasized the dependence on the initial radiator position. This distribution is called Cauchy, but you could know it as a non-relativistic Breight-Wigner distribution.</p>
+<h3 id="finding-the-likelihood-function">Finding the likelihood function</h3>
+<p>Now we assume we have measured the events using the detectors along one of the walls, as depicted in the initial picture. Therefore, we have a set of measurements <span class="arithmatex">\(\{x_i\}\)</span>, where <span class="arithmatex">\(x_i\)</span> corresponds to an event that was detected by a detector at the position <span class="arithmatex">\(x_i\)</span>. We could plot this data in a histogram.</p>
+<p>These distributions are dependent on the position of the initial source, and therefore we talk about <a href="https://en.wikipedia.org/wiki/Conditional_probability">conditional probability</a>. Therefore, this distribution is formally given by
+$$
+\text{pdf}(\{x_i\} | x_0, y_0).
+$$</p>
+<p>Using the <a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes' theorem</a>, we can write
+$$
+p(x_0, y_0 | \{x_i\}) \sim \text{pdf}(\{x_i\} | x_0, y_0) \cdot \text{prior}(x_0, y_0).
+$$</p>
+<p>The prior determines what we know about the initial position of the source. In principle, we can say that this corresponds to a uniform distribution within the size of the room and the prior is therefore constant and thus irrelevant for the position of the extreme.</p>
+<p>We rely on Bayes theorem because we want to determine the position of the source based on the data we have, i.e. we are interested in maximum of
+$$
+p(x_0, y_0 | \{x_i\}).
+$$
+However, what we assume we know is
+$$
+\text{pdf}(\{x_i\} | x_0, y_0).
+$$ 
+which is our likelihood function - with the same extreme.</p>
+<p>In fact, what we assume to know is the pdf for a single random variable (= this is the function we fit on our data)
+$$
+\text{pdf}(x_i | x_0, y_0).
+$$
+and for the pdf of the whole dataset <span class="arithmatex">\(\{x_i\}\)</span> we assume independency. Therefore the joint pdf for <span class="arithmatex">\(N\)</span> data is
+$$
+\text{pdf}(\{x_i\} | x_0, y_0) = \prod_{i=1}^N \text{pdf}(x_i|x_0,y_0) = \prod_{i=1}^{N} \left(\frac{1}{2\pi} \frac{y_0}{(x_i-x_0)^2 + y_0^2} \right)
+$$</p>
+<p>The last step is to make a natural logarithm of our Likelihood:</p>
+<div class="arithmatex">\[
+\ln L = \ln \prod_{i=1}^{N} \left(\frac{1}{2\pi} \frac{y_0}{(x-x_0)^2 + y_0^2}\right) = \sum_{i=1}^{N} \ln\left(\frac{1}{2\pi} \frac{y_0}{(x-x_0)^2 + y_0^2}\right)
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Note that we are fitting the actual data, not a histogram! i.e. we are not binning the data =&gt; This is UN-BINNED Maximum Likelihood Fit!</strong></p>
+</div>
+<h2 id="code-and-homework">Code and homework</h2>
+<div class="admonition example">
+<p class="admonition-title">Task</p>
+<p>Generate a toy data from the detectors and then use the maximum likelihood method to estimate the most probable position of the source, based on the data. </p>
+<p>Output of the program should be the real position of the source, the most probable position of the source and a heatmap (= 2D histogram) illustrating the value of the likelihood function at different points in the room (representing potential positions of the source).</p>
+<p>The following list is a suggestion of how to approach this:</p>
+<ol>
+<li>Select the real position of the source. 
+<strong>Choose <span class="arithmatex">\(y_0\)</span> within the range (0 - 1)</strong> - as <span class="arithmatex">\(y\)</span> coordinate is determined from the width of the measeured distribution, it is not very sensitive within a small room (in <span class="arithmatex">\(x\)</span> direction). </li>
+<li>Generate the hits at the detectors using the distribution function found in the <a href="#how-it-radiates">How it radiates</a> section.</li>
+<li>Define the likelihood function.</li>
+<li>Create a 2D histogram of potential positions of the source (i.e. a grid) and evaluate the likelihood function for each of these points. (i.e. you need a sequence of three loops: over <span class="arithmatex">\(x_0\)</span>, over <span class="arithmatex">\(y_0\)</span>, and over <span class="arithmatex">\(x_i\)</span> )</li>
+<li>Create a heatmap (2D histogram) from this.</li>
+<li>Find the maximum of this evaluated likelihood function and mark it as the most probable location of the source.</li>
+</ol>
+<p>Do not forget that we work in a room of finite dimensions, so limit the data generation to that.</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Output</p>
+<p><a href="output.png"><img alt="output" src="output.png" /></a></p>
+</div>
+<!-- <figure markdown="span">
+  [![radiator](radiator.jpeg)](radiator.jpeg)
+  <figcaption>AI's illustration :)</figcaption>
+</figure> -->
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../ErrPropag/uncertainty.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Error propagation" rel="prev">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Error propagation
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../ML_fit/ml_fit.html" class="md-footer__link md-footer__link--next" aria-label="Next: MLM Fit - S/B templates" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                MLM Fit - S/B templates
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.annotate", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "content.action.edit", "content.action.view", "search.suggest", "search.highlight", "navigation.footer", "toc.integrate"], "search": "../../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.4e0fa4ba.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/site-link.js"></script>
+      
+    
+  </body>
+</html>
